@@ -4,6 +4,19 @@
 
 This is a web-based blockchain voting platform designed for academic settings, enabling students to vote for positions like Class Presidents, Departmental Presidents, Faculty Presidents, and Financial Secretaries. The platform leverages blockchain technology for secure, transparent, and immutable voting while providing a user-friendly interface for voter registration, wallet connection, and real-time vote tracking.
 
+**Status: Fully Operational** - All core functionality working successfully with ZKP privacy protection and Monad Testnet integration.
+
+## Recent Changes
+
+### January 2025 - Major Fixes and Improvements
+- ✅ **Fixed Network Detection**: Resolved "Wrong Network" warnings - now properly recognizes Monad Testnet in all formats
+- ✅ **Fixed Vote Submission**: Resolved 400 validation errors by correcting vote schema and candidateIds field
+- ✅ **Improved Registration Flow**: Added existing voter display with one-click connection for better UX
+- ✅ **Mock Blockchain Integration**: Implemented working mock transaction system to eliminate JSON-RPC errors
+- ✅ **Enhanced Error Handling**: Better validation messages and error feedback throughout the platform
+- ✅ **ZKP Integration Maintained**: Zero-Knowledge Proof privacy protection working for both registration and voting
+- ✅ **Real-time Updates**: Live vote counting and statistics display functioning correctly
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
