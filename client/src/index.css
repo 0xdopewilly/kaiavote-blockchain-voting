@@ -4,31 +4,31 @@
 @tailwind utilities;
 
 :root {
-  /* Futuristic Purple Theme */
-  --background: hsl(260 15% 8%);
-  --foreground: hsl(280 5% 95%);
-  --card: hsl(260 20% 12%);
-  --card-foreground: hsl(280 5% 95%);
-  --popover: hsl(260 20% 12%);
-  --popover-foreground: hsl(280 5% 95%);
-  --primary: hsl(270 95% 65%);
-  --primary-foreground: hsl(260 15% 8%);
-  --secondary: hsl(280 15% 18%);
-  --secondary-foreground: hsl(280 5% 95%);
-  --muted: hsl(280 10% 15%);
-  --muted-foreground: hsl(280 5% 65%);
-  --accent: hsl(290 85% 70%);
-  --accent-foreground: hsl(260 15% 8%);
-  --destructive: hsl(0 85% 65%);
-  --destructive-foreground: hsl(280 5% 95%);
-  --border: hsl(280 20% 25%);
-  --input: hsl(280 15% 18%);
-  --ring: hsl(270 95% 65%);
-  --warning: hsl(35 91% 60%);
-  --warning-foreground: hsl(260 15% 8%);
-  --error: hsl(0 85% 65%);
-  --error-foreground: hsl(280 5% 95%);
-  --surface: hsl(260 18% 10%);
+  /* Enhanced Futuristic Purple Theme - Better Contrast */
+  --background: hsl(240 15% 5%);
+  --foreground: hsl(0 0% 98%);
+  --card: hsl(240 20% 8%);
+  --card-foreground: hsl(0 0% 95%);
+  --popover: hsl(240 20% 8%);
+  --popover-foreground: hsl(0 0% 95%);
+  --primary: hsl(270 100% 70%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(260 30% 20%);
+  --secondary-foreground: hsl(0 0% 95%);
+  --muted: hsl(240 15% 12%);
+  --muted-foreground: hsl(240 5% 70%);
+  --accent: hsl(280 100% 75%);
+  --accent-foreground: hsl(0 0% 100%);
+  --destructive: hsl(0 90% 65%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(260 30% 30%);
+  --input: hsl(240 20% 15%);
+  --ring: hsl(270 100% 70%);
+  --warning: hsl(35 100% 65%);
+  --warning-foreground: hsl(0 0% 100%);
+  --error: hsl(0 90% 65%);
+  --error-foreground: hsl(0 0% 100%);
+  --surface: hsl(240 18% 6%);
   --font-inter: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
   --radius: 1rem;
@@ -69,11 +69,11 @@
   body {
     @apply bg-background text-foreground font-[var(--font-inter)] antialiased;
     background: linear-gradient(135deg, 
-      hsl(260, 15%, 8%) 0%, 
-      hsl(270, 25%, 12%) 25%, 
-      hsl(280, 20%, 10%) 50%, 
-      hsl(290, 30%, 15%) 75%, 
-      hsl(260, 15%, 8%) 100%);
+      hsl(240, 15%, 5%) 0%, 
+      hsl(250, 25%, 8%) 25%, 
+      hsl(260, 20%, 6%) 50%, 
+      hsl(270, 30%, 10%) 75%, 
+      hsl(240, 15%, 5%) 100%);
     background-attachment: fixed;
     min-height: 100vh;
     font-feature-settings: "rlig" 1, "calt" 1;
@@ -134,12 +134,13 @@
   }
   
   .cyber-button {
-    @apply relative overflow-hidden font-medium;
+    @apply relative overflow-hidden font-medium text-white;
     background: linear-gradient(135deg, 
       hsl(var(--primary)) 0%, 
       hsl(var(--accent)) 100%);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: var(--radius);
+    border: 2px solid hsl(var(--primary) / 0.7);
   }
   
   .cyber-button::before {

@@ -37,38 +37,48 @@ export default function WalletConnector({
   };
 
   return (
-    <Card className="w-full max-w-md mx-auto">
-      <CardContent className="pt-6 text-center">
-        <Wallet className="h-12 w-12 text-primary mx-auto mb-4" />
-        <h3 className="text-lg font-medium text-secondary mb-2">{title}</h3>
-        <p className="text-gray-600 mb-6">{description}</p>
+    <div className="futuristic-card p-8 max-w-lg mx-auto">
+      <div className="text-center">
+        <div className="relative inline-block mb-6">
+          <Wallet className="h-16 w-16 text-primary mx-auto" />
+          <div className="absolute -inset-4 bg-primary/30 rounded-full blur-xl animate-pulse"></div>
+        </div>
+        <h3 className="text-2xl font-bold text-foreground mb-2">{title}</h3>
+        <p className="text-muted-foreground mb-8 text-lg">{description}</p>
         
         {error && (
-          <Alert className="mb-4" variant="destructive">
-            <AlertCircle className="h-4 w-4" />
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
+          <div className="glass-morph rounded-xl p-4 mb-6 border border-destructive/30">
+            <div className="flex items-center justify-center space-x-3">
+              <AlertCircle className="h-5 w-5 text-destructive" />
+              <span className="text-destructive font-medium">{error}</span>
+            </div>
+          </div>
         )}
 
         {account ? (
-          <div className="space-y-4">
-            <Alert>
-              <AlertDescription>
-                Connected: {account.slice(0, 6)}...{account.slice(-4)}
-              </AlertDescription>
-            </Alert>
-            <div className="space-y-3">
+          <div className="space-y-6">
+            <div className="glass-morph rounded-xl p-4 border border-primary/30">
+              <div className="flex items-center justify-center space-x-3">
+                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                <span className="text-foreground font-mono text-lg">
+                  {account.slice(0, 8)}...{account.slice(-6)}
+                </span>
+              </div>
+              <p className="text-sm text-muted-foreground mt-2">Wallet Connected</p>
+            </div>
+            <div className="space-y-4">
               <Button 
                 onClick={() => onConnect(account)} 
-                className="w-full"
+                className="w-full h-14 text-lg cyber-button"
                 data-testid="button-continue"
               >
-                Continue
+                <Wallet className="mr-3 h-5 w-5" />
+                Continue to Voting
               </Button>
               <Button 
                 onClick={handleDisconnect}
                 variant="outline"
-                className="w-full"
+                className="w-full h-12 border-2 border-muted-foreground text-muted-foreground hover:bg-muted-foreground hover:text-background transition-all"
                 data-testid="button-disconnect-wallet"
               >
                 <LogOut className="mr-2 h-4 w-4" />
@@ -80,23 +90,23 @@ export default function WalletConnector({
           <Button 
             onClick={handleConnect} 
             disabled={isLoading}
-            className="w-full bg-warning hover:bg-warning/90 text-white"
+            className="w-full h-16 text-xl cyber-button"
             data-testid="button-connect-wallet"
           >
             {isLoading ? (
               <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Connecting...
+                <Loader2 className="mr-3 h-6 w-6 animate-spin" />
+                Connecting to Wallet...
               </>
             ) : (
               <>
-                <Wallet className="mr-2 h-4 w-4" />
+                <Wallet className="mr-3 h-6 w-6" />
                 Connect MetaMask
               </>
             )}
           </Button>
         )}
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }

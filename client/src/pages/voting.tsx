@@ -236,7 +236,7 @@ export default function VotingPage() {
                 <div className="absolute -inset-2 bg-primary/20 rounded-full blur-md animate-pulse"></div>
               </div>
               <div>
-                <h1 className="text-2xl font-bold gradient-text">NEXUS VOTE</h1>
+                <h1 className="text-2xl font-bold gradient-text">VOTECHAIN</h1>
                 <p className="text-sm text-muted-foreground">Blockchain Voting Terminal</p>
               </div>
             </div>

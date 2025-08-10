@@ -134,51 +134,37 @@ export default function RegistrationPage() {
       <div className="container mx-auto">
         <ProgressIndicator currentStep={1} />
         
-        {/* Hero Section with Futuristic Title */}
+        {/* Hero Section with Beautiful Title */}
         <div className="text-center mb-12 relative">
           <div className="inline-block relative">
-            <h1 className="text-6xl font-bold gradient-text mb-4">
-              NEXUS VOTE
+            <h1 className="text-7xl font-bold gradient-text mb-4 tracking-wider">
+              VOTECHAIN
             </h1>
-            <div className="absolute -inset-4 bg-gradient-to-r from-transparent via-primary/20 to-transparent blur-xl"></div>
+            <div className="absolute -inset-6 bg-gradient-to-r from-transparent via-primary/30 to-transparent blur-2xl"></div>
           </div>
-          <div className="space-y-2">
-            <p className="text-2xl font-medium neon-text">
-              Academic Blockchain Voting
+          <div className="space-y-3">
+            <p className="text-3xl font-semibold neon-text tracking-wide">
+              Academic Blockchain Democracy
             </p>
-            <p className="text-lg text-muted-foreground">
-              Secure • Anonymous • Transparent • Immutable
+            <p className="text-xl text-foreground font-medium">
+              🔒 Secure • 🎭 Anonymous • 🌟 Transparent • ⛓️ Immutable
             </p>
           </div>
           
-          {/* Floating elements */}
-          <div className="absolute -top-10 -left-10 w-20 h-20 bg-primary/10 rounded-full blur-xl animate-pulse"></div>
-          <div className="absolute -top-16 -right-16 w-32 h-32 bg-accent/10 rounded-full blur-2xl animate-pulse delay-700"></div>
+          {/* Enhanced floating elements */}
+          <div className="absolute -top-10 -left-10 w-24 h-24 bg-primary/20 rounded-full blur-xl animate-pulse"></div>
+          <div className="absolute -top-16 -right-16 w-36 h-36 bg-accent/20 rounded-full blur-2xl animate-pulse delay-700"></div>
         </div>
 
         <div className="max-w-2xl mx-auto space-y-8">
           <GasSavingsBanner />
           
-          {/* Wallet Connection Section */}
-          {isConnected && account && (
-            <div className="futuristic-card p-6">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="relative">
-                  <Wallet className="h-6 w-6 text-primary" />
-                  <div className="absolute -inset-1 bg-primary/20 rounded-full blur animate-pulse"></div>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-foreground">Wallet Connected</h3>
-                  <p className="text-sm text-muted-foreground">Ready for secure blockchain voting</p>
-                </div>
-              </div>
-              <WalletConnector
-                title="Connect Registered Wallet" 
-                description="Connect your wallet to restore your session and proceed to voting."
-                onConnect={handleWalletConnect}
-              />
-            </div>
-          )}
+          {/* Primary Wallet Connection */}
+          <WalletConnector
+            title="Connect Your Wallet" 
+            description="Connect MetaMask to securely register and vote on the blockchain"
+            onConnect={handleWalletConnect}
+          />
           
           <ZKPInfo />
 
