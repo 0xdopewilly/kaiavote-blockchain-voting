@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(210 25% 7.8431%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(210 25% 7.8431%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(210 25% 7.8431%);
+  --primary: hsl(207.27 87.8788% 52.9412%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(210 25% 26.0784%);
+  --secondary-foreground: hsl(0 0% 100%);
+  --muted: hsl(0 0% 98.0392%);
+  --muted-foreground: hsl(210 25% 7.8431%);
+  --accent: hsl(122.4 39.4118% 49.0196%);
+  --accent-foreground: hsl(0 0% 100%);
+  --destructive: hsl(4.7619 89.6552% 58.4314%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(240 5.9 90%);
+  --input: hsl(240 4.8 95.9%);
+  --ring: hsl(207.27 87.8788% 52.9412%);
+  --warning: hsl(35.7143 91.1765% 55.2941%);
+  --warning-foreground: hsl(0 0% 100%);
+  --error: hsl(4.7619 89.6552% 58.4314%);
+  --error-foreground: hsl(0 0% 100%);
+  --surface: hsl(0 0% 98.0392%);
+  --font-roboto: 'Roboto', sans-serif;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: hsl(222.2 84% 4.9%);
+  --foreground: hsl(210 40% 98%);
+  --card: hsl(222.2 84% 4.9%);
+  --card-foreground: hsl(210 40% 98%);
+  --popover: hsl(222.2 84% 4.9%);
+  --popover-foreground: hsl(210 40% 98%);
+  --primary: hsl(207.27 87.8788% 52.9412%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(217.2 32.6% 17.5%);
+  --secondary-foreground: hsl(210 40% 98%);
+  --muted: hsl(217.2 32.6% 17.5%);
+  --muted-foreground: hsl(215 20.2% 65.1%);
+  --accent: hsl(122.4 39.4118% 49.0196%);
+  --accent-foreground: hsl(0 0% 100%);
+  --destructive: hsl(0 62.8% 30.6%);
+  --destructive-foreground: hsl(210 40% 98%);
+  --border: hsl(217.2 32.6% 17.5%);
+  --input: hsl(217.2 32.6% 17.5%);
+  --ring: hsl(207.27 87.8788% 52.9412%);
+  --warning: hsl(35.7143 91.1765% 55.2941%);
+  --warning-foreground: hsl(0 0% 100%);
+  --error: hsl(4.7619 89.6552% 58.4314%);
+  --error-foreground: hsl(0 0% 100%);
+  --surface: hsl(217.2 32.6% 17.5%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-surface text-foreground font-[var(--font-roboto)] antialiased min-h-screen;
+  }
+}
+
+@layer utilities {
+  .text-primary {
+    color: var(--primary);
+  }
+  
+  .text-secondary {
+    color: var(--secondary);
+  }
+  
+  .text-accent {
+    color: var(--accent);
+  }
+  
+  .text-warning {
+    color: var(--warning);
+  }
+  
+  .text-error {
+    color: var(--error);
+  }
+  
+  .bg-primary {
+    background-color: var(--primary);
+  }
+  
+  .bg-secondary {
+    background-color: var(--secondary);
+  }
+  
+  .bg-accent {
+    background-color: var(--accent);
+  }
+  
+  .bg-warning {
+    background-color: var(--warning);
+  }
+  
+  .bg-error {
+    background-color: var(--error);
+  }
+  
+  .bg-surface {
+    background-color: var(--surface);
+  }
+  
+  .border-primary {
+    border-color: var(--primary);
+  }
+}
