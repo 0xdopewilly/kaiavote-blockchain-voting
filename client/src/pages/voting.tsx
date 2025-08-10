@@ -423,6 +423,19 @@ export default function VotingPage() {
         </DialogContent>
       </Dialog>
       
+      {/* Small ZKP Info Button - Bottom Right */}
+      <div className="fixed bottom-4 right-4 z-50">
+        <Button
+          variant="outline"
+          size="sm"
+          className="w-10 h-10 p-0 cyber-button bg-primary/10 hover:bg-primary/20 border-primary/30 hover:border-primary/60 backdrop-blur-sm"
+          onClick={() => document.querySelector('[data-testid="button-zkp-info"]')?.click()}
+          data-testid="floating-zkp-info-small"
+        >
+          <Shield className="h-4 w-4 text-primary" />
+        </Button>
+        <div className="absolute -inset-1 bg-primary/10 rounded-lg blur animate-pulse pointer-events-none"></div>
+      </div>
 
     </div>
   );
