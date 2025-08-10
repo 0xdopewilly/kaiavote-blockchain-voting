@@ -22,7 +22,10 @@ export function Web3Provider({ children }: Web3ProviderProps) {
 
   useEffect(() => {
     const checkConnection = async () => {
-      if (await isWalletConnected()) {
+      // Check if user has explicitly disconnected (stored in localStorage)
+      const hasDisconnected = localStorage.getItem('wallet_disconnected') === 'true';
+      
+      if (!hasDisconnected && await isWalletConnected()) {
         const currentAccount = await getAccount();
         setAccount(currentAccount);
         setIsConnected(!!currentAccount);
@@ -34,7 +37,9 @@ export function Web3Provider({ children }: Web3ProviderProps) {
     // Listen for account changes
     if (typeof window !== 'undefined' && window.ethereum) {
       window.ethereum.on('accountsChanged', (accounts: string[]) => {
-        if (accounts.length === 0) {
+        const hasDisconnected = localStorage.getItem('wallet_disconnected') === 'true';
+        
+        if (accounts.length === 0 || hasDisconnected) {
           setAccount(null);
           setIsConnected(false);
         } else {
@@ -59,6 +64,8 @@ export function Web3Provider({ children }: Web3ProviderProps) {
   const connect = async (): Promise<string | null> => {
     setIsLoading(true);
     try {
+      // Clear the disconnected flag when connecting
+      localStorage.removeItem('wallet_disconnected');
       const connectedAccount = await connectWallet();
       setAccount(connectedAccount);
       setIsConnected(!!connectedAccount);
@@ -72,6 +79,8 @@ export function Web3Provider({ children }: Web3ProviderProps) {
   };
 
   const disconnect = () => {
+    // Set flag to prevent auto-reconnection on refresh
+    localStorage.setItem('wallet_disconnected', 'true');
     disconnectWallet();
     setAccount(null);
     setIsConnected(false);

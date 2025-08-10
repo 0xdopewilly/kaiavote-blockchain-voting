@@ -20,6 +20,7 @@ import { useWeb3 } from "@/hooks/use-web3";
 import { zkpService } from "@/lib/zkp";
 import ZKPInfo from "@/components/zkp-info";
 import GasSavingsBanner from "@/components/gas-savings-banner";
+import ClearWalletButton from "@/components/clear-wallet-button";
 
 const registrationSchema = insertVoterSchema.extend({
   confirmWalletAddress: z.string().min(1, "Please confirm your wallet address"),
@@ -143,14 +144,17 @@ export default function RegistrationPage() {
               </div>
               <h1 className="text-xl font-medium text-secondary">Academic Voting Platform</h1>
             </div>
-            {isConnected && account && (
-              <div className="flex items-center space-x-2 bg-accent/10 px-3 py-2 rounded-lg">
-                <Wallet className="h-4 w-4 text-accent" />
-                <span className="text-sm font-medium text-accent">
-                  {account.slice(0, 6)}...{account.slice(-4)}
-                </span>
-              </div>
-            )}
+            <div className="flex items-center space-x-3">
+              {isConnected && account && (
+                <div className="flex items-center space-x-2 bg-accent/10 px-3 py-2 rounded-lg">
+                  <Wallet className="h-4 w-4 text-accent" />
+                  <span className="text-sm font-medium text-accent">
+                    {account.slice(0, 6)}...{account.slice(-4)}
+                  </span>
+                </div>
+              )}
+              <ClearWalletButton />
+            </div>
           </div>
         </div>
       </header>
