@@ -16,7 +16,13 @@ export async function connectWallet(): Promise<string | null> {
   }
 
   try {
-    // First, request accounts to connect the wallet
+    // Clear any cached accounts to force MetaMask to show account selection
+    await window.ethereum.request({
+      method: 'wallet_requestPermissions',
+      params: [{ eth_accounts: {} }],
+    });
+
+    // Then request accounts - this will show the account selection popup
     const accounts = await window.ethereum.request({
       method: 'eth_requestAccounts',
     });
@@ -25,12 +31,11 @@ export async function connectWallet(): Promise<string | null> {
       throw new Error('No accounts found. Please unlock MetaMask.');
     }
 
-    // Then try to switch to Monad Testnet (don't fail if this doesn't work)
+    // Try to switch to Monad Testnet (don't fail if this doesn't work)
     try {
       await switchToMonadTestnet();
     } catch (networkError) {
       console.warn('Could not switch to Monad Testnet automatically:', networkError);
-      // Don't fail the connection, just warn the user
     }
 
     return accounts[0];
