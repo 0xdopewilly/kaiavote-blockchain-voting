@@ -48,8 +48,8 @@ export class Contract {
         to: this.contractAddress,
         from: voterAddress,
         data: encodedData,
-        gas: '0x76C0', // 30400 gas limit
-        gasPrice: '0x9184E72A000', // 10000000000000 wei
+        gas: '0x7A120', // 500,000 gas limit for Monad
+        gasPrice: '0x3E8', // Ultra-low gas price for Monad (1000 wei = 0.000001 gwei)
       };
 
       const transactionHash = await signTransaction(transactionData);

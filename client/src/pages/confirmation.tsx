@@ -165,6 +165,12 @@ export default function ConfirmationPage() {
                       {formatTimestamp(transactionDetails.timestamp)}
                     </span>
                   </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Gas Cost:</span>
+                    <span className="text-green-600 font-mono text-sm">
+                      ~0.0005 MON (~$0.0005)
+                    </span>
+                  </div>
                 </div>
               </div>
 

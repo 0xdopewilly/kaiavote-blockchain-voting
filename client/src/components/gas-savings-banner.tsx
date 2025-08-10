@@ -31,9 +31,9 @@ export default function GasSavingsBanner() {
             <div className="text-center">
               <div className="flex items-center space-x-1">
                 <DollarSign className="h-4 w-4 text-green-600" />
-                <span className="text-sm font-medium text-green-800">Monad: $0.001</span>
+                <span className="text-sm font-medium text-green-800">Monad: ~$0.0005</span>
               </div>
-              <p className="text-xs text-green-600">per vote</p>
+              <p className="text-xs text-green-600">per vote (MON token)</p>
             </div>
             
             <Badge variant="secondary" className="bg-green-100 text-green-800 font-bold">

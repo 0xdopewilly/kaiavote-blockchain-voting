@@ -16,6 +16,9 @@ export async function connectWallet(): Promise<string | null> {
   }
 
   try {
+    // First, switch to Monad Testnet to ensure we're on the right network
+    await switchToMonadTestnet();
+    
     const accounts = await window.ethereum.request({
       method: 'eth_requestAccounts',
     });
@@ -24,8 +27,11 @@ export async function connectWallet(): Promise<string | null> {
       throw new Error('No accounts found. Please unlock MetaMask.');
     }
 
-    // Switch to Monad Testnet network
-    await switchToMonadTestnet();
+    // Verify we're on the correct network
+    const currentChainId = await getCurrentNetwork();
+    if (currentChainId !== '0x279F') {
+      throw new Error('Please switch to Monad Testnet to use MON tokens with ultra-low gas fees');
+    }
 
     return accounts[0];
   } catch (error: any) {
@@ -84,12 +90,13 @@ export async function switchToMonadTestnet(): Promise<void> {
               chainId,
               chainName: 'Monad Testnet',
               nativeCurrency: {
-                name: 'MON',
+                name: 'Monad',
                 symbol: 'MON',
                 decimals: 18,
               },
               rpcUrls: ['https://10143.rpc.thirdweb.com'],
               blockExplorerUrls: ['https://monad-testnet.socialscan.io'],
+              iconUrls: ['https://monad.xyz/favicon.ico'],
             },
           ],
         });

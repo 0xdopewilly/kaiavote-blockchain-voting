@@ -21,6 +21,7 @@ import { contract } from "@/lib/contract";
 import { zkpService } from "@/lib/zkp";
 import ZKPInfo from "@/components/zkp-info";
 import GasSavingsBanner from "@/components/gas-savings-banner";
+import NetworkStatus from "@/components/network-status";
 
 interface Position {
   id: string;
@@ -267,6 +268,7 @@ export default function VotingPage() {
       <main className="container mx-auto px-6 py-8">
         <div className="space-y-6">
           <GasSavingsBanner />
+          <NetworkStatus />
           <ZKPInfo />
         </div>
         
