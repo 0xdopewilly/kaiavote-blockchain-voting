@@ -313,7 +313,7 @@ export default function VotingPage() {
                                   <IconComponent className="h-8 w-8 text-primary" />
                                   <div className="absolute -inset-2 bg-primary/30 rounded-full blur-md animate-pulse"></div>
                                 </div>
-                                <span className="gradient-text text-3xl">{position.name}</span>
+                                <span className="text-white text-3xl font-bold">{position.name}</span>
                               </h3>
                               <FormControl>
                                 <RadioGroup
