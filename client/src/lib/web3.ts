@@ -124,13 +124,21 @@ export async function signTransaction(transactionData: any): Promise<string> {
   }
 
   try {
+    // Ensure we're on the correct network before sending transaction
+    const currentChainId = await getCurrentNetwork();
+    if (currentChainId !== '0x279F') {
+      console.log('Wrong network detected, switching to Monad Testnet...');
+      await switchToMonadTestnet();
+    }
+
     const txHash = await window.ethereum.request({
       method: 'eth_sendTransaction',
       params: [transactionData],
     });
     return txHash;
   } catch (error: any) {
-    throw new Error(`Transaction failed: ${error.message}`);
+    console.error('Transaction signing error:', error);
+    throw new Error(`Transaction failed: ${error.message || 'Unknown error'}`);
   }
 }
 

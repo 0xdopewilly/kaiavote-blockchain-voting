@@ -25,7 +25,7 @@ export default function NetworkStatus() {
       try {
         if (await isWalletAvailable()) {
           const chainId = await getCurrentNetwork();
-          const isMonad = chainId === '0x279F'; // Monad Testnet
+          const isMonad = chainId === '0x279F' || chainId === '0x279f' || parseInt(chainId, 16) === 10143; // Monad Testnet in different formats
           
           setNetworkStatus({
             chainId,
