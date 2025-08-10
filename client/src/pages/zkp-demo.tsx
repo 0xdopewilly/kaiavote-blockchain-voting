@@ -1,0 +1,188 @@
+import { Link } from "wouter";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft, Shield, Lock, Eye, Key, Database, CheckCircle } from "lucide-react";
+import ZKPDemo from "@/components/zkp-demo";
+
+export default function ZKPDemoPage() {
+  return (
+    <div className="min-h-screen">
+      {/* Header */}
+      <header className="relative">
+        <div className="futuristic-card mx-6 mt-6 mb-4">
+          <div className="flex items-center justify-between p-6">
+            <div className="flex items-center space-x-4">
+              <Link href="/">
+                <Button variant="ghost" className="cyber-button px-3 py-2">
+                  <ArrowLeft className="h-5 w-5 mr-2" />
+                  Back to Home
+                </Button>
+              </Link>
+              <div className="flex items-center space-x-3">
+                <div className="relative">
+                  <Shield className="h-8 w-8 text-primary" />
+                  <div className="absolute -inset-2 bg-primary/20 rounded-full blur-md animate-pulse"></div>
+                </div>
+                <div>
+                  <h1 className="text-2xl font-bold gradient-text">VOTECHAIN ZKP</h1>
+                  <p className="text-sm text-muted-foreground">Zero-Knowledge Proof Demonstration</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main className="container mx-auto px-6 py-8">
+        <div className="max-w-6xl mx-auto space-y-8">
+          {/* Explanation Section */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <div className="glass-morph rounded-2xl border-2 border-primary/30 p-6">
+              <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
+                <Lock className="h-6 w-6 text-primary mr-3" />
+                What is Zero-Knowledge Proof?
+              </h2>
+              <div className="space-y-4 text-white/90">
+                <p className="text-lg">
+                  Zero-Knowledge Proof (ZKP) allows our voting system to verify student eligibility 
+                  and vote integrity <strong>without revealing any sensitive information</strong>.
+                </p>
+                <div className="space-y-3">
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
+                    <div>
+                      <strong className="text-white">Privacy Protected:</strong> Your matric number, 
+                      vote selections, and personal details never appear on the blockchain
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
+                    <div>
+                      <strong className="text-white">Cryptographically Secure:</strong> Mathematical 
+                      proofs guarantee vote validity without revealing content
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
+                    <div>
+                      <strong className="text-white">Publicly Verifiable:</strong> Anyone can verify 
+                      election integrity without accessing private data
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="glass-morph rounded-2xl border-2 border-accent/30 p-6">
+              <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
+                <Key className="h-6 w-6 text-accent mr-3" />
+                How ZKP Works Here
+              </h2>
+              <div className="space-y-4">
+                <div className="glass-morph rounded-xl p-4 border border-primary/20">
+                  <h3 className="text-lg font-bold text-white mb-2 flex items-center">
+                    <span className="w-6 h-6 bg-primary rounded-full flex items-center justify-center text-sm mr-3">1</span>
+                    Registration ZKP
+                  </h3>
+                  <p className="text-white/80 text-sm">
+                    Proves you're an eligible student without revealing your matric number to the blockchain
+                  </p>
+                </div>
+                
+                <div className="glass-morph rounded-xl p-4 border border-accent/20">
+                  <h3 className="text-lg font-bold text-white mb-2 flex items-center">
+                    <span className="w-6 h-6 bg-accent rounded-full flex items-center justify-center text-sm mr-3">2</span>
+                    Voting ZKP
+                  </h3>
+                  <p className="text-white/80 text-sm">
+                    Proves your vote is valid and you haven't voted before, without revealing your selections
+                  </p>
+                </div>
+                
+                <div className="glass-morph rounded-xl p-4 border border-primary/20">
+                  <h3 className="text-lg font-bold text-white mb-2 flex items-center">
+                    <span className="w-6 h-6 bg-primary rounded-full flex items-center justify-center text-sm mr-3">3</span>
+                    Verification
+                  </h3>
+                  <p className="text-white/80 text-sm">
+                    Smart contracts verify all proofs mathematically, ensuring election integrity
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Live Demo Section */}
+          <ZKPDemo />
+
+          {/* Technical Implementation */}
+          <div className="glass-morph rounded-2xl border-2 border-primary/30 p-6">
+            <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
+              <Database className="h-6 w-6 text-primary mr-3" />
+              Technical Implementation
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="glass-morph rounded-xl p-4 border border-primary/20">
+                <h3 className="text-lg font-bold text-white mb-3">Client-Side ZKP</h3>
+                <ul className="space-y-2 text-sm text-white/80">
+                  <li>• ZKP generation in <code className="text-primary">zkp.ts</code></li>
+                  <li>• Hash-based commitment schemes</li>
+                  <li>• Local proof verification</li>
+                  <li>• Privacy-preserving cryptography</li>
+                </ul>
+              </div>
+              
+              <div className="glass-morph rounded-xl p-4 border border-accent/20">
+                <h3 className="text-lg font-bold text-white mb-3">Smart Contract</h3>
+                <ul className="space-y-2 text-sm text-white/80">
+                  <li>• ZK Verifier integration</li>
+                  <li>• On-chain proof verification</li>
+                  <li>• Eligibility validation</li>
+                  <li>• Vote integrity checks</li>
+                </ul>
+              </div>
+              
+              <div className="glass-morph rounded-xl p-4 border border-primary/20">
+                <h3 className="text-lg font-bold text-white mb-3">Security Features</h3>
+                <ul className="space-y-2 text-sm text-white/80">
+                  <li>• Anti-double-voting protection</li>
+                  <li>• Identity privacy preservation</li>
+                  <li>• Tamper-proof vote recording</li>
+                  <li>• Public result verifiability</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div className="mt-6 glass-morph rounded-xl p-4 border border-accent/30">
+              <h3 className="text-lg font-bold text-white mb-3 flex items-center">
+                <Eye className="h-5 w-5 text-accent mr-2" />
+                For Academic Defense
+              </h3>
+              <p className="text-white/90 text-sm mb-3">
+                <strong>Key Points to Highlight:</strong>
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-white/80">
+                <div>
+                  <strong className="text-white">Privacy Guarantees:</strong>
+                  <ul className="ml-4 mt-1 space-y-1">
+                    <li>• Matric numbers never exposed</li>
+                    <li>• Vote selections remain secret</li>
+                    <li>• Voter anonymity preserved</li>
+                  </ul>
+                </div>
+                <div>
+                  <strong className="text-white">Security Properties:</strong>
+                  <ul className="ml-4 mt-1 space-y-1">
+                    <li>• Cryptographic integrity proofs</li>
+                    <li>• Prevents vote manipulation</li>
+                    <li>• Publicly auditable results</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
