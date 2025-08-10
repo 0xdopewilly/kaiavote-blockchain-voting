@@ -18,7 +18,7 @@ export default function ZKPDemo() {
 
     try {
       // Simulate voter registration ZKP
-      const matricNumber = "CSC/2021/001234"; // Private input
+      const matricNumber = "CSC/2012/001"; // Private input
       const walletAddress = "0x742d35Cc6635C0532925a3b8D4e4E4E4E4E4E4E4";
 
       console.log('🎓 ACADEMIC VOTING PLATFORM - ZKP DEMONSTRATION');
@@ -27,7 +27,7 @@ export default function ZKPDemo() {
       console.log('🔒 PRIVATE DATA (never revealed to blockchain):');
       console.log(`   • Matric Number: ${matricNumber}`);
       console.log(`   • Student Name: John Smith`);
-      console.log(`   • Department: Computer Science`);
+      console.log(`   • Department: Computer Science Department (CSC)`);
       console.log('');
       
       // Generate eligibility proof
@@ -83,7 +83,7 @@ export default function ZKPDemo() {
         privateData: {
           matricNumber,
           votes,
-          studentName: "John Smith"
+          studentName: "John Smith (CSC Student)"
         }
       });
       

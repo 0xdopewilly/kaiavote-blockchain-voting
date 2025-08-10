@@ -210,13 +210,16 @@ export default function RegistrationPage() {
                       <FormLabel className="text-foreground font-medium">Matric Number</FormLabel>
                       <FormControl>
                         <Input 
-                          placeholder="CSC/2020/001" 
+                          placeholder="CSC/2012/001" 
                           {...field} 
                           className="cyber-input h-12 text-lg font-mono"
                           data-testid="input-matricnumber"
                         />
                       </FormControl>
                       <FormMessage />
+                      <p className="text-xs text-muted-foreground">
+                        Only Computer Science Department (CSC) students are eligible. Format: CSC/YYYY/XXX
+                      </p>
                     </FormItem>
                   )}
                 />

@@ -68,12 +68,19 @@ export const votesRelations = relations(votes, ({ one }) => ({
   }),
 }));
 
-// Insert schemas
+// Insert schemas with CSC department validation
 export const insertVoterSchema = createInsertSchema(voters).omit({
   id: true,
   hasVoted: true,
   zkProofHash: true,
   createdAt: true,
+}).extend({
+  matricNumber: z.string()
+    .min(1, "Matric number is required")
+    .regex(/^CSC\/\d{4}\/\d{3}$/, "Invalid matric number format. Must be CSC/YYYY/XXX (e.g., CSC/2012/001)")
+    .refine((value) => value.toUpperCase().startsWith('CSC/'), {
+      message: "Only Computer Science Department (CSC) students are allowed to vote"
+    })
 });
 
 export const insertPositionSchema = createInsertSchema(positions).omit({
