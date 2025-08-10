@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Loader2, Wallet, AlertCircle } from "lucide-react";
+import { Loader2, Wallet, AlertCircle, LogOut } from "lucide-react";
 import { useWeb3 } from "@/hooks/use-web3";
 
 interface WalletConnectorProps {
@@ -16,7 +16,7 @@ export default function WalletConnector({
   title = "Connect Wallet", 
   description = "Connect your Web3 wallet to continue" 
 }: WalletConnectorProps) {
-  const { connect, isLoading, account } = useWeb3();
+  const { connect, disconnect, isLoading, account } = useWeb3();
   const [error, setError] = useState<string | null>(null);
 
   const handleConnect = async () => {
@@ -29,6 +29,11 @@ export default function WalletConnector({
     } catch (err: any) {
       setError(err.message || "Failed to connect wallet");
     }
+  };
+
+  const handleDisconnect = () => {
+    setError(null);
+    disconnect();
   };
 
   return (
@@ -52,13 +57,24 @@ export default function WalletConnector({
                 Connected: {account.slice(0, 6)}...{account.slice(-4)}
               </AlertDescription>
             </Alert>
-            <Button 
-              onClick={() => onConnect(account)} 
-              className="w-full"
-              data-testid="button-continue"
-            >
-              Continue
-            </Button>
+            <div className="space-y-3">
+              <Button 
+                onClick={() => onConnect(account)} 
+                className="w-full"
+                data-testid="button-continue"
+              >
+                Continue
+              </Button>
+              <Button 
+                onClick={handleDisconnect}
+                variant="outline"
+                className="w-full"
+                data-testid="button-disconnect-wallet"
+              >
+                <LogOut className="mr-2 h-4 w-4" />
+                Disconnect Wallet
+              </Button>
+            </div>
           </div>
         ) : (
           <Button 
