@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Check, ExternalLink, Download, Shield, Wallet, LogOut } from "lucide-react";
 import ProgressIndicator from "@/components/progress-indicator";
@@ -74,25 +73,30 @@ export default function ConfirmationPage() {
   };
 
   return (
-    <div className="min-h-screen bg-surface">
+    <div className="min-h-screen">
       {/* Header */}
-      <header className="bg-white shadow-md border-b-2 border-primary">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="text-primary text-2xl">
-                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-                </svg>
+      <header className="relative">
+        <div className="futuristic-card mx-6 mt-6 mb-4">
+          <div className="flex items-center justify-between p-6">
+            <div className="flex items-center space-x-4">
+              <div className="relative">
+                <Check className="h-8 w-8 text-primary" />
+                <div className="absolute -inset-2 bg-primary/20 rounded-full blur-md animate-pulse"></div>
               </div>
-              <h1 className="text-xl font-medium text-secondary">Academic Voting Platform</h1>
+              <div>
+                <h1 className="text-2xl font-bold gradient-text">VOTECHAIN</h1>
+                <p className="text-sm text-muted-foreground">Vote Confirmation</p>
+              </div>
             </div>
             <div className="flex items-center space-x-4">
               {account && (
                 <>
-                  <div className="flex items-center space-x-2 bg-accent/10 px-3 py-2 rounded-lg">
-                    <Wallet className="h-4 w-4 text-accent" />
-                    <span className="text-sm font-medium text-accent">
+                  <div className="glass-morph px-4 py-2 rounded-xl flex items-center space-x-2">
+                    <div className="relative">
+                      <Wallet className="h-4 w-4 text-primary" />
+                      <div className="absolute -inset-1 bg-primary/20 rounded-full blur animate-pulse"></div>
+                    </div>
+                    <span className="text-sm font-mono text-foreground">
                       {account.slice(0, 6)}...{account.slice(-4)}
                     </span>
                   </div>
@@ -100,7 +104,7 @@ export default function ConfirmationPage() {
                     variant="outline"
                     size="sm"
                     onClick={handleDisconnect}
-                    className="text-warning border-warning hover:bg-warning hover:text-white"
+                    className="cyber-button px-4 py-2"
                     data-testid="button-disconnect-wallet"
                   >
                     <LogOut className="mr-2 h-4 w-4" />
@@ -122,104 +126,112 @@ export default function ConfirmationPage() {
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2">
-              <Card>
-            <CardHeader className="text-center">
-              <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-6">
-                <Check className="text-white text-2xl h-8 w-8" />
-              </div>
-              <CardTitle className="text-2xl font-medium text-secondary">
-                Vote Successfully Recorded!
-              </CardTitle>
-              <CardDescription className="text-lg">
-                Your vote has been securely recorded on the blockchain and cannot be altered.
-              </CardDescription>
-            </CardHeader>
-            
-            <CardContent className="space-y-6">
-              {/* Transaction Details */}
-              <div className="bg-gray-50 rounded-lg p-6">
-                <h3 className="font-medium text-gray-700 mb-4">Transaction Details</h3>
-                <div className="space-y-3 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Transaction Hash:</span>
-                    <span 
-                      className="font-mono text-xs text-gray-900 break-all max-w-48 text-right"
-                      data-testid="transaction-hash"
+              <div className="glass-morph rounded-2xl p-8">
+                <div className="text-center mb-8">
+                  <div className="relative w-20 h-20 mx-auto mb-6">
+                    <div className="w-20 h-20 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center">
+                      <Check className="text-white text-3xl h-10 w-10" />
+                    </div>
+                    <div className="absolute -inset-4 bg-primary/20 rounded-full blur-xl animate-pulse"></div>
+                  </div>
+                  <h2 className="text-4xl font-bold text-white mb-4">
+                    Vote Successfully Recorded!
+                  </h2>
+                  <p className="text-xl text-white/90 font-medium">
+                    Your vote has been securely recorded on the blockchain and cannot be altered.
+                  </p>
+                </div>
+                
+                <div className="space-y-8">
+                  {/* Transaction Details */}
+                  <div className="glass-morph rounded-xl p-6 border border-primary/30">
+                    <h3 className="text-2xl font-bold text-white mb-6 flex items-center">
+                      <Shield className="h-6 w-6 text-primary mr-3" />
+                      Transaction Details
+                    </h3>
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-center py-3 border-b border-primary/20">
+                        <span className="text-white font-medium text-lg">Transaction Hash:</span>
+                        <span 
+                          className="font-mono text-sm text-primary break-all max-w-48 text-right font-bold"
+                          data-testid="transaction-hash"
+                        >
+                          {transactionDetails.hash.slice(0, 20)}...{transactionDetails.hash.slice(-10)}
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center py-3 border-b border-primary/20">
+                        <span className="text-white font-medium text-lg">Block Number:</span>
+                        <span className="text-primary font-bold text-lg" data-testid="block-number">
+                          {transactionDetails.blockNumber.toLocaleString()}
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center py-3 border-b border-primary/20">
+                        <span className="text-white font-medium text-lg">Network:</span>
+                        <span className="text-primary font-bold text-lg">Monad Testnet</span>
+                      </div>
+                      <div className="flex justify-between items-center py-3 border-b border-primary/20">
+                        <span className="text-white font-medium text-lg">Timestamp:</span>
+                        <span className="text-primary font-bold text-sm" data-testid="timestamp">
+                          {formatTimestamp(transactionDetails.timestamp)}
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center py-3">
+                        <span className="text-white font-medium text-lg">Gas Cost:</span>
+                        <span className="text-accent font-bold font-mono text-lg">
+                          ~0.0005 MON (~$0.0005)
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Security Notice */}
+                  <div className="glass-morph rounded-xl p-6 border-2 border-accent/30">
+                    <div className="flex items-center space-x-3 mb-4">
+                      <div className="relative">
+                        <Shield className="h-6 w-6 text-accent" />
+                        <div className="absolute -inset-2 bg-accent/20 rounded-full blur-md animate-pulse"></div>
+                      </div>
+                      <h3 className="text-2xl font-bold text-accent">Blockchain Security</h3>
+                    </div>
+                    <p className="text-white text-lg font-medium">
+                      Your vote is now permanently stored on the blockchain, ensuring transparency 
+                      and immutability. No one can alter or delete your vote.
+                    </p>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-6">
+                    <Button 
+                      onClick={handleViewOnExplorer}
+                      className="flex-1 h-14 text-lg cyber-button"
+                      data-testid="button-view-explorer"
                     >
-                      {transactionDetails.hash.slice(0, 20)}...{transactionDetails.hash.slice(-10)}
-                    </span>
+                      <ExternalLink className="mr-3 h-5 w-5" />
+                      View on Explorer
+                    </Button>
+                    <Button 
+                      onClick={handleDownloadReceipt}
+                      className="flex-1 h-14 text-lg cyber-button bg-gradient-to-r from-accent to-primary"
+                      data-testid="button-download-receipt"
+                    >
+                      <Download className="mr-3 h-5 w-5" />
+                      Download Receipt
+                    </Button>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Block Number:</span>
-                    <span className="text-gray-900" data-testid="block-number">
-                      {transactionDetails.blockNumber.toLocaleString()}
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Network:</span>
-                    <span className="text-gray-900">Monad Testnet</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Timestamp:</span>
-                    <span className="text-gray-900 text-xs" data-testid="timestamp">
-                      {formatTimestamp(transactionDetails.timestamp)}
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Gas Cost:</span>
-                    <span className="text-green-600 font-mono text-sm">
-                      ~0.0005 MON (~$0.0005)
-                    </span>
+
+                  {/* Thank You Message */}
+                  <div className="glass-morph rounded-xl p-6 border-2 border-primary/20 text-center">
+                    <h3 className="text-2xl font-bold text-white mb-4">
+                      Thank you for participating in the democratic process!
+                    </h3>
+                    {voter && (
+                      <p className="text-lg text-primary font-medium">
+                        Vote recorded for: {voter.fullName} ({voter.matricNumber})
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
-
-              {/* Security Notice */}
-              <Alert className="border-blue-200 bg-blue-50">
-                <Shield className="h-4 w-4 text-blue-500" />
-                <AlertDescription className="text-blue-700">
-                  <p className="font-medium mb-1">Blockchain Security</p>
-                  <p>
-                    Your vote is now permanently stored on the blockchain, ensuring transparency 
-                    and immutability. No one can alter or delete your vote.
-                  </p>
-                </AlertDescription>
-              </Alert>
-
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button 
-                  onClick={handleViewOnExplorer}
-                  className="flex-1 bg-primary hover:bg-primary/90 text-white"
-                  data-testid="button-view-explorer"
-                >
-                  <ExternalLink className="mr-2 h-4 w-4" />
-                  View on Explorer
-                </Button>
-                <Button 
-                  onClick={handleDownloadReceipt}
-                  variant="outline"
-                  className="flex-1"
-                  data-testid="button-download-receipt"
-                >
-                  <Download className="mr-2 h-4 w-4" />
-                  Download Receipt
-                </Button>
-              </div>
-
-              {/* Thank You Message */}
-              <div className="pt-6 border-t border-gray-200 text-center">
-                <p className="text-gray-600">
-                  Thank you for participating in the democratic process!
-                </p>
-                {voter && (
-                  <p className="text-sm text-gray-500 mt-2">
-                    Vote recorded for: {voter.fullName} ({voter.matricNumber})
-                  </p>
-                )}
-              </div>
-            </CardContent>
-          </Card>
             </div>
             
             <div className="lg:col-span-1">
