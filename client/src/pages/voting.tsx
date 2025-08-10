@@ -308,12 +308,12 @@ export default function VotingPage() {
                         render={({ field }) => (
                           <FormItem>
                             <div className="glass-morph rounded-2xl p-6 mb-6">
-                              <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center">
-                                <div className="relative mr-3">
-                                  <IconComponent className="h-6 w-6 text-primary" />
-                                  <div className="absolute -inset-1 bg-primary/20 rounded-full blur animate-pulse"></div>
+                              <h3 className="text-3xl font-bold text-white mb-6 flex items-center">
+                                <div className="relative mr-4">
+                                  <IconComponent className="h-8 w-8 text-primary" />
+                                  <div className="absolute -inset-2 bg-primary/30 rounded-full blur-md animate-pulse"></div>
                                 </div>
-                                <span className="gradient-text">{position.name}</span>
+                                <span className="gradient-text text-3xl">{position.name}</span>
                               </h3>
                               <FormControl>
                                 <RadioGroup
@@ -325,23 +325,23 @@ export default function VotingPage() {
                                   {position.candidates.map((candidate) => (
                                     <div
                                       key={candidate.id}
-                                      className="futuristic-card p-4 hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+                                      className="glass-morph p-6 hover:scale-[1.02] transition-all duration-300 cursor-pointer rounded-xl border-2 border-primary/50 hover:border-primary/80 bg-card/80"
                                     >
                                       <div className="flex items-center">
                                         <RadioGroupItem 
                                           value={candidate.id} 
                                           id={candidate.id}
-                                          className="mr-4 border-primary text-primary"
+                                          className="mr-4 border-2 border-primary text-primary w-5 h-5 data-[state=checked]:bg-primary data-[state=checked]:text-white"
                                           data-testid={`radio-${candidate.id}`}
                                         />
                                         <Label
                                           htmlFor={candidate.id}
                                           className="flex-1 cursor-pointer"
                                         >
-                                          <div className="font-semibold text-foreground text-lg">
+                                          <div className="font-bold text-white text-xl mb-2">
                                             {candidate.name}
                                           </div>
-                                          <div className="text-muted-foreground font-mono">
+                                          <div className="text-primary font-mono text-lg font-medium">
                                             {candidate.department}
                                           </div>
                                         </Label>
@@ -363,7 +363,7 @@ export default function VotingPage() {
                       <AlertTriangle className="h-6 w-6 text-warning" />
                       <h3 className="text-lg font-bold text-warning">Important Notice</h3>
                     </div>
-                    <p className="text-muted-foreground">
+                    <p className="text-white text-lg font-medium">
                       Once you submit your vote, it will be permanently recorded on the 
                       blockchain and cannot be changed. Please review your selections carefully.
                     </p>
