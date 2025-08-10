@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import RegistrationPage from "@/pages/registration";
 import VotingPage from "@/pages/voting";
 import ConfirmationPage from "@/pages/confirmation";
+import ZKPDemoPage from "@/pages/zkp-demo";
 import NotFound from "@/pages/not-found";
 import { Web3Provider } from "@/hooks/use-web3";
 
@@ -15,6 +16,7 @@ function Router() {
       <Route path="/" component={RegistrationPage} />
       <Route path="/voting" component={VotingPage} />
       <Route path="/confirmation" component={ConfirmationPage} />
+      <Route path="/zkp-demo" component={ZKPDemoPage} />
       <Route component={NotFound} />
     </Switch>
   );

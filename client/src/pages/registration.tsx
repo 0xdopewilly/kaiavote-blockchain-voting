@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import { z } from "zod";
-import { Wallet, UserPlus, Loader2 } from "lucide-react";
+import { Wallet, UserPlus, Loader2, Shield } from "lucide-react";
 import { insertVoterSchema } from "@shared/schema";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -157,6 +157,21 @@ export default function RegistrationPage() {
         </div>
 
         <div className="max-w-2xl mx-auto space-y-8">
+          {/* ZKP Demo Link */}
+          <div className="text-center">
+            <Link href="/zkp-demo">
+              <Button 
+                variant="outline" 
+                className="cyber-button border-2 border-primary/50 hover:border-primary text-primary hover:text-white hover:bg-primary/20 px-8 py-3 text-lg font-semibold"
+                data-testid="link-zkp-demo"
+              >
+                <Shield className="h-5 w-5 mr-2" />
+                🎓 Live ZKP Demo for Defense
+              </Button>
+            </Link>
+            <p className="text-sm text-muted-foreground mt-2">Perfect for academic presentation and defense</p>
+          </div>
+          
           <GasSavingsBanner />
           
           {/* Primary Wallet Connection */}
