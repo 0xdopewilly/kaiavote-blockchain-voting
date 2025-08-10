@@ -22,6 +22,7 @@ import ZKPInfo from "@/components/zkp-info";
 import GasSavingsBanner from "@/components/gas-savings-banner";
 import ClearWalletButton from "@/components/clear-wallet-button";
 import WalletDebug from "@/components/wallet-debug";
+import ExistingRegistrations from "@/components/existing-registrations";
 
 const registrationSchema = insertVoterSchema.extend({
   confirmWalletAddress: z.string().min(1, "Please confirm your wallet address"),
@@ -37,6 +38,12 @@ export default function RegistrationPage() {
   const { toast } = useToast();
   const { account, isConnected } = useWeb3();
   const [showExistingWalletConnect, setShowExistingWalletConnect] = useState(false);
+
+  // Load existing voters for quick connection
+  const existingVotersQuery = useQuery({
+    queryKey: ['/api/voters'],
+    queryFn: () => fetch('/api/voters').then(res => res.json()),
+  });
 
   const form = useForm<RegistrationForm>({
     resolver: zodResolver(registrationSchema),
@@ -112,15 +119,18 @@ export default function RegistrationPage() {
         });
         setLocation("/voting");
       } else {
+        // Instead of showing error, show registration form with wallet pre-filled
         toast({
-          title: "Wallet Not Registered",
-          description: "Please register first before connecting your wallet.",
-          variant: "destructive",
+          title: "New Wallet Detected",
+          description: "Please complete registration for this wallet address.",
         });
+        setShowExistingWalletConnect(false);
+        // Pre-fill wallet address in the form
+        form.setValue('walletAddress', walletAddress);
       }
     } catch (error: any) {
       toast({
-        title: "Connection Failed",
+        title: "Connection Failed", 
         description: error.message || "Failed to connect wallet",
         variant: "destructive",
       });
@@ -175,6 +185,15 @@ export default function RegistrationPage() {
           <div className="max-w-2xl mx-auto space-y-8">
             <GasSavingsBanner />
             <WalletDebug />
+            
+            {/* Show existing registrations for quick connection */}
+            {existingVotersQuery.data && existingVotersQuery.data.length > 0 && (
+              <ExistingRegistrations 
+                registrations={existingVotersQuery.data} 
+                onConnect={handleWalletConnect}
+              />
+            )}
+            
             <ZKPInfo />
             
             {/* Registration Form */}

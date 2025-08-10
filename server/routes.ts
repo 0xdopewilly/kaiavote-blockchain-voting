@@ -11,15 +11,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const validatedData = insertVoterSchema.parse(req.body);
       
-      // Check if voter already exists
+      // Check if voter already exists by matric number
       const existingVoterByMatric = await storage.getVoterByMatricNumber(validatedData.matricNumber);
       if (existingVoterByMatric) {
-        return res.status(400).json({ error: "Voter with this matric number already exists" });
+        return res.status(400).json({ error: `This matric number is already registered. Use a different matric number or connect wallet: ${existingVoterByMatric.walletAddress.slice(0,6)}...${existingVoterByMatric.walletAddress.slice(-4)}` });
       }
 
+      // Check if voter already exists by wallet address
       const existingVoterByWallet = await storage.getVoterByWalletAddress(validatedData.walletAddress);
       if (existingVoterByWallet) {
-        return res.status(400).json({ error: "Voter with this wallet address already exists" });
+        return res.status(400).json({ error: `This wallet is already registered as ${existingVoterByWallet.fullName}. Use a different wallet or connect to existing registration.` });
       }
 
       const voter = await storage.createVoter(validatedData);
@@ -60,6 +61,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const candidates = await storage.getCandidatesWithPositions();
       res.json(candidates);
+    } catch (error) {
+      res.status(500).json({ error: "Internal server error" });
+    }
+  });
+
+  // Get all registered voters (for admin/debug)
+  app.get("/api/voters", async (req, res) => {
+    try {
+      const voters = await storage.getAllVoters();
+      res.json(voters);
     } catch (error) {
       res.status(500).json({ error: "Internal server error" });
     }

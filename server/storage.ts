@@ -23,6 +23,7 @@ export interface IStorage {
   getVoter(id: string): Promise<Voter | undefined>;
   getVoterByMatricNumber(matricNumber: string): Promise<Voter | undefined>;
   getVoterByWalletAddress(walletAddress: string): Promise<Voter | undefined>;
+  getAllVoters(): Promise<Voter[]>;
   createVoter(voter: InsertVoter): Promise<Voter>;
   updateVoterVotedStatus(id: string, hasVoted: boolean): Promise<void>;
 
@@ -61,6 +62,10 @@ export class DatabaseStorage implements IStorage {
   async getVoterByWalletAddress(walletAddress: string): Promise<Voter | undefined> {
     const [voter] = await db.select().from(voters).where(eq(voters.walletAddress, walletAddress));
     return voter || undefined;
+  }
+
+  async getAllVoters(): Promise<Voter[]> {
+    return await db.select().from(voters);
   }
 
   async createVoter(insertVoter: InsertVoter & { zkProof?: any }): Promise<Voter> {
