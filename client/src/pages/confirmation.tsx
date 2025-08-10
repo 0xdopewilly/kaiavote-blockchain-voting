@@ -76,6 +76,19 @@ export default function ConfirmationPage() {
   return (
     <div className="min-h-screen p-4 relative">
       <div className="container mx-auto">
+        {/* Disconnect Wallet Button - Top Right */}
+        <div className="absolute top-4 right-4 z-50">
+          <Button
+            variant="outline"
+            onClick={handleDisconnect}
+            className="cyber-button bg-destructive/10 hover:bg-destructive/20 border-destructive/30 hover:border-destructive/60 backdrop-blur-sm"
+            data-testid="button-disconnect-wallet"
+          >
+            <LogOut className="h-4 w-4 mr-2 text-destructive" />
+            <span className="text-white font-medium">Disconnect</span>
+          </Button>
+        </div>
+
         {/* Header Section */}
         <div className="text-center mb-8 relative">
           <div className="inline-block relative">
