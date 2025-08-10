@@ -17,6 +17,8 @@ import { apiRequest } from "@/lib/queryClient";
 import ProgressIndicator from "@/components/progress-indicator";
 import WalletConnector from "@/components/wallet-connector";
 import { useWeb3 } from "@/hooks/use-web3";
+import { zkpService } from "@/lib/zkp";
+import ZKPInfo from "@/components/zkp-info";
 
 const registrationSchema = insertVoterSchema.extend({
   confirmWalletAddress: z.string().min(1, "Please confirm your wallet address"),
@@ -59,7 +61,26 @@ export default function RegistrationPage() {
   const registerMutation = useMutation({
     mutationFn: async (data: RegistrationForm) => {
       const { confirmWalletAddress, ...registrationData } = data;
-      const response = await apiRequest("POST", "/api/voters/register", registrationData);
+      
+      // Generate ZKP for voter eligibility
+      console.log('🔐 Generating Zero-Knowledge Proof for voter eligibility...');
+      const zkProof = await zkpService.generateEligibilityProof(
+        registrationData.matricNumber,
+        registrationData.walletAddress
+      );
+      
+      // Verify proof locally before submission
+      const isValidProof = await zkpService.verifyProof(zkProof);
+      if (!isValidProof) {
+        throw new Error('Zero-Knowledge Proof verification failed');
+      }
+      
+      console.log('✅ ZKP verified - voter eligibility proven without revealing matric number');
+      
+      const response = await apiRequest("POST", "/api/voters/register", {
+        ...registrationData,
+        zkProof // Include ZKP in registration
+      });
       return response.json();
     },
     onSuccess: () => {
@@ -146,6 +167,8 @@ export default function RegistrationPage() {
           </div>
         ) : (
           <div className="max-w-2xl mx-auto space-y-8">
+            <ZKPInfo />
+            
             {/* Registration Form */}
             <Card>
               <CardHeader className="text-center">

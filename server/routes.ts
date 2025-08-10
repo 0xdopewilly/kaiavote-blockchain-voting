@@ -87,14 +87,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: "Voter has already voted" });
       }
 
-      // Create votes for each position
+      // Create votes for each position with ZKP
       const createdVotes = [];
       for (const vote of validatedData.votes) {
         const createdVote = await storage.createVote({
           voterId: validatedData.voterId,
           candidateId: vote.candidateId,
           transactionHash: validatedData.transactionHash,
-          blockNumber: validatedData.blockNumber
+          blockNumber: validatedData.blockNumber,
+          zkProof: (req.body as any).zkProof // Include ZKP from request
         });
         
         // Increment candidate vote count

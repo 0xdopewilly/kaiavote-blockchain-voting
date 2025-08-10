@@ -6,6 +6,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Check, ExternalLink, Download, Shield, Wallet, LogOut } from "lucide-react";
 import ProgressIndicator from "@/components/progress-indicator";
+import LiveMetrics from "@/components/live-metrics";
+import DeploymentInfo from "@/components/deployment-info";
 import { useWeb3 } from "@/hooks/use-web3";
 
 export default function ConfirmationPage() {
@@ -113,8 +115,12 @@ export default function ConfirmationPage() {
       <ProgressIndicator currentStep={3} />
 
       <main className="container mx-auto px-6 py-8">
-        <div className="max-w-2xl mx-auto">
-          <Card>
+        <div className="max-w-4xl mx-auto space-y-8">
+          <DeploymentInfo />
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2">
+              <Card>
             <CardHeader className="text-center">
               <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-6">
                 <Check className="text-white text-2xl h-8 w-8" />
@@ -206,6 +212,12 @@ export default function ConfirmationPage() {
               </div>
             </CardContent>
           </Card>
+            </div>
+            
+            <div className="lg:col-span-1">
+              <LiveMetrics />
+            </div>
+          </div>
         </div>
       </main>
     </div>

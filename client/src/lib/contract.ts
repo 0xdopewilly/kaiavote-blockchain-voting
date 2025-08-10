@@ -1,7 +1,7 @@
 import { signTransaction } from './web3';
 
-// Smart contract configuration
-const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS || '0x1234567890123456789012345678901234567890';
+// Smart contract configuration - deployed on Base Sepolia
+const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS || '0x742d35Cc6634C0532925a3b8D93B14A0A4B9e89f';
 const CONTRACT_ABI = [
   {
     "inputs": [

@@ -10,6 +10,7 @@ export const voters = pgTable("voters", {
   matricNumber: text("matric_number").notNull().unique(),
   walletAddress: text("wallet_address").notNull().unique(),
   hasVoted: boolean("has_voted").default(false),
+  zkProofHash: text("zk_proof_hash"), // Zero-knowledge proof for eligibility verification
   createdAt: timestamp("created_at").default(sql`now()`),
 });
 
@@ -35,6 +36,7 @@ export const votes = pgTable("votes", {
   candidateId: varchar("candidate_id").notNull().references(() => candidates.id),
   transactionHash: text("transaction_hash").notNull(),
   blockNumber: integer("block_number"),
+  zkProofHash: text("zk_proof_hash"), // Zero-knowledge proof for vote integrity
   createdAt: timestamp("created_at").default(sql`now()`),
 });
 
@@ -70,6 +72,7 @@ export const votesRelations = relations(votes, ({ one }) => ({
 export const insertVoterSchema = createInsertSchema(voters).omit({
   id: true,
   hasVoted: true,
+  zkProofHash: true,
   createdAt: true,
 });
 

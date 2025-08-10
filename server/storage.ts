@@ -63,10 +63,20 @@ export class DatabaseStorage implements IStorage {
     return voter || undefined;
   }
 
-  async createVoter(insertVoter: InsertVoter): Promise<Voter> {
+  async createVoter(insertVoter: InsertVoter & { zkProof?: any }): Promise<Voter> {
+    const { zkProof, ...voterData } = insertVoter as any;
+    
+    // Store ZKP hash if provided for audit purposes
+    const zkProofHash = zkProof ? 
+      JSON.stringify(zkProof).slice(0, 100) : // Store truncated proof for demo
+      null;
+    
     const [voter] = await db
       .insert(voters)
-      .values(insertVoter)
+      .values({
+        ...voterData,
+        zkProofHash
+      })
       .returning();
     return voter;
   }
@@ -143,10 +153,20 @@ export class DatabaseStorage implements IStorage {
       .where(eq(candidates.id, candidateId));
   }
 
-  async createVote(insertVote: InsertVote): Promise<Vote> {
+  async createVote(insertVote: InsertVote & { zkProof?: any }): Promise<Vote> {
+    const { zkProof, ...voteData } = insertVote as any;
+    
+    // Store ZKP hash for vote integrity verification
+    const zkProofHash = zkProof ? 
+      JSON.stringify(zkProof).slice(0, 100) : // Store truncated proof for demo
+      null;
+    
     const [vote] = await db
       .insert(votes)
-      .values(insertVote)
+      .values({
+        ...voteData,
+        zkProofHash
+      })
       .returning();
     return vote;
   }

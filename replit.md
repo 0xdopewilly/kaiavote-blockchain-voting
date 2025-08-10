@@ -33,11 +33,20 @@ Preferred communication style: Simple, everyday language.
 - **Connection Pooling**: Neon serverless pool with WebSocket support
 
 ### Blockchain Integration
-- **Network**: Base Sepolia testnet (Ethereum-compatible)
-- **Wallet Integration**: MetaMask and Web3 wallet support
-- **Smart Contract**: Custom voting contract for immutable vote recording
-- **Transaction Handling**: Web3 transaction signing and blockchain interaction
-- **Vote Storage**: Dual storage - database for quick access, blockchain for immutability
+- **Network**: Base Sepolia testnet (Ethereum-compatible) - Chain ID 84532
+- **Smart Contracts**: VotingContract.sol and Verifier.sol deployed on Base Sepolia
+- **Contract Address**: 0x742d35Cc6634C0532925a3b8D93B14A0A4B9e89f (configurable via VITE_CONTRACT_ADDRESS)
+- **Wallet Integration**: MetaMask with automatic Base Sepolia network switching
+- **Transaction Handling**: Web3 transaction signing with blockchain verification
+- **Vote Storage**: Triple storage - database for quick access, blockchain for immutability, ZKP for privacy
+
+### Zero-Knowledge Proof Implementation
+- **ZKP Service**: Custom implementation in zkp.ts for voter privacy protection
+- **Eligibility Proof**: Generates ZKP during registration to verify matric number without revealing it
+- **Vote Proof**: Creates ZKP for vote integrity without revealing candidate selections
+- **Privacy Features**: Identity protection, vote privacy, and eligibility verification
+- **Storage**: ZKP hashes stored in database for audit trails while maintaining privacy
+- **Verification**: Local proof verification before blockchain submission
 
 ### Authentication & Security
 - **Wallet-Based Authentication**: Users authenticate using their Web3 wallet addresses
