@@ -1,0 +1,106 @@
+Blockchain Voting Platform for Academic Settings
+Create a web-based blockchain voting platform for students to vote for positions like Class Presidents, Departmental Presidents, Faculty Presidents, and Financial Secretaries.
+
+Features
+Voter Registration
+
+Users register by providing their name, matric number, and wallet address.
+
+Store all registration data (except wallet address) securely, with the option to update details.
+
+Wallet Connection
+
+Users must connect their wallet (e.g., MetaMask or another Web3 wallet) before voting.
+
+Upon connection, authorize the user and confirm their eligibility to vote.
+
+New Feature: After wallet connection, include a "Disconnect Wallet" button to allow the user to correct any connection errors, e.g., if the wrong wallet was connected.
+
+Voting Process
+
+Once authorized, users can select candidates from a list for each position (e.g., President, Financial Secretary).
+
+Votes are securely recorded on the blockchain.
+
+New Feature: Add a live metric/graphic on the right-hand side of the voting page to display the total votes for each candidate in real time, updating as votes are cast.
+
+User Interface
+
+Clean, user-friendly design for seamless registration, wallet connection, and voting.
+
+Responsive design for both desktop and mobile devices.
+
+Security
+
+Leverage blockchain for immutability and vote security.
+
+Implement wallet authentication to ensure that only registered users can vote.
+
+Platform Requirements
+Blockchain: Ethereum or Base Sepolia Network (EVM compatible).
+
+Web3 Integration: Integrate MetaMask or another Web3 wallet for wallet connection.
+
+Voting Transparency: Ensure transparency in voting while securing the data on the blockchain.
+
+GDPR Compliance: Ensure privacy and data security for personal details (name, matric number, etc.).
+
+User Flow
+Registration:
+
+Users provide their name, matric number, and wallet address.
+
+Wallet Connection:
+
+Users connect their Web3 wallet (MetaMask or similar) for authentication.
+
+New Feature: If the user has already registered, they should be automatically logged in after connecting their wallet, without needing to input matric number and name again.
+
+Voting:
+
+After wallet connection, users select a candidate and vote.
+
+New Feature: A live metric/graphic on the voting page should show real-time vote updates.
+
+Vote Recording:
+
+Votes are securely recorded on the blockchain once cast.
+
+Next Steps
+Smart Contract Development:
+
+Develop a smart contract to manage voter registration, wallet connection, and vote recording.
+
+Ensure each user can only vote once by recording their wallet address in the hasVoted mapping.
+
+Frontend Development:
+
+Build a web interface to guide users through registration, wallet connection, and voting.
+
+Integrate MetaMask (or another Web3 wallet) for seamless wallet connection.
+
+Testing:
+
+Deploy the contract on Base Sepolia Network for testing.
+
+Test the full user flow from registration to vote recording, ensuring all features work smoothly, including live metrics and automatic login for registered users.
+
+Additional Features/Considerations:
+Page Navigation Flow:
+
+Split the process into separate pages:
+
+Page 1: Registration → Wallet Connection.
+
+Page 2: Voting (with live metrics/graphic).
+
+Page 3: Thank You (Confirmation of vote submission).
+
+Issues:
+
+After registering, if the user connects their wallet, they should not need to input their matric number and name again. The system should automatically log them in.
+
+ZKP Consideration:
+Zero-Knowledge Proof (ZKP) could be integrated to enhance privacy. With ZKPs, you could prove that a user has registered and is eligible to vote without revealing their identity or other personal information, which would be a significant privacy enhancement. This could be especially valuable in an academic setting to ensure voter anonymity while confirming eligibility.
+
+Would you like further exploration into integrating ZKPs, or do you want to leave it for a later stage?
