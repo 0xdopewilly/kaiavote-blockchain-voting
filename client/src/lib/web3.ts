@@ -16,9 +16,7 @@ export async function connectWallet(): Promise<string | null> {
   }
 
   try {
-    // First, switch to Monad Testnet to ensure we're on the right network
-    await switchToMonadTestnet();
-    
+    // First, request accounts to connect the wallet
     const accounts = await window.ethereum.request({
       method: 'eth_requestAccounts',
     });
@@ -27,10 +25,12 @@ export async function connectWallet(): Promise<string | null> {
       throw new Error('No accounts found. Please unlock MetaMask.');
     }
 
-    // Verify we're on the correct network
-    const currentChainId = await getCurrentNetwork();
-    if (currentChainId !== '0x279F') {
-      throw new Error('Please switch to Monad Testnet to use MON tokens with ultra-low gas fees');
+    // Then try to switch to Monad Testnet (don't fail if this doesn't work)
+    try {
+      await switchToMonadTestnet();
+    } catch (networkError) {
+      console.warn('Could not switch to Monad Testnet automatically:', networkError);
+      // Don't fail the connection, just warn the user
     }
 
     return accounts[0];
@@ -90,21 +90,25 @@ export async function switchToMonadTestnet(): Promise<void> {
               chainId,
               chainName: 'Monad Testnet',
               nativeCurrency: {
-                name: 'Monad',
+                name: 'MON',
                 symbol: 'MON',
                 decimals: 18,
               },
               rpcUrls: ['https://10143.rpc.thirdweb.com'],
               blockExplorerUrls: ['https://monad-testnet.socialscan.io'],
-              iconUrls: ['https://monad.xyz/favicon.ico'],
             },
           ],
         });
       } catch (addError) {
-        throw new Error('Failed to add Monad Testnet network');
+        console.error('Failed to add Monad Testnet:', addError);
+        throw new Error('Could not add Monad Testnet to MetaMask. Please add it manually.');
       }
+    } else if (switchError.code === 4001) {
+      // User rejected the request
+      throw new Error('Please approve the network switch to use Monad Testnet');
     } else {
-      throw new Error('Failed to switch to Monad Testnet network');
+      console.error('Network switch error:', switchError);
+      throw new Error('Could not switch to Monad Testnet. Please switch manually in MetaMask.');
     }
   }
 }

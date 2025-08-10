@@ -21,6 +21,7 @@ import { zkpService } from "@/lib/zkp";
 import ZKPInfo from "@/components/zkp-info";
 import GasSavingsBanner from "@/components/gas-savings-banner";
 import ClearWalletButton from "@/components/clear-wallet-button";
+import WalletDebug from "@/components/wallet-debug";
 
 const registrationSchema = insertVoterSchema.extend({
   confirmWalletAddress: z.string().min(1, "Please confirm your wallet address"),
@@ -173,6 +174,7 @@ export default function RegistrationPage() {
         ) : (
           <div className="max-w-2xl mx-auto space-y-8">
             <GasSavingsBanner />
+            <WalletDebug />
             <ZKPInfo />
             
             {/* Registration Form */}
