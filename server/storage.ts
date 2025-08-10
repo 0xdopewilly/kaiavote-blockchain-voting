@@ -60,7 +60,9 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getVoterByWalletAddress(walletAddress: string): Promise<Voter | undefined> {
-    const [voter] = await db.select().from(voters).where(eq(voters.walletAddress, walletAddress));
+    // Always search with lowercase for consistency
+    const normalizedAddress = walletAddress.toLowerCase();
+    const [voter] = await db.select().from(voters).where(eq(voters.walletAddress, normalizedAddress));
     return voter || undefined;
   }
 

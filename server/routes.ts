@@ -17,13 +17,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: `This matric number is already registered. Use a different matric number or connect wallet: ${existingVoterByMatric.walletAddress.slice(0,6)}...${existingVoterByMatric.walletAddress.slice(-4)}` });
       }
 
-      // Check if voter already exists by wallet address
-      const existingVoterByWallet = await storage.getVoterByWalletAddress(validatedData.walletAddress);
+      // Check if voter already exists by wallet address (case-insensitive)
+      const normalizedWalletAddress = validatedData.walletAddress.toLowerCase();
+      const existingVoterByWallet = await storage.getVoterByWalletAddress(normalizedWalletAddress);
       if (existingVoterByWallet) {
         return res.status(400).json({ error: `This wallet is already registered as ${existingVoterByWallet.fullName}. Use a different wallet or connect to existing registration.` });
       }
 
-      const voter = await storage.createVoter(validatedData);
+      // Store wallet address in lowercase for consistency
+      const voterData = {
+        ...validatedData,
+        walletAddress: validatedData.walletAddress.toLowerCase()
+      };
+      const voter = await storage.createVoter(voterData);
       res.json(voter);
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -33,10 +39,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Check voter by wallet address
+  // Check voter by wallet address (case-insensitive)
   app.get("/api/voters/wallet/:address", async (req, res) => {
     try {
-      const voter = await storage.getVoterByWalletAddress(req.params.address);
+      // Normalize wallet address to lowercase for consistent checking
+      const normalizedAddress = req.params.address.toLowerCase();
+      const voter = await storage.getVoterByWalletAddress(normalizedAddress);
       if (!voter) {
         return res.status(404).json({ error: "Voter not found" });
       }
