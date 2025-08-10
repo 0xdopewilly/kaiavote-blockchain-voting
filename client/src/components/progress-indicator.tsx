@@ -13,29 +13,34 @@ const steps = [
 
 export default function ProgressIndicator({ currentStep, className }: ProgressIndicatorProps) {
   return (
-    <div className={cn("bg-white border-b", className)}>
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-center space-x-8">
+    <div className={cn("glass-morph border-2 border-primary/20 mx-6 my-4 rounded-2xl", className)}>
+      <div className="container mx-auto px-8 py-6">
+        <div className="flex items-center justify-center space-x-12">
           {steps.map((step, index) => (
             <div key={step.number} className="flex items-center">
-              <div className="flex items-center space-x-2">
-                <div
-                  className={cn(
-                    "w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-colors",
-                    step.number <= currentStep
-                      ? "bg-primary text-white"
-                      : "bg-gray-300 text-gray-600"
+              <div className="flex items-center space-x-4">
+                <div className="relative">
+                  <div
+                    className={cn(
+                      "w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold transition-all duration-300",
+                      step.number <= currentStep
+                        ? "bg-gradient-to-r from-primary to-accent text-white shadow-lg"
+                        : "bg-muted/20 text-muted-foreground border border-muted/30"
+                    )}
+                    data-testid={`step-${step.number}`}
+                  >
+                    {step.number}
+                  </div>
+                  {step.number <= currentStep && (
+                    <div className="absolute -inset-2 bg-primary/20 rounded-full blur-lg animate-pulse"></div>
                   )}
-                  data-testid={`step-${step.number}`}
-                >
-                  {step.number}
                 </div>
                 <span
                   className={cn(
-                    "text-sm transition-colors",
+                    "text-lg font-medium transition-all duration-300",
                     step.number <= currentStep
-                      ? "font-medium text-primary"
-                      : "text-gray-600"
+                      ? "text-white font-bold"
+                      : "text-muted-foreground"
                   )}
                 >
                   {step.label}
@@ -44,8 +49,10 @@ export default function ProgressIndicator({ currentStep, className }: ProgressIn
               {index < steps.length - 1 && (
                 <div
                   className={cn(
-                    "w-16 h-0.5 ml-8 transition-colors",
-                    step.number < currentStep ? "bg-primary" : "bg-gray-300"
+                    "w-20 h-1 ml-12 rounded-full transition-all duration-300",
+                    step.number < currentStep 
+                      ? "bg-gradient-to-r from-primary to-accent shadow-lg" 
+                      : "bg-muted/20"
                   )}
                   data-testid={`connector-${step.number}`}
                 />
