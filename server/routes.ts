@@ -79,11 +79,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Submit vote
   app.post("/api/votes", async (req, res) => {
     try {
-      const voteSchema = insertVoteSchema.extend({
+      const voteSchema = z.object({
+        voterId: z.string(),
         votes: z.array(z.object({
           candidateId: z.string(),
           positionId: z.string()
-        }))
+        })),
+        transactionHash: z.string(),
+        blockNumber: z.number(),
+        zkProof: z.any().optional()
       });
 
       const validatedData = voteSchema.parse(req.body);

@@ -128,6 +128,7 @@ export default function VotingPage() {
         const response = await apiRequest("POST", "/api/votes", {
           voterId: voter.id,
           votes: votesArray,
+          candidateIds, // Add candidateIds field for validation
           transactionHash,
           blockNumber,
           zkProof // Include ZKP in submission
