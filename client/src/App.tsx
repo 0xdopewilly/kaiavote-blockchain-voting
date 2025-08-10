@@ -25,8 +25,22 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Web3Provider>
         <TooltipProvider>
+          <div className="min-h-screen animated-bg">
+            {/* Futuristic grid overlay */}
+            <div className="fixed inset-0 opacity-5 pointer-events-none">
+              <div className="absolute inset-0" 
+                   style={{
+                     backgroundImage: `linear-gradient(hsl(var(--primary) / 0.1) 1px, transparent 1px), 
+                                     linear-gradient(90deg, hsl(var(--primary) / 0.1) 1px, transparent 1px)`,
+                     backgroundSize: '50px 50px'
+                   }}>
+              </div>
+            </div>
+            
+            {/* Main content */}
+            <Router />
+          </div>
           <Toaster />
-          <Router />
         </TooltipProvider>
       </Web3Provider>
     </QueryClientProvider>

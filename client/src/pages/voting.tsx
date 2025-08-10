@@ -225,25 +225,30 @@ export default function VotingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-surface">
-      {/* Header */}
-      <header className="bg-white shadow-md border-b-2 border-primary">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="text-primary text-2xl">
-                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-                </svg>
+    <div className="min-h-screen">
+      {/* Futuristic Header */}
+      <header className="relative">
+        <div className="futuristic-card mx-6 mt-6 mb-4">
+          <div className="flex items-center justify-between p-6">
+            <div className="flex items-center space-x-4">
+              <div className="relative">
+                <Vote className="h-8 w-8 text-primary" />
+                <div className="absolute -inset-2 bg-primary/20 rounded-full blur-md animate-pulse"></div>
               </div>
-              <h1 className="text-xl font-medium text-secondary">Academic Voting Platform</h1>
+              <div>
+                <h1 className="text-2xl font-bold gradient-text">NEXUS VOTE</h1>
+                <p className="text-sm text-muted-foreground">Blockchain Voting Terminal</p>
+              </div>
             </div>
             <div className="flex items-center space-x-4">
               {account && (
                 <>
-                  <div className="flex items-center space-x-2 bg-accent/10 px-3 py-2 rounded-lg">
-                    <Wallet className="h-4 w-4 text-accent" />
-                    <span className="text-sm font-medium text-accent">
+                  <div className="glass-morph px-4 py-2 rounded-xl flex items-center space-x-2">
+                    <div className="relative">
+                      <Wallet className="h-4 w-4 text-primary" />
+                      <div className="absolute -inset-1 bg-primary/20 rounded-full blur animate-pulse"></div>
+                    </div>
+                    <span className="text-sm font-mono text-foreground">
                       {account.slice(0, 6)}...{account.slice(-4)}
                     </span>
                   </div>
@@ -251,7 +256,7 @@ export default function VotingPage() {
                     variant="outline"
                     size="sm"
                     onClick={handleDisconnect}
-                    className="text-warning border-warning hover:bg-warning hover:text-white"
+                    className="cyber-button px-4 py-2"
                     data-testid="button-disconnect-wallet"
                   >
                     <LogOut className="mr-2 h-4 w-4" />
@@ -266,78 +271,84 @@ export default function VotingPage() {
 
       <ProgressIndicator currentStep={2} />
 
-      <main className="container mx-auto px-6 py-8">
-        <div className="space-y-6">
+      <main className="container mx-auto px-6 py-4">
+        <div className="space-y-6 mb-8">
           <GasSavingsBanner />
           <NetworkStatus />
-          <ZKPInfo />
+          <div className="glass-morph rounded-2xl p-6">
+            <ZKPInfo />
+          </div>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
           {/* Voting Form */}
           <div className="lg:col-span-2">
-            <Card>
-              <CardHeader className="text-center">
-                <div className="mx-auto mb-4">
-                  <Vote className="h-12 w-12 text-primary" />
+            <div className="futuristic-card p-8">
+              <div className="text-center mb-8">
+                <div className="relative inline-block mb-6">
+                  <Vote className="h-16 w-16 text-primary mx-auto" />
+                  <div className="absolute -inset-4 bg-primary/20 rounded-full blur-xl animate-pulse"></div>
                 </div>
-                <CardTitle className="text-2xl font-medium text-secondary">
-                  Cast Your Vote
-                </CardTitle>
-                <CardDescription>
+                <h2 className="text-3xl font-bold gradient-text mb-2">Cast Your Vote</h2>
+                <p className="text-muted-foreground">
                   Select your preferred candidates for each position
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                    {positions.map((position) => {
-                      const IconComponent = getPositionIcon(position.name);
-                      return (
-                        <FormField
-                          key={position.id}
-                          control={form.control}
-                          name={`votes.${position.id}`}
-                          render={({ field }) => (
-                            <FormItem>
-                              <div className="border border-gray-200 rounded-lg p-6">
-                                <h3 className="text-lg font-medium text-secondary mb-4 flex items-center">
-                                  <IconComponent className="mr-2 h-5 w-5 text-warning" />
-                                  {position.name}
-                                </h3>
-                                <FormControl>
-                                  <RadioGroup
-                                    onValueChange={field.onChange}
-                                    value={field.value}
-                                    className="space-y-3"
-                                    data-testid={`radiogroup-${position.name.replace(/\s+/g, '-').toLowerCase()}`}
-                                  >
-                                    {position.candidates.map((candidate) => (
-                                      <div
-                                        key={candidate.id}
-                                        className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
-                                      >
+                </p>
+              </div>
+              
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                  {positions.map((position) => {
+                    const IconComponent = getPositionIcon(position.name);
+                    return (
+                      <FormField
+                        key={position.id}
+                        control={form.control}
+                        name={`votes.${position.id}`}
+                        render={({ field }) => (
+                          <FormItem>
+                            <div className="glass-morph rounded-2xl p-6 mb-6">
+                              <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+                                <div className="relative mr-3">
+                                  <IconComponent className="h-6 w-6 text-primary" />
+                                  <div className="absolute -inset-1 bg-primary/20 rounded-full blur animate-pulse"></div>
+                                </div>
+                                <span className="gradient-text">{position.name}</span>
+                              </h3>
+                              <FormControl>
+                                <RadioGroup
+                                  onValueChange={field.onChange}
+                                  value={field.value}
+                                  className="space-y-4"
+                                  data-testid={`radiogroup-${position.name.replace(/\s+/g, '-').toLowerCase()}`}
+                                >
+                                  {position.candidates.map((candidate) => (
+                                    <div
+                                      key={candidate.id}
+                                      className="futuristic-card p-4 hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+                                    >
+                                      <div className="flex items-center">
                                         <RadioGroupItem 
                                           value={candidate.id} 
                                           id={candidate.id}
-                                          className="mr-4"
+                                          className="mr-4 border-primary text-primary"
                                           data-testid={`radio-${candidate.id}`}
                                         />
                                         <Label
                                           htmlFor={candidate.id}
                                           className="flex-1 cursor-pointer"
                                         >
-                                          <div className="font-medium text-gray-900">
+                                          <div className="font-semibold text-foreground text-lg">
                                             {candidate.name}
                                           </div>
-                                          <div className="text-sm text-gray-600">
+                                          <div className="text-muted-foreground font-mono">
                                             {candidate.department}
                                           </div>
                                         </Label>
                                       </div>
-                                    ))}
-                                  </RadioGroup>
+                                    </div>
+                                  ))}
+                                </RadioGroup>
                                 </FormControl>
                                 <FormMessage />
                               </div>
@@ -347,61 +358,63 @@ export default function VotingPage() {
                       );
                     })}
 
-                    <Alert className="border-amber-200 bg-amber-50">
-                      <AlertTriangle className="h-4 w-4 text-amber-600" />
-                      <AlertDescription className="text-amber-800">
-                        <p className="font-medium mb-1">Important</p>
-                        <p>
-                          Once you submit your vote, it will be permanently recorded on the 
-                          blockchain and cannot be changed.
-                        </p>
-                      </AlertDescription>
-                    </Alert>
+                  <div className="glass-morph rounded-2xl p-6 mb-6">
+                    <div className="flex items-center space-x-3 mb-4">
+                      <AlertTriangle className="h-6 w-6 text-warning" />
+                      <h3 className="text-lg font-bold text-warning">Important Notice</h3>
+                    </div>
+                    <p className="text-muted-foreground">
+                      Once you submit your vote, it will be permanently recorded on the 
+                      blockchain and cannot be changed. Please review your selections carefully.
+                    </p>
+                  </div>
 
-                    <Button
-                      type="submit"
-                      className="w-full bg-accent hover:bg-accent/90 text-white py-4 text-lg"
-                      disabled={submitVoteMutation.isPending}
-                      data-testid="button-submit-vote"
-                    >
-                      {submitVoteMutation.isPending ? (
-                        <>
-                          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                          Submitting Vote...
-                        </>
-                      ) : (
-                        <>
-                          <CheckCircle className="mr-2 h-5 w-5" />
-                          Submit Vote to Blockchain
-                        </>
-                      )}
-                    </Button>
-                  </form>
-                </Form>
-              </CardContent>
-            </Card>
+                  <Button
+                    type="submit"
+                    className="w-full h-16 text-xl cyber-button"
+                    disabled={submitVoteMutation.isPending}
+                    data-testid="button-submit-vote"
+                  >
+                    {submitVoteMutation.isPending ? (
+                      <>
+                        <Loader2 className="mr-3 h-6 w-6 animate-spin" />
+                        Submitting Vote...
+                      </>
+                    ) : (
+                      <>
+                        <CheckCircle className="mr-3 h-6 w-6" />
+                        Submit Vote to Blockchain
+                      </>
+                    )}
+                  </Button>
+                </form>
+              </Form>
+            </div>
           </div>
 
           {/* Live Metrics */}
           <div className="lg:col-span-1">
-            <LiveMetrics />
+            <div className="futuristic-card p-6">
+              <LiveMetrics />
+            </div>
           </div>
         </div>
       </main>
 
       {/* Loading Modal */}
       <Dialog open={showLoadingModal} onOpenChange={() => {}}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-md futuristic-card border-0">
           <DialogHeader className="text-center">
-            <div className="mx-auto mb-4">
-              <Loader2 className="h-12 w-12 animate-spin text-primary" />
+            <div className="mx-auto mb-4 relative">
+              <Loader2 className="h-16 w-16 animate-spin text-primary" />
+              <div className="absolute -inset-4 bg-primary/20 rounded-full blur-xl animate-pulse"></div>
             </div>
-            <DialogTitle>Processing Vote</DialogTitle>
-            <DialogDescription>
+            <DialogTitle className="text-2xl gradient-text">Processing Vote</DialogTitle>
+            <DialogDescription className="text-muted-foreground">
               Please wait while your vote is recorded on the blockchain...
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-2 text-sm text-gray-600">
+          <div className="space-y-2 text-sm text-muted-foreground">
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-primary rounded-full"></div>
               <span>{loadingStep || "Preparing transaction"}</span>

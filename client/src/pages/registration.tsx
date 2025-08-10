@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { z } from "zod";
-import { Wallet, UserPlus } from "lucide-react";
+import { Wallet, UserPlus, Loader2 } from "lucide-react";
 import { insertVoterSchema } from "@shared/schema";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -130,145 +130,178 @@ export default function RegistrationPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+    <div className="min-h-screen p-4 relative">
       <div className="container mx-auto">
         <ProgressIndicator currentStep={1} />
         
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Student Registration</h1>
-          <p className="text-lg text-gray-600">
-            Register to participate in academic elections with blockchain security
-          </p>
+        {/* Hero Section with Futuristic Title */}
+        <div className="text-center mb-12 relative">
+          <div className="inline-block relative">
+            <h1 className="text-6xl font-bold gradient-text mb-4">
+              NEXUS VOTE
+            </h1>
+            <div className="absolute -inset-4 bg-gradient-to-r from-transparent via-primary/20 to-transparent blur-xl"></div>
+          </div>
+          <div className="space-y-2">
+            <p className="text-2xl font-medium neon-text">
+              Academic Blockchain Voting
+            </p>
+            <p className="text-lg text-muted-foreground">
+              Secure • Anonymous • Transparent • Immutable
+            </p>
+          </div>
+          
+          {/* Floating elements */}
+          <div className="absolute -top-10 -left-10 w-20 h-20 bg-primary/10 rounded-full blur-xl animate-pulse"></div>
+          <div className="absolute -top-16 -right-16 w-32 h-32 bg-accent/10 rounded-full blur-2xl animate-pulse delay-700"></div>
         </div>
 
         <div className="max-w-2xl mx-auto space-y-8">
           <GasSavingsBanner />
           
-          {/* Wallet Connection Section for Existing Users */}
-          <Card className="border-green-200 bg-green-50/50">
-            <CardHeader>
-              <CardTitle className="flex items-center space-x-2 text-green-800">
-                <Wallet className="h-5 w-5" />
-                <span>Already Registered?</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-green-700 mb-4">
-                If you've registered before, connect your wallet to continue voting.
-              </p>
+          {/* Wallet Connection Section */}
+          {isConnected && account && (
+            <div className="futuristic-card p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="relative">
+                  <Wallet className="h-6 w-6 text-primary" />
+                  <div className="absolute -inset-1 bg-primary/20 rounded-full blur animate-pulse"></div>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground">Wallet Connected</h3>
+                  <p className="text-sm text-muted-foreground">Ready for secure blockchain voting</p>
+                </div>
+              </div>
               <WalletConnector
                 title="Connect Registered Wallet" 
                 description="Connect your wallet to restore your session and proceed to voting."
                 onConnect={handleWalletConnect}
               />
-            </CardContent>
-          </Card>
+            </div>
+          )}
           
           <ZKPInfo />
 
-          {/* Registration Form for New Users */}
-          <Card>
-            <CardHeader className="text-center">
-              <div className="mx-auto mb-4">
-                <UserPlus className="h-12 w-12 text-primary" />
+          {/* Registration Form */}
+          <div className="futuristic-card p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="relative">
+                <UserPlus className="h-6 w-6 text-primary" />
+                <div className="absolute -inset-1 bg-primary/20 rounded-full blur animate-pulse"></div>
               </div>
-              <CardTitle className="text-2xl font-medium">
-                New Voter Registration
-              </CardTitle>
-              <CardDescription>
-                Complete your details to register for academic elections
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <FormField
-                    control={form.control}
-                    name="fullName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Full Name</FormLabel>
-                        <FormControl>
-                          <Input 
-                            placeholder="Enter your full name" 
-                            {...field} 
-                            data-testid="input-fullname"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+              <div>
+                <h2 className="text-2xl font-bold text-foreground">Voter Registration</h2>
+                <p className="text-muted-foreground">Secure your identity with Zero-Knowledge Proof</p>
+              </div>
+            </div>
 
-                  <FormField
-                    control={form.control}
-                    name="matricNumber"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Matric Number</FormLabel>
-                        <FormControl>
-                          <Input 
-                            placeholder="e.g., 20/1234567" 
-                            {...field} 
-                            data-testid="input-matricnumber"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <FormField
+                  control={form.control}
+                  name="fullName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-foreground font-medium">Full Name</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder="Enter your full name" 
+                          {...field} 
+                          className="cyber-input h-12 text-lg"
+                          data-testid="input-fullname"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-                  <FormField
-                    control={form.control}
-                    name="walletAddress"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Wallet Address</FormLabel>
-                        <FormControl>
-                          <Input 
-                            placeholder="0x..." 
-                            {...field} 
-                            data-testid="input-walletaddress"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                        <p className="text-xs text-gray-500">
-                          Your Web3 wallet address for voting authentication
-                        </p>
-                      </FormItem>
-                    )}
-                  />
+                <FormField
+                  control={form.control}
+                  name="matricNumber"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-foreground font-medium">Matric Number</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder="CSC/2020/001" 
+                          {...field} 
+                          className="cyber-input h-12 text-lg font-mono"
+                          data-testid="input-matricnumber"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-                  <FormField
-                    control={form.control}
-                    name="confirmWalletAddress"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Confirm Wallet Address</FormLabel>
-                        <FormControl>
-                          <Input 
-                            placeholder="Confirm your wallet address" 
-                            {...field} 
-                            data-testid="input-confirmwalletaddress"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                <FormField
+                  control={form.control}
+                  name="walletAddress"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-foreground font-medium">Wallet Address</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder="0x..." 
+                          {...field} 
+                          className="cyber-input h-12 text-lg font-mono"
+                          data-testid="input-walletaddress"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                      <p className="text-xs text-muted-foreground">
+                        Your Web3 wallet address for voting authentication
+                      </p>
+                    </FormItem>
+                  )}
+                />
 
-                  <Button 
-                    type="submit" 
-                    className="w-full" 
-                    disabled={registerMutation.isPending}
-                    data-testid="button-register"
-                  >
-                    {registerMutation.isPending ? "Registering..." : "Register Voter"}
-                  </Button>
-                </form>
-              </Form>
-            </CardContent>
-          </Card>
+                <FormField
+                  control={form.control}
+                  name="confirmWalletAddress"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-foreground font-medium">Confirm Wallet Address</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder="0x..." 
+                          {...field} 
+                          className="cyber-input h-12 text-lg font-mono"
+                          data-testid="input-confirmwalletaddress"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <Button 
+                  type="submit" 
+                  className="w-full h-14 text-lg cyber-button" 
+                  disabled={registerMutation.isPending}
+                  data-testid="button-register"
+                >
+                  {registerMutation.isPending ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      Generating ZK Proof...
+                    </>
+                  ) : (
+                    <>
+                      <UserPlus className="mr-2 h-5 w-5" />
+                      Register to Vote
+                    </>
+                  )}
+                </Button>
+              </form>
+            </Form>
+          </div>
+
+          {/* ZKP Info with Enhanced Styling */}
+          <div className="glass-morph rounded-2xl p-6">
+            <ZKPInfo />
+          </div>
         </div>
       </div>
     </div>
