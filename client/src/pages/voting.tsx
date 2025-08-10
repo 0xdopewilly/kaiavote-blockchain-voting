@@ -290,8 +290,8 @@ export default function VotingPage() {
                   <Vote className="h-16 w-16 text-primary mx-auto" />
                   <div className="absolute -inset-4 bg-primary/20 rounded-full blur-xl animate-pulse"></div>
                 </div>
-                <h2 className="text-3xl font-bold gradient-text mb-2">Cast Your Vote</h2>
-                <p className="text-muted-foreground">
+                <h2 className="text-3xl font-bold text-white mb-2">Cast Your Vote</h2>
+                <p className="text-white text-lg font-medium">
                   Select your preferred candidates for each position
                 </p>
               </div>
@@ -423,19 +423,7 @@ export default function VotingPage() {
         </DialogContent>
       </Dialog>
       
-      {/* Floating ZKP Demo Button - Bottom Right */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <Link href="/zkp-demo">
-          <Button 
-            className="cyber-button bg-primary/90 hover:bg-primary text-white shadow-2xl shadow-primary/50 px-6 py-4 text-base font-semibold rounded-2xl border-2 border-primary/30 hover:border-primary backdrop-blur-sm"
-            data-testid="floating-zkp-demo"
-          >
-            <Shield className="h-5 w-5 mr-2" />
-            🎓 ZKP Demo
-          </Button>
-        </Link>
-        <div className="absolute -inset-2 bg-primary/20 rounded-2xl blur-lg animate-pulse pointer-events-none"></div>
-      </div>
+
     </div>
   );
 }

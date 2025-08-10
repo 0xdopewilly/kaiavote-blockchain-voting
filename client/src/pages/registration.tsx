@@ -163,13 +163,6 @@ export default function RegistrationPage() {
             <ZKPInfo />
           </div>
           
-          {/* Primary Wallet Connection */}
-          <WalletConnector
-            title="Connect Your Wallet" 
-            description="Connect MetaMask to securely register and vote on the blockchain"
-            onConnect={handleWalletConnect}
-          />
-
           {/* Registration Form */}
           <div className="futuristic-card p-8">
             <div className="flex items-center gap-3 mb-6">
@@ -289,26 +282,16 @@ export default function RegistrationPage() {
             </Form>
           </div>
 
-          {/* ZKP Info with Enhanced Styling */}
-          <div className="glass-morph rounded-2xl p-6">
-            <ZKPInfo />
-          </div>
+          {/* Primary Wallet Connection */}
+          <WalletConnector
+            title="Connect Your Wallet" 
+            description="Connect MetaMask to securely register and vote on the blockchain"
+            onConnect={handleWalletConnect}
+          />
         </div>
       </div>
       
-      {/* Floating ZKP Demo Button - Bottom Right */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <Link href="/zkp-demo">
-          <Button 
-            className="cyber-button bg-primary/90 hover:bg-primary text-white shadow-2xl shadow-primary/50 px-6 py-4 text-base font-semibold rounded-2xl border-2 border-primary/30 hover:border-primary backdrop-blur-sm"
-            data-testid="floating-zkp-demo"
-          >
-            <Shield className="h-5 w-5 mr-2" />
-            🎓 ZKP Demo
-          </Button>
-        </Link>
-        <div className="absolute -inset-2 bg-primary/20 rounded-2xl blur-lg animate-pulse pointer-events-none"></div>
-      </div>
+
     </div>
   );
 }
