@@ -8,7 +8,17 @@ This is a web-based blockchain voting platform designed for academic settings, e
 
 ## Recent Changes
 
-### January 2025 - Major Fixes and Improvements
+### January 2025 - Complete Contrast and UI Overhaul
+- ✅ **Perfect Contrast Resolution**: Fixed all white-text-on-white-background issues across entire platform
+- ✅ **Gas Savings Banner**: Redesigned with dark glass morphism background and ultra-bright white text
+- ✅ **Deployment Info**: Enhanced with futuristic styling and high-contrast white text with colored accents
+- ✅ **Progress Indicator**: Transformed workflow banner with glass effects and perfect text visibility
+- ✅ **Live Vote Count**: Complete redesign with bright white text and colorful vote statistics
+- ✅ **Confirmation Page**: Enhanced with glass morphism effects and maximum contrast ratios
+- ✅ **Futuristic Theme**: Applied consistent dark backgrounds with bright white text throughout
+- ✅ **Visual Effects**: Added glow animations, pulse effects, and gradient highlights for modern appearance
+
+### Previous Major Fixes and Improvements
 - ✅ **Fixed Network Detection**: Resolved "Wrong Network" warnings - now properly recognizes Monad Testnet in all formats
 - ✅ **Fixed Vote Submission**: Resolved 400 validation errors by correcting vote schema and candidateIds field
 - ✅ **Improved Registration Flow**: Added existing voter display with one-click connection for better UX
