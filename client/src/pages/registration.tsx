@@ -157,21 +157,6 @@ export default function RegistrationPage() {
         </div>
 
         <div className="max-w-2xl mx-auto space-y-8">
-          {/* ZKP Demo Link */}
-          <div className="text-center">
-            <Link href="/zkp-demo">
-              <Button 
-                variant="outline" 
-                className="cyber-button border-2 border-primary/50 hover:border-primary text-primary hover:text-white hover:bg-primary/20 px-8 py-3 text-lg font-semibold"
-                data-testid="link-zkp-demo"
-              >
-                <Shield className="h-5 w-5 mr-2" />
-                🎓 Live ZKP Demo for Defense
-              </Button>
-            </Link>
-            <p className="text-sm text-muted-foreground mt-2">Perfect for academic presentation and defense</p>
-          </div>
-          
           <GasSavingsBanner />
           
           {/* Primary Wallet Connection */}
@@ -304,6 +289,20 @@ export default function RegistrationPage() {
             <ZKPInfo />
           </div>
         </div>
+      </div>
+      
+      {/* Floating ZKP Demo Button - Bottom Right */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <Link href="/zkp-demo">
+          <Button 
+            className="cyber-button bg-primary/90 hover:bg-primary text-white shadow-2xl shadow-primary/50 px-6 py-4 text-base font-semibold rounded-2xl border-2 border-primary/30 hover:border-primary backdrop-blur-sm"
+            data-testid="floating-zkp-demo"
+          >
+            <Shield className="h-5 w-5 mr-2" />
+            🎓 ZKP Demo
+          </Button>
+        </Link>
+        <div className="absolute -inset-2 bg-primary/20 rounded-2xl blur-lg animate-pulse pointer-events-none"></div>
       </div>
     </div>
   );

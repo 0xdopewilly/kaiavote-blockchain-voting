@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,7 +11,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "@/component
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Loader2, Vote, Crown, Building, DollarSign, AlertTriangle, CheckCircle, Wallet, LogOut } from "lucide-react";
+import { Loader2, Vote, Crown, Building, DollarSign, AlertTriangle, CheckCircle, Wallet, LogOut, Shield } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import ProgressIndicator from "@/components/progress-indicator";
@@ -422,6 +422,20 @@ export default function VotingPage() {
           </div>
         </DialogContent>
       </Dialog>
+      
+      {/* Floating ZKP Demo Button - Bottom Right */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <Link href="/zkp-demo">
+          <Button 
+            className="cyber-button bg-primary/90 hover:bg-primary text-white shadow-2xl shadow-primary/50 px-6 py-4 text-base font-semibold rounded-2xl border-2 border-primary/30 hover:border-primary backdrop-blur-sm"
+            data-testid="floating-zkp-demo"
+          >
+            <Shield className="h-5 w-5 mr-2" />
+            🎓 ZKP Demo
+          </Button>
+        </Link>
+        <div className="absolute -inset-2 bg-primary/20 rounded-2xl blur-lg animate-pulse pointer-events-none"></div>
+      </div>
     </div>
   );
 }
