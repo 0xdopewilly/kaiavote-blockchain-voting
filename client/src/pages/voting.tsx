@@ -20,6 +20,7 @@ import { useWeb3 } from "@/hooks/use-web3";
 import { contract } from "@/lib/contract";
 import { zkpService } from "@/lib/zkp";
 import ZKPInfo from "@/components/zkp-info";
+import GasSavingsBanner from "@/components/gas-savings-banner";
 
 interface Position {
   id: string;
@@ -264,10 +265,12 @@ export default function VotingPage() {
       <ProgressIndicator currentStep={2} />
 
       <main className="container mx-auto px-6 py-8">
+        <div className="space-y-6">
+          <GasSavingsBanner />
+          <ZKPInfo />
+        </div>
+        
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-3 mb-6">
-            <ZKPInfo />
-          </div>
           
           {/* Voting Form */}
           <div className="lg:col-span-2">

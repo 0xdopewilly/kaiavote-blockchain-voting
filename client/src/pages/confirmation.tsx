@@ -8,6 +8,7 @@ import { Check, ExternalLink, Download, Shield, Wallet, LogOut } from "lucide-re
 import ProgressIndicator from "@/components/progress-indicator";
 import LiveMetrics from "@/components/live-metrics";
 import DeploymentInfo from "@/components/deployment-info";
+import GasSavingsBanner from "@/components/gas-savings-banner";
 import { useWeb3 } from "@/hooks/use-web3";
 
 export default function ConfirmationPage() {
@@ -33,7 +34,7 @@ export default function ConfirmationPage() {
   });
 
   const handleViewOnExplorer = () => {
-    const explorerUrl = `https://sepolia-explorer.base.org/tx/${transactionDetails.hash}`;
+    const explorerUrl = `https://monad-testnet.socialscan.io/tx/${transactionDetails.hash}`;
     window.open(explorerUrl, '_blank');
   };
 
@@ -43,7 +44,7 @@ export default function ConfirmationPage() {
       transactionHash: transactionDetails.hash,
       blockNumber: transactionDetails.blockNumber,
       timestamp: transactionDetails.timestamp,
-      network: "Base Sepolia",
+      network: "Monad Testnet",
     };
 
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(receipt, null, 2));
@@ -116,6 +117,7 @@ export default function ConfirmationPage() {
 
       <main className="container mx-auto px-6 py-8">
         <div className="max-w-4xl mx-auto space-y-8">
+          <GasSavingsBanner />
           <DeploymentInfo />
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -155,7 +157,7 @@ export default function ConfirmationPage() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Network:</span>
-                    <span className="text-gray-900">Base Sepolia</span>
+                    <span className="text-gray-900">Monad Testnet</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Timestamp:</span>

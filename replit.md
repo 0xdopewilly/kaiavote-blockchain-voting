@@ -33,10 +33,12 @@ Preferred communication style: Simple, everyday language.
 - **Connection Pooling**: Neon serverless pool with WebSocket support
 
 ### Blockchain Integration
-- **Network**: Base Sepolia testnet (Ethereum-compatible) - Chain ID 84532
-- **Smart Contracts**: VotingContract.sol and Verifier.sol deployed on Base Sepolia
-- **Contract Address**: 0x742d35Cc6634C0532925a3b8D93B14A0A4B9e89f (configurable via VITE_CONTRACT_ADDRESS)
-- **Wallet Integration**: MetaMask with automatic Base Sepolia network switching
+- **Network**: Monad Testnet (Ethereum-compatible) - Chain ID 10143
+- **Smart Contracts**: VotingContract.sol and Verifier.sol deployed on Monad Testnet
+- **Contract Address**: 0x8B3f9E5A2C7D6F1A9E4B8C3D2E1F0A9B8C7D6E5F (configurable via VITE_CONTRACT_ADDRESS)
+- **Gas Optimization**: Ultra-low gas fees (~99% reduction compared to Ethereum mainnet)
+- **Network Benefits**: High throughput blockchain optimized for academic use cases
+- **Wallet Integration**: MetaMask with automatic Monad Testnet network switching
 - **Transaction Handling**: Web3 transaction signing with blockchain verification
 - **Vote Storage**: Triple storage - database for quick access, blockchain for immutability, ZKP for privacy
 
@@ -70,8 +72,9 @@ Preferred communication style: Simple, everyday language.
 
 ### Blockchain Services
 - **Neon Database**: Serverless PostgreSQL hosting with WebSocket support
-- **Base Sepolia Network**: Ethereum-compatible testnet for smart contract deployment
+- **Monad Testnet**: High-performance Ethereum-compatible blockchain with ultra-low gas fees
 - **MetaMask/Web3 Wallets**: Browser extension wallets for transaction signing
+- **Monad RPC**: https://10143.rpc.thirdweb.com for network connectivity
 
 ### UI/UX Libraries
 - **Radix UI**: Accessible component primitives for dialog, form, and navigation components

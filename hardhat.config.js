@@ -3,8 +3,7 @@ require("@nomiclabs/hardhat-etherscan");
 require("dotenv").config();
 
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "0x0000000000000000000000000000000000000000000000000000000000000000";
-const BASE_SEPOLIA_RPC = "https://sepolia.base.org";
-const BASESCAN_API_KEY = process.env.BASESCAN_API_KEY || "";
+const MONAD_TESTNET_RPC = "https://10143.rpc.thirdweb.com";
 
 module.exports = {
   solidity: {
@@ -17,24 +16,25 @@ module.exports = {
     }
   },
   networks: {
-    baseSepolia: {
-      url: BASE_SEPOLIA_RPC,
+    monadTestnet: {
+      url: MONAD_TESTNET_RPC,
       accounts: [PRIVATE_KEY],
-      chainId: 84532,
-      gasPrice: 1000000000, // 1 gwei
+      chainId: 10143,
+      gasPrice: 1000000, // Much lower gas price for Monad (0.001 gwei)
+      gas: 5000000, // Higher gas limit for Monad's high throughput
     }
   },
   etherscan: {
     apiKey: {
-      baseSepolia: BASESCAN_API_KEY
+      monadTestnet: "placeholder" // Monad may not have verification service yet
     },
     customChains: [
       {
-        network: "baseSepolia",
-        chainId: 84532,
+        network: "monadTestnet",
+        chainId: 10143,
         urls: {
-          apiURL: "https://api-sepolia.basescan.org/api",
-          browserURL: "https://sepolia.basescan.org"
+          apiURL: "https://monad-testnet.socialscan.io/api",
+          browserURL: "https://monad-testnet.socialscan.io"
         }
       }
     ]

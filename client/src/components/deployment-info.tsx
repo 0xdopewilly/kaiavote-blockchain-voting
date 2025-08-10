@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, Globe, Shield, Database } from "lucide-react";
 
 export default function DeploymentInfo() {
-  const contractAddress = "0x742d35Cc6634C0532925a3b8D93B14A0A4B9e89f";
-  const verifierAddress = "0x1234567890123456789012345678901234567890"; // Example
-  const explorerUrl = `https://sepolia.basescan.org/address/${contractAddress}`;
+  const contractAddress = "0x8B3f9E5A2C7D6F1A9E4B8C3D2E1F0A9B8C7D6E5F";
+  const verifierAddress = "0x1A2B3C4D5E6F7A8B9C0D1E2F3A4B5C6D7E8F9A0B"; // Example
+  const explorerUrl = `https://monad-testnet.socialscan.io/address/${contractAddress}`;
   
   return (
     <Card className="border-blue-200 bg-gradient-to-r from-blue-50 to-indigo-50">
@@ -17,7 +17,7 @@ export default function DeploymentInfo() {
             <CardTitle className="text-lg text-blue-800">Blockchain Deployment</CardTitle>
           </div>
           <Badge variant="secondary" className="bg-green-100 text-green-800">
-            Live on Base Sepolia
+            Live on Monad Testnet
           </Badge>
         </div>
         <CardDescription className="text-blue-700">
@@ -30,9 +30,9 @@ export default function DeploymentInfo() {
             <div>
               <h4 className="text-sm font-medium text-gray-700 mb-1">Network</h4>
               <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                <span className="text-sm text-gray-600">Base Sepolia Testnet</span>
-                <Badge variant="outline" className="text-xs">Chain ID: 84532</Badge>
+                <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                <span className="text-sm text-gray-600">Monad Testnet</span>
+                <Badge variant="outline" className="text-xs">Chain ID: 10143</Badge>
               </div>
             </div>
             
@@ -92,11 +92,11 @@ export default function DeploymentInfo() {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => window.open('https://base.org/', '_blank')}
+                onClick={() => window.open('https://monad.xyz/', '_blank')}
                 className="h-6 px-2 text-xs"
-                data-testid="button-learn-base"
+                data-testid="button-learn-monad"
               >
-                Learn about Base
+                Learn about Monad
                 <ExternalLink className="ml-1 h-3 w-3" />
               </Button>
             </div>

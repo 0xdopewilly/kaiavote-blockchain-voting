@@ -24,8 +24,8 @@ export async function connectWallet(): Promise<string | null> {
       throw new Error('No accounts found. Please unlock MetaMask.');
     }
 
-    // Switch to Base Sepolia network
-    await switchToBaseSepolia();
+    // Switch to Monad Testnet network
+    await switchToMonadTestnet();
 
     return accounts[0];
   } catch (error: any) {
@@ -61,12 +61,12 @@ export function disconnectWallet(): void {
   console.log('Wallet disconnected locally. Please disconnect from MetaMask manually if needed.');
 }
 
-export async function switchToBaseSepolia(): Promise<void> {
+export async function switchToMonadTestnet(): Promise<void> {
   if (!await isWalletAvailable()) {
     throw new Error('MetaMask is not installed');
   }
 
-  const chainId = '0x14A34'; // Base Sepolia chain ID in hex (84532 in decimal)
+  const chainId = '0x279F'; // Monad testnet chain ID in hex (10143 in decimal)
 
   try {
     await window.ethereum.request({
@@ -82,22 +82,22 @@ export async function switchToBaseSepolia(): Promise<void> {
           params: [
             {
               chainId,
-              chainName: 'Base Sepolia',
+              chainName: 'Monad Testnet',
               nativeCurrency: {
-                name: 'ETH',
-                symbol: 'ETH',
+                name: 'MON',
+                symbol: 'MON',
                 decimals: 18,
               },
-              rpcUrls: ['https://sepolia.base.org'],
-              blockExplorerUrls: ['https://sepolia-explorer.base.org'],
+              rpcUrls: ['https://10143.rpc.thirdweb.com'],
+              blockExplorerUrls: ['https://monad-testnet.socialscan.io'],
             },
           ],
         });
       } catch (addError) {
-        throw new Error('Failed to add Base Sepolia network');
+        throw new Error('Failed to add Monad Testnet network');
       }
     } else {
-      throw new Error('Failed to switch to Base Sepolia network');
+      throw new Error('Failed to switch to Monad Testnet network');
     }
   }
 }
