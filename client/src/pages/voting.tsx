@@ -273,11 +273,11 @@ export default function VotingPage() {
 
       <main className="container mx-auto px-6 py-4">
         <div className="space-y-6 mb-8">
-          <GasSavingsBanner />
-          <NetworkStatus />
-          <div className="glass-morph rounded-2xl p-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <GasSavingsBanner />
             <ZKPInfo />
           </div>
+          <NetworkStatus />
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
