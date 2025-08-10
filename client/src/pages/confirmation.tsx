@@ -73,56 +73,39 @@ export default function ConfirmationPage() {
   };
 
   return (
-    <div className="min-h-screen">
-      {/* Header */}
-      <header className="relative">
-        <div className="futuristic-card mx-6 mt-6 mb-4">
-          <div className="flex items-center justify-between p-6">
-            <div className="flex items-center space-x-4">
-              <div className="relative">
-                <Check className="h-8 w-8 text-primary" />
-                <div className="absolute -inset-2 bg-primary/20 rounded-full blur-md animate-pulse"></div>
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold gradient-text">VOTECHAIN</h1>
-                <p className="text-sm text-muted-foreground">Vote Confirmation</p>
-              </div>
-            </div>
-            <div className="flex items-center space-x-4">
-              {account && (
-                <>
-                  <div className="glass-morph px-4 py-2 rounded-xl flex items-center space-x-2">
-                    <div className="relative">
-                      <Wallet className="h-4 w-4 text-primary" />
-                      <div className="absolute -inset-1 bg-primary/20 rounded-full blur animate-pulse"></div>
-                    </div>
-                    <span className="text-sm font-mono text-foreground">
-                      {account.slice(0, 6)}...{account.slice(-4)}
-                    </span>
-                  </div>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={handleDisconnect}
-                    className="cyber-button px-4 py-2"
-                    data-testid="button-disconnect-wallet"
-                  >
-                    <LogOut className="mr-2 h-4 w-4" />
-                    Disconnect
-                  </Button>
-                </>
-              )}
-            </div>
+    <div className="min-h-screen p-4 relative">
+      <div className="container mx-auto">
+        {/* Header Section */}
+        <div className="text-center mb-8 relative">
+          <div className="inline-block relative">
+            <h1 className="text-6xl font-bold gradient-text mb-4 tracking-wider">
+              VOTECHAIN
+            </h1>
+            <div className="absolute -inset-6 bg-gradient-to-r from-transparent via-primary/30 to-transparent blur-2xl"></div>
           </div>
+          <div className="space-y-2">
+            <p className="text-2xl font-semibold neon-text tracking-wide flex items-center justify-center gap-2">
+              <Check className="h-8 w-8 text-green-400" />
+              Vote Confirmed Successfully
+            </p>
+            <p className="text-lg text-foreground/80">
+              {voter?.fullName} • {voter?.matricNumber}
+            </p>
+          </div>
+          
+          {/* Enhanced floating elements */}
+          <div className="absolute -top-10 -left-10 w-24 h-24 bg-primary/20 rounded-full blur-xl animate-pulse"></div>
+          <div className="absolute -top-16 -right-16 w-36 h-36 bg-accent/20 rounded-full blur-2xl animate-pulse delay-700"></div>
         </div>
-      </header>
 
-      <ProgressIndicator currentStep={3} />
+        <ProgressIndicator currentStep={3} />
 
-      <main className="container mx-auto px-6 py-8">
-        <div className="max-w-4xl mx-auto space-y-8">
-          <GasSavingsBanner />
-          <DeploymentInfo />
+        <div className="max-w-6xl mx-auto space-y-8">
+          {/* Side by side banners */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <GasSavingsBanner />
+            <DeploymentInfo />
+          </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2">
@@ -239,20 +222,20 @@ export default function ConfirmationPage() {
             </div>
           </div>
         </div>
-      </main>
-      
-      {/* Floating ZKP Demo Button - Bottom Right */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <Link href="/zkp-demo">
-          <Button 
-            className="cyber-button bg-primary/90 hover:bg-primary text-white shadow-2xl shadow-primary/50 px-6 py-4 text-base font-semibold rounded-2xl border-2 border-primary/30 hover:border-primary backdrop-blur-sm"
-            data-testid="floating-zkp-demo"
-          >
-            <Shield className="h-5 w-5 mr-2" />
-            🎓 ZKP Demo
-          </Button>
-        </Link>
-        <div className="absolute -inset-2 bg-primary/20 rounded-2xl blur-lg animate-pulse pointer-events-none"></div>
+        
+        {/* Floating ZKP Demo Button - Bottom Right */}
+        <div className="fixed bottom-6 right-6 z-50">
+          <Link href="/zkp-demo">
+            <Button 
+              className="cyber-button bg-primary/90 hover:bg-primary text-white shadow-2xl shadow-primary/50 px-6 py-4 text-base font-semibold rounded-2xl border-2 border-primary/30 hover:border-primary backdrop-blur-sm"
+              data-testid="floating-zkp-demo"
+            >
+              <Shield className="h-5 w-5 mr-2" />
+              🎓 ZKP Demo
+            </Button>
+          </Link>
+          <div className="absolute -inset-2 bg-primary/20 rounded-2xl blur-lg animate-pulse pointer-events-none"></div>
+        </div>
       </div>
     </div>
   );

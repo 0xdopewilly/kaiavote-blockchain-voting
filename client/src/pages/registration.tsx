@@ -132,10 +132,8 @@ export default function RegistrationPage() {
   return (
     <div className="min-h-screen p-4 relative">
       <div className="container mx-auto">
-        <ProgressIndicator currentStep={1} />
-        
         {/* Hero Section with Beautiful Title */}
-        <div className="text-center mb-12 relative">
+        <div className="text-center mb-8 relative">
           <div className="inline-block relative">
             <h1 className="text-7xl font-bold gradient-text mb-4 tracking-wider">
               VOTECHAIN
@@ -156,8 +154,14 @@ export default function RegistrationPage() {
           <div className="absolute -top-16 -right-16 w-36 h-36 bg-accent/20 rounded-full blur-2xl animate-pulse delay-700"></div>
         </div>
 
+        <ProgressIndicator currentStep={1} />
+
         <div className="max-w-2xl mx-auto space-y-8">
-          <GasSavingsBanner />
+          {/* Side by side banners */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <GasSavingsBanner />
+            <ZKPInfo />
+          </div>
           
           {/* Primary Wallet Connection */}
           <WalletConnector
@@ -165,8 +169,6 @@ export default function RegistrationPage() {
             description="Connect MetaMask to securely register and vote on the blockchain"
             onConnect={handleWalletConnect}
           />
-          
-          <ZKPInfo />
 
           {/* Registration Form */}
           <div className="futuristic-card p-8">

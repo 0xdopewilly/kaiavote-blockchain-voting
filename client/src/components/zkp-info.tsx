@@ -11,47 +11,43 @@ export default function ZKPInfo() {
   const zkpInfo = zkpService.getZKPInfo();
 
   return (
-    <Card className="border-blue-200 bg-blue-50/50">
-      <CardHeader className="pb-3">
-        <div className="flex items-center space-x-2">
-          <Shield className="h-5 w-5 text-blue-600" />
-          <CardTitle className="text-sm font-medium text-blue-800">
-            Zero-Knowledge Privacy Protection
-          </CardTitle>
+    <div className="futuristic-card p-4 h-full">
+      <div className="flex items-center gap-2 mb-3">
+        <div className="relative">
+          <Shield className="h-5 w-5 text-primary" />
+          <div className="absolute -inset-1 bg-primary/20 rounded-full blur animate-pulse"></div>
         </div>
-        <CardDescription className="text-blue-700">
-          Your privacy is protected using advanced cryptographic proofs
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-3">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div className="flex items-center space-x-2 text-sm">
-            <Lock className="h-4 w-4 text-green-600" />
-            <span className="text-gray-700">Matric # Hidden</span>
-          </div>
-          <div className="flex items-center space-x-2 text-sm">
-            <Eye className="h-4 w-4 text-green-600" />
-            <span className="text-gray-700">Vote Private</span>
-          </div>
-          <div className="flex items-center space-x-2 text-sm">
-            <Shield className="h-4 w-4 text-green-600" />
-            <span className="text-gray-700">Identity Protected</span>
-          </div>
+        <h3 className="text-lg font-bold text-white">Zero Knowledge Privacy</h3>
+      </div>
+      
+      <div className="space-y-2 mb-4">
+        <div className="flex items-center gap-2 text-sm">
+          <Lock className="h-3 w-3 text-green-400" />
+          <span className="text-white/90">Matric # Hidden</span>
         </div>
+        <div className="flex items-center gap-2 text-sm">
+          <Eye className="h-3 w-3 text-green-400" />
+          <span className="text-white/90">Vote Private</span>
+        </div>
+        <div className="flex items-center gap-2 text-sm">
+          <Shield className="h-3 w-3 text-green-400" />
+          <span className="text-white/90">Identity Protected</span>
+        </div>
+      </div>
 
-        <Dialog open={showDetailedInfo} onOpenChange={setShowDetailedInfo}>
-          <DialogTrigger asChild>
-            <Button
-              variant="outline"
-              size="sm"
-              className="w-full text-blue-700 border-blue-300 hover:bg-blue-100"
-              data-testid="button-zkp-info"
-            >
-              <Info className="mr-2 h-4 w-4" />
-              How Zero-Knowledge Proofs Work
-              <ChevronRight className="ml-2 h-4 w-4" />
-            </Button>
-          </DialogTrigger>
+      <Dialog open={showDetailedInfo} onOpenChange={setShowDetailedInfo}>
+        <DialogTrigger asChild>
+          <Button
+            variant="outline"
+            size="sm"
+            className="w-full cyber-button text-xs"
+            data-testid="button-zkp-info"
+          >
+            <Info className="mr-2 h-3 w-3" />
+            Learn More
+            <ChevronRight className="ml-2 h-3 w-3" />
+          </Button>
+        </DialogTrigger>
           <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle className="flex items-center space-x-2">
@@ -152,7 +148,6 @@ export default function ZKPInfo() {
             </div>
           </DialogContent>
         </Dialog>
-      </CardContent>
-    </Card>
-  );
+      </div>
+    );
 }

@@ -5,34 +5,36 @@ import ZKPDemo from "@/components/zkp-demo";
 
 export default function ZKPDemoPage() {
   return (
-    <div className="min-h-screen">
-      {/* Header */}
-      <header className="relative">
-        <div className="futuristic-card mx-6 mt-6 mb-4">
-          <div className="flex items-center justify-between p-6">
-            <div className="flex items-center space-x-4">
+    <div className="min-h-screen p-4 relative">
+      <div className="container mx-auto">
+        {/* Header Section */}
+        <div className="text-center mb-8 relative">
+          <div className="inline-block relative">
+            <h1 className="text-6xl font-bold gradient-text mb-4 tracking-wider">
+              VOTECHAIN
+            </h1>
+            <div className="absolute -inset-6 bg-gradient-to-r from-transparent via-primary/30 to-transparent blur-2xl"></div>
+          </div>
+          <div className="space-y-2">
+            <p className="text-2xl font-semibold neon-text tracking-wide flex items-center justify-center gap-2">
+              <Shield className="h-8 w-8 text-primary" />
+              Zero-Knowledge Proof Demo
+            </p>
+            <div className="flex items-center justify-center gap-4">
               <Link href="/">
-                <Button variant="ghost" className="cyber-button px-3 py-2">
+                <Button variant="outline" className="cyber-button">
                   <ArrowLeft className="h-5 w-5 mr-2" />
                   Back to Home
                 </Button>
               </Link>
-              <div className="flex items-center space-x-3">
-                <div className="relative">
-                  <Shield className="h-8 w-8 text-primary" />
-                  <div className="absolute -inset-2 bg-primary/20 rounded-full blur-md animate-pulse"></div>
-                </div>
-                <div>
-                  <h1 className="text-2xl font-bold gradient-text">VOTECHAIN ZKP</h1>
-                  <p className="text-sm text-muted-foreground">Zero-Knowledge Proof Demonstration</p>
-                </div>
-              </div>
             </div>
           </div>
+          
+          {/* Enhanced floating elements */}
+          <div className="absolute -top-10 -left-10 w-24 h-24 bg-primary/20 rounded-full blur-xl animate-pulse"></div>
+          <div className="absolute -top-16 -right-16 w-36 h-36 bg-accent/20 rounded-full blur-2xl animate-pulse delay-700"></div>
         </div>
-      </header>
 
-      <main className="container mx-auto px-6 py-8">
         <div className="max-w-6xl mx-auto space-y-8">
           {/* Explanation Section */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
@@ -182,7 +184,7 @@ export default function ZKPDemoPage() {
             </div>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
