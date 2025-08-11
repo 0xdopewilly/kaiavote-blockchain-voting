@@ -135,8 +135,14 @@ export default function RegistrationPage() {
         {/* Hero Section with Beautiful Title */}
         <div className="text-center mb-8 relative">
           <div className="inline-block relative">
-            <h1 className="text-7xl font-bold gradient-text mb-4 tracking-wider">
-              VOTECHAIN
+            <h1 className="text-7xl font-bold text-white mb-4 tracking-wider" style={{
+              background: 'linear-gradient(135deg, #ffffff 0%, #e0e7ff 25%, #c7d2fe 50%, #a78bfa 75%, #8b5cf6 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              textShadow: '0 0 30px rgba(255, 255, 255, 0.5)'
+            }}>
+              CRYPTOVOTE
             </h1>
             <div className="absolute -inset-6 bg-gradient-to-r from-transparent via-primary/30 to-transparent blur-2xl"></div>
           </div>
