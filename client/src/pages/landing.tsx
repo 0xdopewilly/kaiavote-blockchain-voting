@@ -106,8 +106,8 @@ export default function LandingPage() {
                 </Button>
               </Link>
               <Link href="/admin-login">
-                <Button variant="outline" className="cyber-button border border-orange-500/50 text-white hover:bg-orange-500/10 hover:border-orange-500/70 px-3 sm:px-4 py-2 text-sm sm:text-base font-medium backdrop-blur-sm transition-all duration-300" data-testid="button-nav-admin">
-                  <Shield className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+                <Button variant="outline" className="cyber-button border border-red-500/50 text-white hover:bg-red-500/20 hover:border-red-500/80 px-3 sm:px-4 py-2 text-sm sm:text-base font-medium backdrop-blur-sm transition-all duration-300 hover:shadow-red-500/25 shadow-lg" data-testid="button-nav-admin">
+                  <Shield className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4 text-red-400" />
                   <span className="hidden sm:inline">Admin Access</span>
                   <span className="sm:hidden">Admin</span>
                 </Button>
