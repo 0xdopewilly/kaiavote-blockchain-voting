@@ -14,7 +14,7 @@ const steps = [
 export default function ProgressIndicator({ currentStep, className }: ProgressIndicatorProps) {
   return (
     <div className={cn("glass-morph border-2 border-primary/20 mx-6 my-4 rounded-2xl", className)}>
-      <div className="container mx-auto px-8 py-6">
+      <div className="container mx-auto px-8 py-6 text-justify bg-[#c2175c00]">
         <div className="flex items-center justify-center space-x-12">
           {steps.map((step, index) => (
             <div key={step.number} className="flex items-center">
