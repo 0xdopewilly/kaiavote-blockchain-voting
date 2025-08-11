@@ -5,12 +5,12 @@ import ZKPDemo from "@/components/zkp-demo";
 
 export default function ZKPDemoPage() {
   return (
-    <div className="min-h-screen p-4 relative">
-      <div className="container mx-auto">
+    <div className="min-h-screen p-2 sm:p-4 relative">
+      <div className="container mx-auto max-w-full px-2 sm:px-4">
         {/* Header Section */}
-        <div className="text-center mb-8 relative">
+        <div className="text-center mb-6 sm:mb-8 relative">
           <div className="inline-block relative">
-            <h1 className="text-6xl font-bold text-white mb-4 tracking-wider" style={{
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-3 sm:mb-4 tracking-wider" style={{
               background: 'linear-gradient(135deg, #ffffff 0%, #e0e7ff 25%, #c7d2fe 50%, #a78bfa 75%, #8b5cf6 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -21,15 +21,15 @@ export default function ZKPDemoPage() {
             </h1>
             <div className="absolute -inset-6 bg-gradient-to-r from-transparent via-primary/30 to-transparent blur-2xl"></div>
           </div>
-          <div className="space-y-2">
-            <p className="text-2xl font-semibold neon-text tracking-wide flex items-center justify-center gap-2">
-              <Shield className="h-8 w-8 text-primary" />
+          <div className="space-y-2 px-2">
+            <p className="text-lg sm:text-xl md:text-2xl font-semibold neon-text tracking-wide flex items-center justify-center gap-2">
+              <Shield className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
               Zero-Knowledge Proof Demo
             </p>
-            <div className="flex items-center justify-center gap-4">
+            <div className="flex items-center justify-center gap-4 mt-4">
               <Link href="/">
-                <Button variant="outline" className="cyber-button">
-                  <ArrowLeft className="h-5 w-5 mr-2" />
+                <Button variant="outline" className="cyber-button text-xs sm:text-sm">
+                  <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
                   Back to Home
                 </Button>
               </Link>

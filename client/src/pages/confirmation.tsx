@@ -3,7 +3,7 @@ import { useLocation, Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Check, ExternalLink, Download, Shield, Wallet, LogOut } from "lucide-react";
+import { Check, ExternalLink, Download, Shield, Wallet, LogOut, ArrowLeft } from "lucide-react";
 import ProgressIndicator from "@/components/progress-indicator";
 import LiveMetrics from "@/components/live-metrics";
 import DeploymentInfo from "@/components/deployment-info";
@@ -74,10 +74,24 @@ export default function ConfirmationPage() {
   };
 
   return (
-    <div className="min-h-screen p-4 relative">
-      <div className="container mx-auto">
+    <div className="min-h-screen p-2 sm:p-4 relative">
+      <div className="container mx-auto max-w-full px-2 sm:px-4">
+        {/* Home Button - Top Left */}
+        <div className="absolute top-2 sm:top-4 left-2 sm:left-4 z-50">
+          <Link href="/">
+            <Button
+              variant="outline"
+              className="cyber-button bg-primary/10 hover:bg-primary/20 border-primary/30 hover:border-primary/60 backdrop-blur-sm text-xs sm:text-sm"
+              data-testid="button-home"
+            >
+              <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2 text-primary" />
+              <span className="text-white font-medium">Home</span>
+            </Button>
+          </Link>
+        </div>
+
         {/* Disconnect Wallet Button - Top Right */}
-        <div className="absolute top-4 right-4 z-50">
+        <div className="absolute top-2 sm:top-4 right-2 sm:right-4 z-50">
           <Button
             variant="outline"
             onClick={handleDisconnect}
@@ -90,9 +104,9 @@ export default function ConfirmationPage() {
         </div>
 
         {/* Header Section */}
-        <div className="text-center mb-8 relative">
+        <div className="text-center mb-6 sm:mb-8 relative mt-12 sm:mt-8">
           <div className="inline-block relative">
-            <h1 className="text-6xl font-bold text-white mb-4 tracking-wider" style={{
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-3 sm:mb-4 tracking-wider" style={{
               background: 'linear-gradient(135deg, #ffffff 0%, #e0e7ff 25%, #c7d2fe 50%, #a78bfa 75%, #8b5cf6 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',

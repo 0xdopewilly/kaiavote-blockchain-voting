@@ -11,7 +11,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "@/component
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Loader2, Vote, Crown, Building, DollarSign, AlertTriangle, CheckCircle, Wallet, LogOut, Shield } from "lucide-react";
+import { Loader2, Vote, Crown, Building, DollarSign, AlertTriangle, CheckCircle, Wallet, LogOut, Shield, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import ProgressIndicator from "@/components/progress-indicator";
@@ -226,9 +226,23 @@ export default function VotingPage() {
 
   return (
     <div className="min-h-screen">
+      {/* Home Button - Top Left */}
+      <div className="absolute top-2 sm:top-4 left-2 sm:left-4 z-50">
+        <Link href="/">
+          <Button
+            variant="outline"
+            className="cyber-button bg-primary/10 hover:bg-primary/20 border-primary/30 hover:border-primary/60 backdrop-blur-sm text-xs sm:text-sm"
+            data-testid="button-home"
+          >
+            <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2 text-primary" />
+            <span className="text-white font-medium">Home</span>
+          </Button>
+        </Link>
+      </div>
+
       {/* Futuristic Header */}
-      <header className="relative">
-        <div className="futuristic-card mx-6 mt-6 mb-4">
+      <header className="relative mt-12 sm:mt-8">
+        <div className="futuristic-card mx-2 sm:mx-6 mt-2 sm:mt-6 mb-4">
           <div className="flex items-center justify-between p-6">
             <div className="flex items-center space-x-4">
               <div className="relative">

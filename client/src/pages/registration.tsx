@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useLocation, Link } from "wouter";
 import { z } from "zod";
-import { Wallet, UserPlus, Loader2, Shield } from "lucide-react";
+import { Wallet, UserPlus, Loader2, Shield, ArrowLeft } from "lucide-react";
 import { insertVoterSchema } from "@shared/schema";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -130,12 +130,25 @@ export default function RegistrationPage() {
   };
 
   return (
-    <div className="min-h-screen p-4 relative">
-      <div className="container mx-auto">
+    <div className="min-h-screen p-2 sm:p-4 relative">
+      <div className="container mx-auto max-w-full px-2 sm:px-4">
+        {/* Home Button - Top Left */}
+        <div className="absolute top-2 sm:top-4 left-2 sm:left-4 z-50">
+          <Link href="/">
+            <Button
+              variant="outline"
+              className="cyber-button bg-primary/10 hover:bg-primary/20 border-primary/30 hover:border-primary/60 backdrop-blur-sm text-xs sm:text-sm"
+              data-testid="button-home"
+            >
+              <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2 text-primary" />
+              <span className="text-white font-medium">Home</span>
+            </Button>
+          </Link>
+        </div>
         {/* Hero Section with Beautiful Title */}
-        <div className="text-center mb-8 relative">
+        <div className="text-center mb-6 sm:mb-8 relative mt-12 sm:mt-8">
           <div className="inline-block relative">
-            <h1 className="text-7xl font-bold text-white mb-4 tracking-wider" style={{
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-3 sm:mb-4 tracking-wider" style={{
               background: 'linear-gradient(135deg, #ffffff 0%, #e0e7ff 25%, #c7d2fe 50%, #a78bfa 75%, #8b5cf6 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -146,11 +159,11 @@ export default function RegistrationPage() {
             </h1>
             <div className="absolute -inset-6 bg-gradient-to-r from-transparent via-primary/30 to-transparent blur-2xl"></div>
           </div>
-          <div className="space-y-3">
-            <p className="text-3xl font-semibold neon-text tracking-wide">
+          <div className="space-y-2 sm:space-y-3 px-2">
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold neon-text tracking-wide">
               Academic Blockchain Democracy
             </p>
-            <p className="text-xl text-foreground font-medium">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground font-medium">
               🔒 Secure • 🎭 Anonymous • 🌟 Transparent • ⛓️ Immutable
             </p>
           </div>
@@ -162,15 +175,15 @@ export default function RegistrationPage() {
 
         <ProgressIndicator currentStep={1} />
 
-        <div className="max-w-2xl mx-auto space-y-8">
+        <div className="max-w-2xl mx-auto space-y-4 sm:space-y-8">
           {/* Side by side banners */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
             <GasSavingsBanner />
             <ZKPInfo />
           </div>
           
           {/* Registration Form */}
-          <div className="futuristic-card p-8">
+          <div className="futuristic-card p-4 sm:p-6 lg:p-8">
             <div className="flex items-center gap-3 mb-6">
               <div className="relative">
                 <UserPlus className="h-6 w-6 text-primary" />

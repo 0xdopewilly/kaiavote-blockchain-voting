@@ -79,11 +79,11 @@ export default function LandingPage() {
         ))}
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 py-8">
+      <div className="relative z-10 container mx-auto px-2 sm:px-4 py-4 sm:py-8">
         {/* Header Section */}
-        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="relative inline-block mb-8">
-            <h1 className="text-8xl font-bold text-white tracking-wider mb-4" style={{
+        <div className={`text-center mb-8 sm:mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="relative inline-block mb-6 sm:mb-8">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white tracking-wider mb-3 sm:mb-4" style={{
               background: 'linear-gradient(135deg, #ffffff 0%, #e0e7ff 25%, #c7d2fe 50%, #a78bfa 75%, #8b5cf6 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -97,24 +97,24 @@ export default function LandingPage() {
             <Sparkles className="absolute -bottom-6 -left-6 h-6 w-6 text-accent animate-pulse delay-500" />
           </div>
           
-          <p className="text-3xl text-white font-medium mb-6 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white font-medium mb-4 sm:mb-6 max-w-4xl mx-auto leading-relaxed px-2">
             Next-Generation Blockchain Voting Platform
           </p>
-          <p className="text-xl text-white/90 max-w-3xl mx-auto mb-8 leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-3xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2">
             Secure, Private, and Transparent academic elections powered by Zero-Knowledge Proofs and ultra-low gas fees
           </p>
           
           {/* Hero CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-            <Link href="/registration">
-              <Button className="cyber-button bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white px-12 py-4 text-lg font-bold border-0 shadow-2xl hover:shadow-primary/50 transition-all duration-300" data-testid="button-hero-register">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-8 sm:mb-16 px-2">
+            <Link href="/registration" className="w-full sm:w-auto">
+              <Button className="cyber-button bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white px-8 sm:px-12 py-3 sm:py-4 text-base sm:text-lg font-bold border-0 shadow-2xl hover:shadow-primary/50 transition-all duration-300 w-full sm:w-auto" data-testid="button-hero-register">
                 Get Started Now
-                <ArrowRight className="ml-3 h-6 w-6" />
+                <ArrowRight className="ml-2 sm:ml-3 h-4 w-4 sm:h-6 sm:w-6" />
               </Button>
             </Link>
-            <Link href="/zkp-demo">
-              <Button variant="outline" className="cyber-button border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 px-12 py-4 text-lg font-bold backdrop-blur-sm transition-all duration-300" data-testid="button-hero-demo">
-                <Shield className="mr-3 h-6 w-6" />
+            <Link href="/zkp-demo" className="w-full sm:w-auto">
+              <Button variant="outline" className="cyber-button border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 px-8 sm:px-12 py-3 sm:py-4 text-base sm:text-lg font-bold backdrop-blur-sm transition-all duration-300 w-full sm:w-auto" data-testid="button-hero-demo">
+                <Shield className="mr-2 sm:mr-3 h-4 w-4 sm:h-6 sm:w-6" />
                 Explore Technology
               </Button>
             </Link>
