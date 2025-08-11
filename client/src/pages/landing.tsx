@@ -90,7 +90,7 @@ export default function LandingPage() {
               backgroundClip: 'text',
               textShadow: '0 0 30px rgba(255, 255, 255, 0.5)'
             }}>
-              CRYPTOVOTE
+              CryptoVote
             </h1>
             <div className="absolute -inset-8 bg-gradient-to-r from-transparent via-primary/20 to-transparent blur-3xl"></div>
             <Sparkles className="absolute -top-6 -right-6 h-8 w-8 text-primary animate-pulse" />
@@ -214,7 +214,7 @@ export default function LandingPage() {
               Ready to Experience the Future of Voting?
             </h2>
             <p className="text-xl text-white/80 mb-12 leading-relaxed max-w-3xl mx-auto">
-              Join thousands of students already using CRYPTOVOTE for secure, private, and transparent democratic participation in academic elections.
+              Join thousands of students already using CryptoVote for secure, private, and transparent democratic participation in academic elections.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link href="/registration">

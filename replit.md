@@ -1,4 +1,4 @@
-# CRYPTOVOTE - Academic Blockchain Voting Platform
+# CryptoVote - Academic Blockchain Voting Platform
 
 ## Overview
 
@@ -9,7 +9,7 @@ This is a web-based blockchain voting platform designed for academic settings, e
 ## Recent Changes
 
 ### January 2025 - Major Platform Redesign
-- ✅ **New Brand Identity**: Rebranded from "VoteChain" to "CRYPTOVOTE" for a more modern, crypto-focused appeal
+- ✅ **New Brand Identity**: Rebranded from "VoteChain" to "CryptoVote" for a more professional, modern appeal
 - ✅ **Stunning Landing Page**: Added beautiful glass-morphism landing page with animated particles and smooth transitions
 - ✅ **Enhanced Layout**: Restructured landing page with hero CTA buttons, quick access navigation, and compelling feature showcase
 - ✅ **Perfect Title Contrast**: Fixed all title visibility issues with high-contrast gradient text styling across all pages

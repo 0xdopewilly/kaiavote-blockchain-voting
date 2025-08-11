@@ -17,7 +17,7 @@ export default function ZKPDemoPage() {
               backgroundClip: 'text',
               textShadow: '0 0 30px rgba(255, 255, 255, 0.5)'
             }}>
-              CRYPTOVOTE
+              CryptoVote
             </h1>
             <div className="absolute -inset-6 bg-gradient-to-r from-transparent via-primary/30 to-transparent blur-2xl"></div>
           </div>
