@@ -118,6 +118,12 @@ export default function LandingPage() {
                 Explore Technology
               </Button>
             </Link>
+            <Link href="/admin-login" className="w-full sm:w-auto">
+              <Button variant="outline" className="cyber-button border-2 border-orange-500/50 text-white hover:bg-orange-500/10 hover:border-orange-500/70 px-8 sm:px-12 py-3 sm:py-4 text-base sm:text-lg font-bold backdrop-blur-sm transition-all duration-300 w-full sm:w-auto" data-testid="button-admin-access">
+                <Shield className="mr-2 sm:mr-3 h-4 w-4 sm:h-6 sm:w-6" />
+                Admin Access
+              </Button>
+            </Link>
           </div>
         </div>
 

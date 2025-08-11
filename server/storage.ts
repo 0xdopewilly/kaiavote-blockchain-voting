@@ -201,6 +201,34 @@ export class DatabaseStorage implements IStorage {
       turnoutPercentage: Math.round(turnoutPercentage * 100) / 100
     };
   }
+
+  // Admin-specific methods
+  async getAllVotesWithDetails(): Promise<any[]> {
+    const votesWithDetails = await db
+      .select({
+        id: votes.id,
+        voter: {
+          fullName: voters.fullName,
+          matricNumber: voters.matricNumber,
+        },
+        candidate: {
+          name: candidates.name,
+          department: candidates.department,
+        },
+        position: {
+          name: positions.name,
+        },
+        transactionHash: votes.transactionHash,
+        createdAt: votes.createdAt,
+      })
+      .from(votes)
+      .innerJoin(voters, eq(votes.voterId, voters.id))
+      .innerJoin(candidates, eq(votes.candidateId, candidates.id))
+      .innerJoin(positions, eq(candidates.positionId, positions.id))
+      .orderBy(votes.createdAt);
+    
+    return votesWithDetails;
+  }
 }
 
 export const storage = new DatabaseStorage();

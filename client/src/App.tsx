@@ -8,6 +8,8 @@ import RegistrationPage from "@/pages/registration";
 import VotingPage from "@/pages/voting";
 import ConfirmationPage from "@/pages/confirmation";
 import ZKPDemoPage from "@/pages/zkp-demo";
+import AdminLoginPage from "@/pages/admin-login";
+import AdminDashboardPage from "@/pages/admin-dashboard";
 import NotFound from "@/pages/not-found";
 import { Web3Provider } from "@/hooks/use-web3";
 
@@ -19,6 +21,8 @@ function Router() {
       <Route path="/voting" component={VotingPage} />
       <Route path="/confirmation" component={ConfirmationPage} />
       <Route path="/zkp-demo" component={ZKPDemoPage} />
+      <Route path="/admin-login" component={AdminLoginPage} />
+      <Route path="/admin-dashboard" component={AdminDashboardPage} />
       <Route component={NotFound} />
     </Switch>
   );

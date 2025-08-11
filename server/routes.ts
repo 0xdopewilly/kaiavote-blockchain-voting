@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertVoterSchema, insertVoteSchema } from "@shared/schema";
+import adminRoutes from "./admin-routes";
 import { z } from "zod";
 import { fromZodError } from "zod-validation-error";
 
@@ -211,6 +212,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ error: "Failed to seed database" });
     }
   });
+
+  // Admin routes
+  app.use('/api/admin', adminRoutes);
 
   const httpServer = createServer(app);
   return httpServer;
