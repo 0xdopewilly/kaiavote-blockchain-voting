@@ -3,6 +3,7 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import LandingPage from "@/pages/landing";
 import RegistrationPage from "@/pages/registration";
 import VotingPage from "@/pages/voting";
 import ConfirmationPage from "@/pages/confirmation";
@@ -13,7 +14,8 @@ import { Web3Provider } from "@/hooks/use-web3";
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={RegistrationPage} />
+      <Route path="/" component={LandingPage} />
+      <Route path="/registration" component={RegistrationPage} />
       <Route path="/voting" component={VotingPage} />
       <Route path="/confirmation" component={ConfirmationPage} />
       <Route path="/zkp-demo" component={ZKPDemoPage} />
