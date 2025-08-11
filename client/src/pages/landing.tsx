@@ -79,6 +79,44 @@ export default function LandingPage() {
         ))}
       </div>
 
+      {/* Top Navigation Bar */}
+      <div className="relative z-20 w-full">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex justify-between items-center">
+            {/* Logo */}
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
+                <Vote className="h-5 w-5 text-white" />
+              </div>
+              <span className="text-xl font-bold text-white">CryptoVote</span>
+            </div>
+
+            {/* Top-Right Navigation Buttons */}
+            <div className="flex gap-2 sm:gap-4">
+              <Link href="/registration">
+                <Button className="cyber-button bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white px-4 sm:px-6 py-2 text-sm sm:text-base font-bold border-0 shadow-xl hover:shadow-primary/50 transition-all duration-300" data-testid="button-nav-register">
+                  Get Started Now
+                </Button>
+              </Link>
+              <Link href="/zkp-demo">
+                <Button variant="outline" className="cyber-button border border-white/30 text-white hover:bg-white/10 hover:border-white/50 px-3 sm:px-4 py-2 text-sm sm:text-base font-medium backdrop-blur-sm transition-all duration-300" data-testid="button-nav-demo">
+                  <Shield className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+                  <span className="hidden sm:inline">Explore Technology</span>
+                  <span className="sm:hidden">Tech</span>
+                </Button>
+              </Link>
+              <Link href="/admin-login">
+                <Button variant="outline" className="cyber-button border border-orange-500/50 text-white hover:bg-orange-500/10 hover:border-orange-500/70 px-3 sm:px-4 py-2 text-sm sm:text-base font-medium backdrop-blur-sm transition-all duration-300" data-testid="button-nav-admin">
+                  <Shield className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+                  <span className="hidden sm:inline">Admin Access</span>
+                  <span className="sm:hidden">Admin</span>
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="relative z-10 container mx-auto px-2 sm:px-4 py-4 sm:py-8">
         {/* Header Section */}
         <div className={`text-center mb-8 sm:mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
@@ -104,27 +142,7 @@ export default function LandingPage() {
             Secure, Private, and Transparent academic elections powered by Zero-Knowledge Proofs and ultra-low gas fees
           </p>
           
-          {/* Hero CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-8 sm:mb-16 px-2">
-            <Link href="/registration" className="w-full sm:w-auto">
-              <Button className="cyber-button bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white px-8 sm:px-12 py-3 sm:py-4 text-base sm:text-lg font-bold border-0 shadow-2xl hover:shadow-primary/50 transition-all duration-300 w-full sm:w-auto" data-testid="button-hero-register">
-                Get Started Now
-                <ArrowRight className="ml-2 sm:ml-3 h-4 w-4 sm:h-6 sm:w-6" />
-              </Button>
-            </Link>
-            <Link href="/zkp-demo" className="w-full sm:w-auto">
-              <Button variant="outline" className="cyber-button border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 px-8 sm:px-12 py-3 sm:py-4 text-base sm:text-lg font-bold backdrop-blur-sm transition-all duration-300 w-full sm:w-auto" data-testid="button-hero-demo">
-                <Shield className="mr-2 sm:mr-3 h-4 w-4 sm:h-6 sm:w-6" />
-                Explore Technology
-              </Button>
-            </Link>
-            <Link href="/admin-login" className="w-full sm:w-auto">
-              <Button variant="outline" className="cyber-button border-2 border-orange-500/50 text-white hover:bg-orange-500/10 hover:border-orange-500/70 px-8 sm:px-12 py-3 sm:py-4 text-base sm:text-lg font-bold backdrop-blur-sm transition-all duration-300 w-full sm:w-auto" data-testid="button-admin-access">
-                <Shield className="mr-2 sm:mr-3 h-4 w-4 sm:h-6 sm:w-6" />
-                Admin Access
-              </Button>
-            </Link>
-          </div>
+
         </div>
 
         {/* Stats Cards */}
