@@ -22,6 +22,7 @@ import { zkpService } from "@/lib/zkp";
 import ZKPInfo from "@/components/zkp-info";
 import GasSavingsBanner from "@/components/gas-savings-banner";
 import NetworkStatus from "@/components/network-status";
+import GlobalNav from "@/components/GlobalNav";
 
 interface Position {
   id: string;
@@ -235,7 +236,7 @@ export default function VotingPage() {
             data-testid="button-home"
           >
             <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2 text-primary" />
-            <span className="text-white font-medium">Home</span>
+            <span className="text-slate-900 dark:text-white font-medium">Home</span>
           </Button>
         </Link>
       </div>
@@ -250,8 +251,8 @@ export default function VotingPage() {
                 <div className="absolute -inset-2 bg-primary/20 rounded-full blur-md animate-pulse"></div>
               </div>
               <div>
-                <h1 className="text-2xl font-bold gradient-text">CryptoVote</h1>
-                <p className="text-sm text-muted-foreground">Blockchain Voting Terminal</p>
+                <h1 className="text-2xl font-bold text-slate-900 dark:text-white">CryptoVote</h1>
+                <p className="text-sm text-slate-600 dark:text-white/80">Blockchain Voting Terminal</p>
               </div>
             </div>
             <div className="flex items-center space-x-4">
@@ -262,7 +263,7 @@ export default function VotingPage() {
                       <Wallet className="h-4 w-4 text-primary" />
                       <div className="absolute -inset-1 bg-primary/20 rounded-full blur animate-pulse"></div>
                     </div>
-                    <span className="text-sm font-mono text-foreground">
+                    <span className="text-sm font-mono text-slate-900 dark:text-white">
                       {account.slice(0, 6)}...{account.slice(-4)}
                     </span>
                   </div>
@@ -304,8 +305,8 @@ export default function VotingPage() {
                   <Vote className="h-16 w-16 text-primary mx-auto" />
                   <div className="absolute -inset-4 bg-primary/20 rounded-full blur-xl animate-pulse"></div>
                 </div>
-                <h2 className="text-3xl font-bold text-white mb-2">Cast Your Vote</h2>
-                <p className="text-white text-lg font-medium">
+                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Cast Your Vote</h2>
+                <p className="text-slate-700 dark:text-white/90 text-lg font-medium">
                   Select your preferred candidates for each position
                 </p>
               </div>
@@ -322,12 +323,12 @@ export default function VotingPage() {
                         render={({ field }) => (
                           <FormItem>
                             <div className="glass-morph rounded-2xl p-6 mb-6">
-                              <h3 className="text-3xl font-bold text-white mb-6 flex items-center">
+                              <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-6 flex items-center">
                                 <div className="relative mr-4">
                                   <IconComponent className="h-8 w-8 text-primary" />
                                   <div className="absolute -inset-2 bg-primary/30 rounded-full blur-md animate-pulse"></div>
                                 </div>
-                                <span className="text-white text-3xl font-bold">{position.name}</span>
+                                <span className="text-slate-900 dark:text-white text-3xl font-bold">{position.name}</span>
                               </h3>
                               <FormControl>
                                 <RadioGroup
@@ -352,7 +353,7 @@ export default function VotingPage() {
                                           htmlFor={candidate.id}
                                           className="flex-1 cursor-pointer"
                                         >
-                                          <div className="font-bold text-white text-xl mb-2">
+                                          <div className="font-bold text-slate-900 dark:text-white text-xl mb-2">
                                             {candidate.name}
                                           </div>
                                           <div className="text-primary font-mono text-lg font-medium">
@@ -377,7 +378,7 @@ export default function VotingPage() {
                       <AlertTriangle className="h-6 w-6 text-warning" />
                       <h3 className="text-lg font-bold text-warning">Important Notice</h3>
                     </div>
-                    <p className="text-white text-lg font-medium">
+                    <p className="text-slate-800 dark:text-white text-lg font-medium">
                       Once you submit your vote, it will be permanently recorded on the 
                       blockchain and cannot be changed. Please review your selections carefully.
                     </p>
@@ -423,8 +424,8 @@ export default function VotingPage() {
               <Loader2 className="h-16 w-16 animate-spin text-primary" />
               <div className="absolute -inset-4 bg-primary/20 rounded-full blur-xl animate-pulse"></div>
             </div>
-            <DialogTitle className="text-2xl gradient-text">Processing Vote</DialogTitle>
-            <DialogDescription className="text-muted-foreground">
+            <DialogTitle className="text-2xl text-slate-900 dark:text-white font-bold">Processing Vote</DialogTitle>
+            <DialogDescription className="text-slate-600 dark:text-white/80">
               Please wait while your vote is recorded on the blockchain...
             </DialogDescription>
           </DialogHeader>

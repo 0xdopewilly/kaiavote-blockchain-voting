@@ -70,7 +70,7 @@ export default function AdminLoginPage() {
               data-testid="button-home"
             >
               <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2 text-primary" />
-              <span className="text-white font-medium">Home</span>
+              <span className="text-slate-900 dark:text-white font-medium">Home</span>
             </Button>
           </Link>
         </div>
@@ -78,19 +78,19 @@ export default function AdminLoginPage() {
         {/* Header Section */}
         <div className="text-center mb-6 sm:mb-8 relative mt-12 sm:mt-8">
           <div className="inline-block relative">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-3 sm:mb-4 tracking-wider" style={{
-              background: 'linear-gradient(135deg, #ffffff 0%, #e0e7ff 25%, #c7d2fe 50%, #a78bfa 75%, #8b5cf6 100%)',
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-3 sm:mb-4 tracking-wider" style={{
+              background: 'linear-gradient(135deg, #1f2937 0%, #4c1d95 25%, #7c3aed 50%, #a78bfa 75%, #8b5cf6 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
-              textShadow: '0 0 30px rgba(255, 255, 255, 0.5)'
+              textShadow: '0 0 30px rgba(139, 92, 246, 0.3)'
             }}>
               CryptoVote
             </h1>
             <div className="absolute -inset-6 bg-gradient-to-r from-transparent via-primary/30 to-transparent blur-2xl"></div>
           </div>
           <div className="space-y-2 px-2">
-            <p className="text-lg sm:text-xl md:text-2xl font-semibold neon-text tracking-wide flex items-center justify-center gap-2">
+            <p className="text-lg sm:text-xl md:text-2xl font-semibold text-slate-800 dark:text-white tracking-wide flex items-center justify-center gap-2">
               <Shield className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
               Admin Dashboard Login
             </p>
@@ -99,15 +99,15 @@ export default function AdminLoginPage() {
 
         {/* Login Card */}
         <div className="max-w-md mx-auto">
-          <Card className="glass-morph border-primary/30 shadow-2xl">
+          <Card className="glass-morph border-purple-500/20 dark:border-primary/30 bg-white/80 dark:bg-slate-900/30 backdrop-blur-md shadow-2xl">
             <CardHeader className="text-center">
               <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                 <Lock className="h-8 w-8 text-primary" />
               </div>
-              <CardTitle className="text-2xl font-bold gradient-text">
+              <CardTitle className="text-2xl font-bold text-slate-900 dark:text-white">
                 Administrator Access
               </CardTitle>
-              <CardDescription className="text-white/80">
+              <CardDescription className="text-slate-600 dark:text-white/80">
                 Enter your admin credentials to access the dashboard
               </CardDescription>
             </CardHeader>
@@ -119,7 +119,7 @@ export default function AdminLoginPage() {
                     name="username"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-white font-medium">Username</FormLabel>
+                        <FormLabel className="text-slate-900 dark:text-white font-medium">Username</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
@@ -138,7 +138,7 @@ export default function AdminLoginPage() {
                     name="password"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-white font-medium">Password</FormLabel>
+                        <FormLabel className="text-slate-900 dark:text-white font-medium">Password</FormLabel>
                         <FormControl>
                           <div className="relative">
                             <Input

@@ -142,29 +142,29 @@ export default function RegistrationPage() {
               data-testid="button-home"
             >
               <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2 text-primary" />
-              <span className="text-white font-medium">Home</span>
+              <span className="text-slate-900 dark:text-white font-medium">Home</span>
             </Button>
           </Link>
         </div>
         {/* Hero Section with Beautiful Title */}
         <div className="text-center mb-6 sm:mb-8 relative mt-12 sm:mt-8">
           <div className="inline-block relative">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-3 sm:mb-4 tracking-wider" style={{
-              background: 'linear-gradient(135deg, #ffffff 0%, #e0e7ff 25%, #c7d2fe 50%, #a78bfa 75%, #8b5cf6 100%)',
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-3 sm:mb-4 tracking-wider" style={{
+              background: 'linear-gradient(135deg, #1f2937 0%, #4c1d95 25%, #7c3aed 50%, #a78bfa 75%, #8b5cf6 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
-              textShadow: '0 0 30px rgba(255, 255, 255, 0.5)'
+              textShadow: '0 0 30px rgba(139, 92, 246, 0.3)'
             }}>
               CryptoVote
             </h1>
             <div className="absolute -inset-6 bg-gradient-to-r from-transparent via-primary/30 to-transparent blur-2xl"></div>
           </div>
           <div className="space-y-2 sm:space-y-3 px-2">
-            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold neon-text tracking-wide">
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-slate-800 dark:text-white tracking-wide">
               Academic Blockchain Democracy
             </p>
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground font-medium">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 dark:text-white/90 font-medium">
               🔒 Secure • 🎭 Anonymous • 🌟 Transparent • ⛓️ Immutable
             </p>
           </div>
@@ -191,8 +191,8 @@ export default function RegistrationPage() {
                 <div className="absolute -inset-1 bg-primary/20 rounded-full blur animate-pulse"></div>
               </div>
               <div>
-                <h2 className="text-2xl font-bold text-foreground">Voter Registration</h2>
-                <p className="text-muted-foreground">Secure your identity with Zero-Knowledge Proof</p>
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Voter Registration</h2>
+                <p className="text-slate-600 dark:text-white/80">Secure your identity with Zero-Knowledge Proof</p>
               </div>
             </div>
 
@@ -203,7 +203,7 @@ export default function RegistrationPage() {
                   name="fullName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-foreground font-medium">Full Name</FormLabel>
+                      <FormLabel className="text-slate-900 dark:text-white font-medium">Full Name</FormLabel>
                       <FormControl>
                         <Input 
                           placeholder="Enter your full name" 
@@ -222,7 +222,7 @@ export default function RegistrationPage() {
                   name="matricNumber"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-foreground font-medium">Matric Number</FormLabel>
+                      <FormLabel className="text-slate-900 dark:text-white font-medium">Matric Number</FormLabel>
                       <FormControl>
                         <Input 
                           placeholder="CSC/2012/001" 
@@ -244,7 +244,7 @@ export default function RegistrationPage() {
                   name="walletAddress"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-foreground font-medium">Wallet Address</FormLabel>
+                      <FormLabel className="text-slate-900 dark:text-white font-medium">Wallet Address</FormLabel>
                       <FormControl>
                         <Input 
                           placeholder="0x..." 
@@ -266,7 +266,7 @@ export default function RegistrationPage() {
                   name="confirmWalletAddress"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-foreground font-medium">Confirm Wallet Address</FormLabel>
+                      <FormLabel className="text-slate-900 dark:text-white font-medium">Confirm Wallet Address</FormLabel>
                       <FormControl>
                         <Input 
                           placeholder="0x..." 
@@ -320,7 +320,7 @@ export default function RegistrationPage() {
           data-testid="floating-zkp-info-small"
         >
           <Shield className="h-4 w-4 text-primary mr-2" />
-          <span className="text-xs text-white font-medium">ZKP Info</span>
+          <span className="text-xs text-slate-900 dark:text-white font-medium">ZKP Info</span>
         </Button>
         <div className="absolute -inset-1 bg-primary/10 rounded-lg blur animate-pulse pointer-events-none"></div>
       </div>

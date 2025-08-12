@@ -4,7 +4,38 @@
 @tailwind utilities;
 
 :root {
-  /* Ultra High Contrast Futuristic Theme */
+  /* Light Mode - Clean white glass theme */
+  --background: hsl(240 100% 99%);
+  --foreground: hsl(224 71% 4%);
+  --card: hsl(240 100% 98%);
+  --card-foreground: hsl(224 71% 4%);
+  --popover: hsl(240 100% 98%);
+  --popover-foreground: hsl(224 71% 4%);
+  --primary: hsl(262 83% 58%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(220 14% 96%);
+  --secondary-foreground: hsl(220 9% 46%);
+  --muted: hsl(220 14% 96%);
+  --muted-foreground: hsl(220 9% 46%);
+  --accent: hsl(262 83% 58%);
+  --accent-foreground: hsl(0 0% 100%);
+  --destructive: hsl(0 84% 60%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(220 13% 91%);
+  --input: hsl(240 100% 98%);
+  --ring: hsl(262 83% 58%);
+  --warning: hsl(35 91% 60%);
+  --warning-foreground: hsl(0 0% 100%);
+  --error: hsl(0 84% 60%);
+  --error-foreground: hsl(0 0% 100%);
+  --surface: hsl(240 100% 99%);
+  --font-inter: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --radius: 1rem;
+}
+
+.dark {
+  /* Dark Mode - Purple cyber glass theme */
   --background: hsl(240 20% 3%);
   --foreground: hsl(0 0% 100%);
   --card: hsl(240 25% 6%);
@@ -29,36 +60,6 @@
   --error: hsl(0 100% 70%);
   --error-foreground: hsl(0 0% 100%);
   --surface: hsl(240 20% 4%);
-  --font-inter: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-  --radius: 1rem;
-}
-
-.dark {
-  --background: hsl(260 15% 8%);
-  --foreground: hsl(280 5% 95%);
-  --card: hsl(260 20% 12%);
-  --card-foreground: hsl(280 5% 95%);
-  --popover: hsl(260 20% 12%);
-  --popover-foreground: hsl(280 5% 95%);
-  --primary: hsl(270 95% 65%);
-  --primary-foreground: hsl(260 15% 8%);
-  --secondary: hsl(280 15% 18%);
-  --secondary-foreground: hsl(280 5% 95%);
-  --muted: hsl(280 10% 15%);
-  --muted-foreground: hsl(280 5% 65%);
-  --accent: hsl(290 85% 70%);
-  --accent-foreground: hsl(260 15% 8%);
-  --destructive: hsl(0 85% 65%);
-  --destructive-foreground: hsl(280 5% 95%);
-  --border: hsl(280 20% 25%);
-  --input: hsl(280 15% 18%);
-  --ring: hsl(270 95% 65%);
-  --warning: hsl(35 91% 60%);
-  --warning-foreground: hsl(260 15% 8%);
-  --error: hsl(0 85% 65%);
-  --error-foreground: hsl(280 5% 95%);
-  --surface: hsl(260 18% 10%);
 }
 
 @layer base {
@@ -68,6 +69,22 @@
 
   body {
     @apply bg-background text-foreground font-[var(--font-inter)] antialiased;
+  }
+  
+  /* Light mode gradient background */
+  body:not(.dark) {
+    background: linear-gradient(135deg, 
+      hsl(240, 100%, 99%) 0%, 
+      hsl(262, 83%, 98%) 25%, 
+      hsl(240, 100%, 97%) 50%, 
+      hsl(262, 83%, 96%) 75%,
+      hsl(240, 100%, 95%) 100%);
+    min-height: 100vh;
+    background-attachment: fixed;
+  }
+  
+  /* Dark mode gradient background */
+  .dark body {
     background: linear-gradient(135deg, 
       hsl(240, 15%, 5%) 0%, 
       hsl(250, 25%, 8%) 25%, 
@@ -136,7 +153,7 @@
   }
   
   .cyber-button {
-    @apply relative overflow-hidden font-bold text-white;
+    @apply relative overflow-hidden font-bold;
     background: linear-gradient(135deg, 
       hsl(var(--primary)) 0%, 
       hsl(var(--accent)) 100%);
@@ -144,6 +161,17 @@
     border-radius: var(--radius);
     border: 3px solid hsl(var(--primary));
     box-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+    color: white;
+  }
+  
+  /* Light mode cyber button text */
+  body:not(.dark) .cyber-button {
+    color: white;
+  }
+  
+  /* Dark mode cyber button text */
+  .dark .cyber-button {
+    color: white;
   }
   
   .cyber-button::before {
@@ -294,10 +322,22 @@
     animation: pulse-glow-landing 2s ease-in-out infinite;
   }
   
-  /* Glass morphism - High Contrast */
+  /* Glass morphism - Theme responsive */
   .glass-morph {
-    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  
+  /* Light mode glass morphism */
+  body:not(.dark) .glass-morph {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(139, 92, 246, 0.1);
+  }
+  
+  /* Dark mode glass morphism */
+  .dark .glass-morph {
+    background: rgba(139, 92, 246, 0.1);
     border: 2px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   }
