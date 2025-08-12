@@ -90,7 +90,7 @@ export default function WalletConnector({
           <Button 
             onClick={handleConnect} 
             disabled={isLoading}
-            className="w-full h-16 text-xl cyber-button"
+            className="w-full h-16 text-xl cyber-button text-[#030000]"
             data-testid="button-connect-wallet"
           >
             {isLoading ? (
