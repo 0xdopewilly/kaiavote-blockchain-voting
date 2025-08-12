@@ -75,7 +75,7 @@ export default function LandingPage() {
   ];
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-background via-background/95 to-background/90 dark:from-slate-900 dark:via-slate-800/95 dark:to-slate-900/90 transition-colors duration-500">
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-slate-900 dark:via-slate-800/95 dark:to-slate-900/90 transition-colors duration-500">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
@@ -106,7 +106,7 @@ export default function LandingPage() {
               <div className="w-8 h-8 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
                 <Vote className="h-5 w-5 text-white" />
               </div>
-              <span className="text-xl font-bold text-white">CryptoVote</span>
+              <span className="text-xl font-bold text-gray-900 dark:text-white">CryptoVote</span>
             </div>
 
             {/* Right Side Controls - Pushed Further Right */}
@@ -116,7 +116,7 @@ export default function LandingPage() {
                 onClick={toggleTheme}
                 variant="outline"
                 size="sm"
-                className="cyber-button border border-white/30 dark:border-white/30 bg-white/10 dark:bg-white/10 hover:bg-white/20 dark:hover:bg-white/20 text-white px-3 py-2 transition-all duration-300 hover:scale-105"
+                className="cyber-button border border-gray-300 dark:border-white/30 bg-gray-200 dark:bg-white/10 hover:bg-gray-300 dark:hover:bg-white/20 text-gray-900 dark:text-white px-3 py-2 transition-all duration-300 hover:scale-105"
                 data-testid="button-theme-toggle"
               >
                 {isDarkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
@@ -153,12 +153,14 @@ export default function LandingPage() {
         {/* Header Section */}
         <div className={`text-center mb-8 sm:mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="relative inline-block mb-6 sm:mb-8">
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white tracking-wider mb-3 sm:mb-4" style={{
-              background: 'linear-gradient(135deg, #ffffff 0%, #e0e7ff 25%, #c7d2fe 50%, #a78bfa 75%, #8b5cf6 100%)',
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-gray-900 dark:text-white tracking-wider mb-3 sm:mb-4" style={{
+              background: isDarkMode 
+                ? 'linear-gradient(135deg, #ffffff 0%, #e0e7ff 25%, #c7d2fe 50%, #a78bfa 75%, #8b5cf6 100%)'
+                : 'linear-gradient(135deg, #1f2937 0%, #4c1d95 25%, #7c3aed 50%, #a78bfa 75%, #8b5cf6 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
-              textShadow: '0 0 30px rgba(255, 255, 255, 0.5)'
+              textShadow: isDarkMode ? '0 0 30px rgba(255, 255, 255, 0.5)' : '0 0 30px rgba(139, 92, 246, 0.3)'
             }}>
               CryptoVote
             </h1>
@@ -167,10 +169,10 @@ export default function LandingPage() {
             <Sparkles className="absolute -bottom-6 -left-6 h-6 w-6 text-accent animate-pulse delay-500" />
           </div>
           
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white font-medium mb-4 sm:mb-6 max-w-4xl mx-auto leading-relaxed px-2">
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-800 dark:text-white font-medium mb-4 sm:mb-6 max-w-4xl mx-auto leading-relaxed px-2">
             Next-Generation Blockchain Voting Platform
           </p>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-3xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 dark:text-white/90 max-w-3xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2">
             Secure, Private, and Transparent academic elections powered by Zero-Knowledge Proofs and ultra-low gas fees
           </p>
           
