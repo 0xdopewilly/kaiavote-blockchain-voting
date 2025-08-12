@@ -12,15 +12,33 @@ import {
   Sparkles,
   Lock,
   Globe,
-  Award
+  Award,
+  Sun,
+  Moon
 } from "lucide-react";
 
 export default function LandingPage() {
   const [isVisible, setIsVisible] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   useEffect(() => {
     setIsVisible(true);
+    // Check for saved theme preference or default to dark
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setIsDarkMode(savedTheme === 'dark');
+      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+    } else {
+      document.documentElement.classList.add('dark');
+    }
   }, []);
+
+  const toggleTheme = () => {
+    const newTheme = !isDarkMode;
+    setIsDarkMode(newTheme);
+    document.documentElement.classList.toggle('dark', newTheme);
+    localStorage.setItem('theme', newTheme ? 'dark' : 'light');
+  };
 
   const features = [
     {
@@ -57,7 +75,7 @@ export default function LandingPage() {
   ];
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-background via-background/95 to-background/90">
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-background via-background/95 to-background/90 dark:from-slate-900 dark:via-slate-800/95 dark:to-slate-900/90 transition-colors duration-500">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
@@ -91,27 +109,41 @@ export default function LandingPage() {
               <span className="text-xl font-bold text-white">CryptoVote</span>
             </div>
 
-            {/* Top-Right Navigation Buttons */}
-            <div className="flex gap-2 sm:gap-4">
-              <Link href="/registration">
-                <Button className="cyber-button bg-gradient-to-r from-emerald-500 to-blue-500 hover:from-emerald-400 hover:to-blue-400 text-white px-4 sm:px-6 py-2 text-sm sm:text-base font-bold border-0 shadow-xl hover:shadow-emerald-500/50 transition-all duration-300 hover:scale-105 animate-pulse" data-testid="button-nav-register">
-                  Register to Vote
-                </Button>
-              </Link>
-              <Link href="/zkp-demo">
-                <Button className="cyber-button bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 text-white px-3 sm:px-4 py-2 text-sm sm:text-base font-bold border-0 shadow-xl hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105" data-testid="button-nav-demo">
-                  <Shield className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
-                  <span className="hidden sm:inline">Learn ZKP</span>
-                  <span className="sm:hidden">ZKP</span>
-                </Button>
-              </Link>
-              <Link href="/admin-login">
-                <Button className="cyber-button bg-red-600 hover:bg-red-700 border border-red-500 text-white px-3 sm:px-4 py-2 text-sm sm:text-base font-bold transition-all duration-300 shadow-lg hover:shadow-red-500/50 hover:scale-105" data-testid="button-nav-admin">
-                  <Shield className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4 text-white" />
-                  <span className="hidden sm:inline">Admin Access</span>
-                  <span className="sm:hidden">Admin</span>
-                </Button>
-              </Link>
+            {/* Right Side Controls - Pushed Further Right */}
+            <div className="flex items-center gap-3 ml-auto">
+              {/* Theme Toggle */}
+              <Button
+                onClick={toggleTheme}
+                variant="outline"
+                size="sm"
+                className="cyber-button border border-white/30 dark:border-white/30 bg-white/10 dark:bg-white/10 hover:bg-white/20 dark:hover:bg-white/20 text-white px-3 py-2 transition-all duration-300 hover:scale-105"
+                data-testid="button-theme-toggle"
+              >
+                {isDarkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              </Button>
+
+              {/* Navigation Buttons - Extra Space */}
+              <div className="flex gap-2 sm:gap-3 ml-6">
+                <Link href="/registration">
+                  <Button className="cyber-button bg-gradient-to-r from-emerald-500 to-blue-500 hover:from-emerald-400 hover:to-blue-400 text-white px-4 sm:px-6 py-2 text-sm sm:text-base font-bold border-0 shadow-xl hover:shadow-emerald-500/50 transition-all duration-300 hover:scale-105 animate-pulse" data-testid="button-nav-register">
+                    Register to Vote
+                  </Button>
+                </Link>
+                <Link href="/zkp-demo">
+                  <Button className="cyber-button bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 text-white px-3 sm:px-4 py-2 text-sm sm:text-base font-bold border-0 shadow-xl hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105" data-testid="button-nav-demo">
+                    <Shield className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+                    <span className="hidden sm:inline">Learn ZKP</span>
+                    <span className="sm:hidden">ZKP</span>
+                  </Button>
+                </Link>
+                <Link href="/admin-login">
+                  <Button className="cyber-button bg-red-600 hover:bg-red-700 border border-red-500 text-white px-3 sm:px-4 py-2 text-sm sm:text-base font-bold transition-all duration-300 shadow-lg hover:shadow-red-500/50 hover:scale-105" data-testid="button-nav-admin">
+                    <Shield className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4 text-white" />
+                    <span className="hidden sm:inline">Admin Access</span>
+                    <span className="sm:hidden">Admin</span>
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
