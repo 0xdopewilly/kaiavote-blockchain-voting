@@ -282,7 +282,7 @@ export default function RegistrationPage() {
 
                 <Button 
                   type="submit" 
-                  className="w-full h-14 text-lg cyber-button" 
+                  className="w-full h-14 text-lg cyber-button font-extrabold text-[#000000]" 
                   disabled={registerMutation.isPending}
                   data-testid="button-register"
                 >
