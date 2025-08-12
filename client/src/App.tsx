@@ -3,7 +3,6 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { ThemeProvider } from "@/contexts/ThemeContext";
 import LandingPage from "@/pages/landing";
 import RegistrationPage from "@/pages/registration";
 import VotingPage from "@/pages/voting";
@@ -32,28 +31,26 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <Web3Provider>
-          <TooltipProvider>
-            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-gray-100 dark:bg-gradient-to-br dark:from-slate-900 dark:via-purple-900/20 dark:to-indigo-900/30 transition-all duration-500">
-              {/* Futuristic grid overlay */}
-              <div className="fixed inset-0 opacity-5 pointer-events-none">
-                <div className="absolute inset-0" 
-                     style={{
-                       backgroundImage: `linear-gradient(hsl(var(--primary) / 0.1) 1px, transparent 1px), 
-                                       linear-gradient(90deg, hsl(var(--primary) / 0.1) 1px, transparent 1px)`,
-                       backgroundSize: '50px 50px'
-                     }}>
-                </div>
+      <Web3Provider>
+        <TooltipProvider>
+          <div className="min-h-screen animated-bg">
+            {/* Futuristic grid overlay */}
+            <div className="fixed inset-0 opacity-5 pointer-events-none">
+              <div className="absolute inset-0" 
+                   style={{
+                     backgroundImage: `linear-gradient(hsl(var(--primary) / 0.1) 1px, transparent 1px), 
+                                     linear-gradient(90deg, hsl(var(--primary) / 0.1) 1px, transparent 1px)`,
+                     backgroundSize: '50px 50px'
+                   }}>
               </div>
-              
-              {/* Main content */}
-              <Router />
             </div>
-            <Toaster />
-          </TooltipProvider>
-        </Web3Provider>
-      </ThemeProvider>
+            
+            {/* Main content */}
+            <Router />
+          </div>
+          <Toaster />
+        </TooltipProvider>
+      </Web3Provider>
     </QueryClientProvider>
   );
 }
