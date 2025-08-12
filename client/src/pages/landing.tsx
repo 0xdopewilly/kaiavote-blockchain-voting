@@ -75,18 +75,18 @@ export default function LandingPage() {
   ];
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-slate-900 dark:via-slate-800/95 dark:to-slate-900/90 transition-colors duration-500">
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-gray-100 dark:bg-gradient-to-br dark:from-slate-900 dark:via-purple-900/20 dark:to-indigo-900/30 transition-all duration-500">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse delay-700"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 dark:bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-purple-500/10 dark:bg-accent/10 rounded-full blur-3xl animate-pulse delay-700"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-indigo-500/5 dark:bg-primary/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
         
         {/* Floating particles */}
         {[...Array(20)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-primary/30 rounded-full animate-pulse"
+            className="absolute w-1 h-1 bg-purple-500/30 dark:bg-primary/30 rounded-full animate-pulse"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -153,15 +153,15 @@ export default function LandingPage() {
         {/* Header Section */}
         <div className={`text-center mb-8 sm:mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="relative inline-block mb-6 sm:mb-8">
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-gray-900 dark:text-white tracking-wider mb-3 sm:mb-4" style={{
-              background: isDarkMode 
-                ? 'linear-gradient(135deg, #ffffff 0%, #e0e7ff 25%, #c7d2fe 50%, #a78bfa 75%, #8b5cf6 100%)'
-                : 'linear-gradient(135deg, #1f2937 0%, #4c1d95 25%, #7c3aed 50%, #a78bfa 75%, #8b5cf6 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              textShadow: isDarkMode ? '0 0 30px rgba(255, 255, 255, 0.5)' : '0 0 30px rgba(139, 92, 246, 0.3)'
-            }}>
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-wider mb-3 sm:mb-4"
+                style={{
+                  background: isDarkMode 
+                    ? 'linear-gradient(135deg, #ffffff 0%, #e0e7ff 25%, #c7d2fe 50%, #a78bfa 75%, #8b5cf6 100%)'
+                    : 'linear-gradient(135deg, #1f2937 0%, #4c1d95 25%, #7c3aed 50%, #a78bfa 75%, #8b5cf6 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  textShadow: isDarkMode ? '0 0 30px rgba(255, 255, 255, 0.5)' : '0 0 30px rgba(139, 92, 246, 0.3)'
+                }}>
               CryptoVote
             </h1>
             <div className="absolute -inset-8 bg-gradient-to-r from-transparent via-primary/20 to-transparent blur-3xl"></div>
@@ -169,10 +169,10 @@ export default function LandingPage() {
             <Sparkles className="absolute -bottom-6 -left-6 h-6 w-6 text-accent animate-pulse delay-500" />
           </div>
           
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-800 dark:text-white font-medium mb-4 sm:mb-6 max-w-4xl mx-auto leading-relaxed px-2">
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-slate-800 dark:text-white font-medium mb-4 sm:mb-6 max-w-4xl mx-auto leading-relaxed px-2">
             Next-Generation Blockchain Voting Platform
           </p>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 dark:text-white/90 max-w-3xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 dark:text-white/90 max-w-3xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2">
             Secure, Private, and Transparent academic elections powered by Zero-Knowledge Proofs and ultra-low gas fees
           </p>
           
@@ -182,14 +182,14 @@ export default function LandingPage() {
         {/* Stats Cards */}
         <div className={`grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {stats.map((stat, index) => (
-            <Card key={index} className="glass-morph border-primary/20 hover:border-primary/40 transition-all duration-300 group">
+            <Card key={index} className="glass-morph border-purple-500/20 dark:border-primary/20 hover:border-purple-500/40 dark:hover:border-primary/40 bg-white/80 dark:bg-slate-900/30 backdrop-blur-md transition-all duration-300 group">
               <CardContent className="p-6 text-center">
                 <div className="relative inline-block mb-3">
-                  <stat.icon className="h-8 w-8 text-primary mx-auto group-hover:scale-110 transition-transform duration-300" />
-                  <div className="absolute -inset-2 bg-primary/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <stat.icon className="h-8 w-8 text-purple-600 dark:text-primary mx-auto group-hover:scale-110 transition-transform duration-300" />
+                  <div className="absolute -inset-2 bg-purple-500/20 dark:bg-primary/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-                <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
-                <div className="text-sm text-white/70">{stat.label}</div>
+                <div className="text-3xl font-bold text-slate-900 dark:text-white mb-1">{stat.value}</div>
+                <div className="text-sm text-slate-600 dark:text-white/70">{stat.label}</div>
               </CardContent>
             </Card>
           ))}
@@ -199,12 +199,12 @@ export default function LandingPage() {
 
         {/* Features Section */}
         <div className={`mb-16 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="text-4xl font-bold text-center text-white mb-12">
+          <h2 className="text-4xl font-bold text-center text-slate-900 dark:text-white mb-12">
             Revolutionary Features
           </h2>
           <div className="grid lg:grid-cols-2 gap-8">
             {features.map((feature, index) => (
-              <Card key={index} className="glass-morph border-primary/20 hover:border-primary/40 transition-all duration-300 group">
+              <Card key={index} className="glass-morph border-purple-500/20 dark:border-primary/20 hover:border-purple-500/40 dark:hover:border-primary/40 bg-white/80 dark:bg-slate-900/30 backdrop-blur-md transition-all duration-300 group">
                 <CardContent className="p-8">
                   <div className="flex items-start space-x-4">
                     <div className="relative">
@@ -212,8 +212,8 @@ export default function LandingPage() {
                       <div className={`absolute -inset-2 ${feature.color.replace('text-', 'bg-')}/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
-                      <p className="text-white/80 leading-relaxed">{feature.description}</p>
+                      <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{feature.title}</h3>
+                      <p className="text-slate-700 dark:text-white/80 leading-relaxed">{feature.description}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -225,10 +225,10 @@ export default function LandingPage() {
         {/* Bottom CTA Section */}
         <div className={`text-center transition-all duration-1000 delay-900 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold text-white mb-6">
+            <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-6">
               Ready to Experience the Future of Voting?
             </h2>
-            <p className="text-xl text-white/80 mb-12 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-xl text-slate-700 dark:text-white/80 mb-12 leading-relaxed max-w-3xl mx-auto">
               Join thousands of students already using CryptoVote for secure, private, and transparent democratic participation in academic elections.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
