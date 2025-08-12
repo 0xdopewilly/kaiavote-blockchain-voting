@@ -94,15 +94,15 @@ export default function LandingPage() {
             {/* Top-Right Navigation Buttons */}
             <div className="flex gap-2 sm:gap-4">
               <Link href="/registration">
-                <Button className="cyber-button bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white px-4 sm:px-6 py-2 text-sm sm:text-base font-bold border-0 shadow-xl hover:shadow-primary/50 transition-all duration-300" data-testid="button-nav-register">
-                  Get Started Now
+                <Button className="cyber-button bg-gradient-to-r from-emerald-500 to-blue-500 hover:from-emerald-400 hover:to-blue-400 text-white px-4 sm:px-6 py-2 text-sm sm:text-base font-bold border-0 shadow-xl hover:shadow-emerald-500/50 transition-all duration-300 hover:scale-105 animate-pulse" data-testid="button-nav-register">
+                  Register to Vote
                 </Button>
               </Link>
               <Link href="/zkp-demo">
-                <Button variant="outline" className="cyber-button border border-white/30 text-white hover:bg-white/10 hover:border-white/50 px-3 sm:px-4 py-2 text-sm sm:text-base font-medium backdrop-blur-sm transition-all duration-300" data-testid="button-nav-demo">
+                <Button className="cyber-button bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 text-white px-3 sm:px-4 py-2 text-sm sm:text-base font-bold border-0 shadow-xl hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105" data-testid="button-nav-demo">
                   <Shield className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
-                  <span className="hidden sm:inline">Explore Technology</span>
-                  <span className="sm:hidden">Tech</span>
+                  <span className="hidden sm:inline">Learn ZKP</span>
+                  <span className="sm:hidden">ZKP</span>
                 </Button>
               </Link>
               <Link href="/admin-login">
@@ -161,50 +161,7 @@ export default function LandingPage() {
           ))}
         </div>
 
-        {/* Quick Access Navigation */}
-        <div className={`grid lg:grid-cols-3 gap-6 mb-20 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <Link href="/registration">
-            <Card className="glass-morph border-primary/40 hover:border-primary/70 transition-all duration-300 group hover:scale-[1.02] h-full cursor-pointer">
-              <CardContent className="p-6 text-center h-full flex flex-col justify-center">
-                <div className="relative inline-block mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-primary to-primary/80 rounded-xl flex items-center justify-center mx-auto group-hover:rotate-6 transition-transform duration-300">
-                    <Users className="h-6 w-6 text-white" />
-                  </div>
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">Register to Vote</h3>
-                <p className="text-white/70 text-sm">Quick setup with wallet integration</p>
-              </CardContent>
-            </Card>
-          </Link>
 
-          <Link href="/voting">
-            <Card className="glass-morph border-accent/40 hover:border-accent/70 transition-all duration-300 group hover:scale-[1.02] h-full cursor-pointer">
-              <CardContent className="p-6 text-center h-full flex flex-col justify-center">
-                <div className="relative inline-block mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-accent to-accent/80 rounded-xl flex items-center justify-center mx-auto group-hover:rotate-6 transition-transform duration-300">
-                    <Vote className="h-6 w-6 text-white" />
-                  </div>
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">Cast Votes</h3>
-                <p className="text-white/70 text-sm">Select your preferred candidates</p>
-              </CardContent>
-            </Card>
-          </Link>
-
-          <Link href="/zkp-demo">
-            <Card className="glass-morph border-emerald-500/40 hover:border-emerald-500/70 transition-all duration-300 group hover:scale-[1.02] h-full cursor-pointer">
-              <CardContent className="p-6 text-center h-full flex flex-col justify-center">
-                <div className="relative inline-block mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-xl flex items-center justify-center mx-auto group-hover:rotate-6 transition-transform duration-300">
-                    <Shield className="h-6 w-6 text-white" />
-                  </div>
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">Learn ZKP</h3>
-                <p className="text-white/70 text-sm">Explore privacy technology</p>
-              </CardContent>
-            </Card>
-          </Link>
-        </div>
 
         {/* Features Section */}
         <div className={`mb-16 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
