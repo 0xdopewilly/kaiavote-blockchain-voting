@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Shield, Eye, EyeOff, ArrowLeft, Lock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import GlobalNav from "@/components/GlobalNav";
 
 const adminLoginSchema = z.object({
   username: z.string().min(1, "Username is required"),

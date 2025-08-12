@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { useTheme } from "@/contexts/ThemeContext";
 import { 
   Vote, 
   Shield, 
@@ -19,26 +20,11 @@ import {
 
 export default function LandingPage() {
   const [isVisible, setIsVisible] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const { isDarkMode, toggleTheme } = useTheme();
 
   useEffect(() => {
     setIsVisible(true);
-    // Check for saved theme preference or default to dark
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      setIsDarkMode(savedTheme === 'dark');
-      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-    } else {
-      document.documentElement.classList.add('dark');
-    }
   }, []);
-
-  const toggleTheme = () => {
-    const newTheme = !isDarkMode;
-    setIsDarkMode(newTheme);
-    document.documentElement.classList.toggle('dark', newTheme);
-    localStorage.setItem('theme', newTheme ? 'dark' : 'light');
-  };
 
   const features = [
     {
@@ -75,7 +61,7 @@ export default function LandingPage() {
   ];
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-gray-100 dark:bg-gradient-to-br dark:from-slate-900 dark:via-purple-900/20 dark:to-indigo-900/30 transition-all duration-500">
+    <div className="min-h-screen relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 dark:bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
@@ -106,7 +92,7 @@ export default function LandingPage() {
               <div className="w-8 h-8 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
                 <Vote className="h-5 w-5 text-white" />
               </div>
-              <span className="text-xl font-bold text-gray-900 dark:text-white">CryptoVote</span>
+              <span className="text-xl font-bold text-slate-900 dark:text-white">CryptoVote</span>
             </div>
 
             {/* Right Side Controls - Pushed Further Right */}
@@ -116,7 +102,7 @@ export default function LandingPage() {
                 onClick={toggleTheme}
                 variant="outline"
                 size="sm"
-                className="cyber-button border border-gray-300 dark:border-white/30 bg-gray-200 dark:bg-white/10 hover:bg-gray-300 dark:hover:bg-white/20 text-gray-900 dark:text-white px-3 py-2 transition-all duration-300 hover:scale-105"
+                className="cyber-button border border-slate-300 dark:border-white/30 bg-slate-200 dark:bg-white/10 hover:bg-slate-300 dark:hover:bg-white/20 text-slate-900 dark:text-white px-3 py-2 transition-all duration-300 hover:scale-105"
                 data-testid="button-theme-toggle"
               >
                 {isDarkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}

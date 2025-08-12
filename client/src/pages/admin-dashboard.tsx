@@ -20,6 +20,7 @@ import {
   Calendar,
   Wallet
 } from "lucide-react";
+import GlobalNav from "@/components/GlobalNav";
 
 interface Voter {
   id: string;
