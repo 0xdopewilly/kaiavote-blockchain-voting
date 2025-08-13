@@ -14,6 +14,7 @@ import {
   Globe,
   Award
 } from "lucide-react";
+import PageHeader from "@/components/page-header";
 
 export default function LandingPage() {
   const [isVisible, setIsVisible] = useState(false);
@@ -58,6 +59,9 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-background via-background/95 to-background/90">
+      {/* Page Header */}
+      <PageHeader />
+
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
@@ -79,45 +83,7 @@ export default function LandingPage() {
         ))}
       </div>
 
-      {/* Top Navigation Bar */}
-      <div className="relative z-20 w-full">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">
-            {/* Logo */}
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
-                <Vote className="h-5 w-5 text-white" />
-              </div>
-              <span className="text-xl font-bold text-white">CryptoVote</span>
-            </div>
-
-            {/* Top-Right Navigation Buttons */}
-            <div className="flex gap-2 sm:gap-4">
-              <Link href="/registration">
-                <Button className="cyber-button bg-gradient-to-r from-emerald-500 to-blue-500 hover:from-emerald-400 hover:to-blue-400 text-white px-4 sm:px-6 py-2 text-sm sm:text-base font-bold border-0 shadow-xl hover:shadow-emerald-500/50 transition-all duration-300 hover:scale-105 animate-pulse" data-testid="button-nav-register">
-                  Register to Vote
-                </Button>
-              </Link>
-              <Link href="/zkp-demo">
-                <Button className="cyber-button bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 text-white px-3 sm:px-4 py-2 text-sm sm:text-base font-bold border-0 shadow-xl hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105" data-testid="button-nav-demo">
-                  <Shield className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
-                  <span className="hidden sm:inline">Learn ZKP</span>
-                  <span className="sm:hidden">ZKP</span>
-                </Button>
-              </Link>
-              <Link href="/admin-login">
-                <Button className="cyber-button bg-red-600 hover:bg-red-700 border border-red-500 text-white px-3 sm:px-4 py-2 text-sm sm:text-base font-bold transition-all duration-300 shadow-lg hover:shadow-red-500/50 hover:scale-105" data-testid="button-nav-admin">
-                  <Shield className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4 text-white" />
-                  <span className="hidden sm:inline">Admin Access</span>
-                  <span className="sm:hidden">Admin</span>
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="relative z-10 container mx-auto px-2 sm:px-4 py-4 sm:py-8">
+      <div className="relative z-10 container mx-auto px-2 sm:px-4 pt-20 pb-8">
         {/* Header Section */}
         <div className={`text-center mb-8 sm:mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="relative inline-block mb-6 sm:mb-8">

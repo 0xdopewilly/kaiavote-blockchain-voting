@@ -20,6 +20,7 @@ import {
   Calendar,
   Wallet
 } from "lucide-react";
+import PageHeader from "@/components/page-header";
 
 interface Voter {
   id: string;
@@ -133,20 +134,12 @@ export default function AdminDashboardPage() {
 
   return (
     <div className="min-h-screen p-2 sm:p-4 relative">
-      <div className="container mx-auto max-w-full px-2 sm:px-4">
-        {/* Navigation Bar */}
-        <div className="flex justify-between items-center mb-6">
-          <Link href="/">
-            <Button
-              variant="outline"
-              className="cyber-button bg-primary/10 hover:bg-primary/20 border-primary/30 hover:border-primary/60 backdrop-blur-sm text-xs sm:text-sm"
-              data-testid="button-home"
-            >
-              <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2 text-primary" />
-              <span className="text-white font-medium">Home</span>
-            </Button>
-          </Link>
-
+      {/* Page Header */}
+      <PageHeader showHomeButton={true} />
+      
+      <div className="container mx-auto max-w-full px-2 sm:px-4 pt-16">
+        {/* Admin Controls */}
+        <div className="flex justify-end items-center mb-6">
           <div className="flex gap-2">
             <Button
               onClick={handleRefresh}

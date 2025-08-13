@@ -22,6 +22,7 @@ import { zkpService } from "@/lib/zkp";
 import ZKPInfo from "@/components/zkp-info";
 import GasSavingsBanner from "@/components/gas-savings-banner";
 import NetworkStatus from "@/components/network-status";
+import PageHeader from "@/components/page-header";
 
 interface Position {
   id: string;
@@ -226,22 +227,11 @@ export default function VotingPage() {
 
   return (
     <div className="min-h-screen">
-      {/* Home Button - Top Left */}
-      <div className="absolute top-2 sm:top-4 left-2 sm:left-4 z-50">
-        <Link href="/">
-          <Button
-            variant="outline"
-            className="cyber-button bg-primary/10 hover:bg-primary/20 border-primary/30 hover:border-primary/60 backdrop-blur-sm text-xs sm:text-sm"
-            data-testid="button-home"
-          >
-            <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2 text-primary" />
-            <span className="text-white font-medium">Home</span>
-          </Button>
-        </Link>
-      </div>
+      {/* Page Header */}
+      <PageHeader showHomeButton={true} />
 
       {/* Futuristic Header */}
-      <header className="relative mt-12 sm:mt-8">
+      <header className="relative mt-20 sm:mt-16">
         <div className="futuristic-card mx-2 sm:mx-6 mt-2 sm:mt-6 mb-4">
           <div className="flex items-center justify-between p-6">
             <div className="flex items-center space-x-4">

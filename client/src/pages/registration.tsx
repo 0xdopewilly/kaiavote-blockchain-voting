@@ -18,6 +18,7 @@ import { useWeb3 } from "@/hooks/use-web3";
 import { zkpService } from "@/lib/zkp";
 import ZKPInfo from "@/components/zkp-info";
 import GasSavingsBanner from "@/components/gas-savings-banner";
+import PageHeader from "@/components/page-header";
 
 const registrationSchema = insertVoterSchema.extend({
   confirmWalletAddress: z.string().min(1, "Please confirm your wallet address"),
@@ -131,20 +132,10 @@ export default function RegistrationPage() {
 
   return (
     <div className="min-h-screen p-2 sm:p-4 relative">
-      <div className="container mx-auto max-w-full px-2 sm:px-4">
-        {/* Home Button - Top Left */}
-        <div className="absolute top-2 sm:top-4 left-2 sm:left-4 z-50">
-          <Link href="/">
-            <Button
-              variant="outline"
-              className="cyber-button bg-primary/10 hover:bg-primary/20 border-primary/30 hover:border-primary/60 backdrop-blur-sm text-xs sm:text-sm"
-              data-testid="button-home"
-            >
-              <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2 text-primary" />
-              <span className="text-white font-medium">Home</span>
-            </Button>
-          </Link>
-        </div>
+      {/* Page Header */}
+      <PageHeader showHomeButton={true} />
+      
+      <div className="container mx-auto max-w-full px-2 sm:px-4 pt-16">
         {/* Hero Section with Beautiful Title */}
         <div className="text-center mb-6 sm:mb-8 relative mt-12 sm:mt-8">
           <div className="inline-block relative">
