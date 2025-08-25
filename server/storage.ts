@@ -198,16 +198,25 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getVotingStats(): Promise<VotingStats> {
+    // Count total votes cast
     const [totalVotesResult] = await db.select({ count: sql<number>`count(*)` }).from(votes);
-    const [eligibleVotersResult] = await db.select({ count: sql<number>`count(*)` }).from(voters);
+    
+    // Count total registered voters
+    const [registeredVotersResult] = await db.select({ count: sql<number>`count(*)` }).from(voters);
+    
+    // Count unique voters who have voted
+    const [votersWhoVotedResult] = await db.select({ count: sql<number>`count(distinct ${votes.voterId})` }).from(votes);
     
     const totalVotes = totalVotesResult.count || 0;
-    const eligibleVoters = eligibleVotersResult.count || 0;
-    const turnoutPercentage = eligibleVoters > 0 ? (totalVotes / eligibleVoters) * 100 : 0;
+    const registeredVoters = registeredVotersResult.count || 0;
+    const votersWhoVoted = votersWhoVotedResult.count || 0;
+    
+    // Calculate turnout as percentage of registered voters who actually voted
+    const turnoutPercentage = registeredVoters > 0 ? (votersWhoVoted / registeredVoters) * 100 : 0;
 
     return {
       totalVotes,
-      eligibleVoters,
+      eligibleVoters: registeredVoters, // Total registered voters
       turnoutPercentage: Math.round(turnoutPercentage * 100) / 100
     };
   }

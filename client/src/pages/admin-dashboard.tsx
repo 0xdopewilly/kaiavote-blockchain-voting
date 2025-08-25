@@ -101,26 +101,26 @@ export default function AdminDashboardPage() {
 
   // Fetch voters
   const { data: voters, refetch: refetchVoters } = useQuery<Voter[]>({
-    queryKey: ["/api/admin/voters", refreshKey],
-    refetchInterval: 5000, // Refresh every 5 seconds
+    queryKey: ["/api/admin/voters"],
+    refetchInterval: 2000, // Refresh every 2 seconds
   });
 
   // Fetch votes
   const { data: votes, refetch: refetchVotes } = useQuery<VoteRecord[]>({
-    queryKey: ["/api/admin/votes", refreshKey],
-    refetchInterval: 5000,
+    queryKey: ["/api/admin/votes"],
+    refetchInterval: 2000,
   });
 
   // Fetch stats
   const { data: stats, refetch: refetchStats } = useQuery<Stats>({
-    queryKey: ["/api/stats", refreshKey],
-    refetchInterval: 3000,
+    queryKey: ["/api/stats"],
+    refetchInterval: 2000,
   });
 
   // Fetch eligible voters
   const { data: eligibleVoters, refetch: refetchEligibleVoters } = useQuery<EligibleVoter[]>({
-    queryKey: ["/api/admin/eligible-voters", refreshKey],
-    refetchInterval: 5000,
+    queryKey: ["/api/admin/eligible-voters"],
+    refetchInterval: 2000,
   });
 
   // Upload eligible voters mutation
@@ -145,8 +145,11 @@ export default function AdminDashboardPage() {
         description: response.message,
       });
       setUploadText("");
-      refetchEligibleVoters();
+      // Force refresh all data
       queryClient.invalidateQueries({ queryKey: ["/api/admin/eligible-voters"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/voters"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/stats"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/votes"] });
     },
     onError: (error: any) => {
       toast({
@@ -177,8 +180,11 @@ export default function AdminDashboardPage() {
         title: "Success",
         description: response.message,
       });
-      refetchEligibleVoters();
+      // Force refresh all data
       queryClient.invalidateQueries({ queryKey: ["/api/admin/eligible-voters"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/voters"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/stats"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/votes"] });
     },
     onError: (error: any) => {
       toast({
@@ -196,11 +202,11 @@ export default function AdminDashboardPage() {
   };
 
   const handleRefresh = () => {
-    setRefreshKey(prev => prev + 1);
-    refetchVoters();
-    refetchVotes();
-    refetchStats();
-    refetchEligibleVoters();
+    // Force refresh all queries
+    queryClient.invalidateQueries({ queryKey: ["/api/admin/voters"] });
+    queryClient.invalidateQueries({ queryKey: ["/api/admin/votes"] });
+    queryClient.invalidateQueries({ queryKey: ["/api/stats"] });
+    queryClient.invalidateQueries({ queryKey: ["/api/admin/eligible-voters"] });
   };
 
   const handleUploadEligibleVoters = () => {
