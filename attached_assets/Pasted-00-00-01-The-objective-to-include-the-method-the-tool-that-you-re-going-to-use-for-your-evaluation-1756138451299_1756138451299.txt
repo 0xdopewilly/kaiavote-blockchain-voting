@@ -1,0 +1,42 @@
+00:00:01
+The objective to include the method, the tool that you're going to use for your evaluation, to remove all those obstacles. Just review existing work and look at
+00:00:29
+How do you measure the performance? You now benchmark your work against that one. And it's a system. Okay. Okay. So, start voting now. So, a voter has to register.
+00:01:00
+So, there's going to be a... So, where are the list of candidates? Yes, it's in... After the registration, when the person signs in, there's a list of candidates. So, the user needs to register. Let me see. Chemi, you have a registration there. Just click on that registration. Okay. Let me do this. Then, the metric number. Okay.
+00:01:27
+i have bought if i had already forget if i should log in it's going to tell me that i've already voted so i have to like clear the database then start again okay wallet address so let's go to my wallet address
+00:01:53
+So when you install, for example, this metamask, it's always very easy to generate the wallet.
+00:02:10
+when it's going to like provide you a recovery phrase which are going to keep somewhere to avoid so yes it's unique it's unique to any day there can never be two wallet addresses that will be the same so i'm going to register okay it says okay this is already registered okay let me try a different metric
+00:02:38
+My bad. Let's see if my wallet is leveraged. This wallet is ready. I just start, okay. I do my cards, material cards. Tests. Other cards. Copy. Mm-hmm.
+00:03:07
+so um
+00:03:32
+my device today so i'm trying to like okay registration successful so now i have to connect to wallet returns
+00:04:01
+so it's going to take me to so these are the list of candidates so um i'm going to try to go so the moment i vote is going to update the so let's assume i vote for maybe these three people okay i shouldn't no no no i can't oh my god i have but i can always do it again
+00:04:31
+Disconnect this, then I'll just create a fresh wallet.
+00:04:55
+I can just call this test six or something. And I'll send some tokens to this place. So the voters must have registered. Yeah, they register here. Yes, sir. So once they are registered, the system takes their registration.
+00:05:23
+um after registration then they connect the wallet they used to register if the wallet is not matching it will tell them to go and register first so after so that is the purpose of the wallet address yes sir yes sir because they won't be signing it with your name or magic number they'll be signing with the wallets that they provided okay so so now question how would i know that it's the right person
+00:05:53
+So what I did for the purpose of this, I kept the magic number within the range of computer science.
+00:06:07
+So, if your metric number is not computer science, CSC. So, what I'm saying is, if I am from engineer, I am from elect elect, and I just come with, I have somebody's metric number, computer, wallet address, computer, I can just come in, slot in and vote. So, if you have the person's wallet address, you can only register, but you're not able to vote. Because to vote, you have to connect that wallet.
+00:06:35
+And there's no way you will connect that same wallet if the person doesn't give you his private key. And the person has the private key. If the person gives me the private key, give me all the details, okay? You don't get it. Okay, now, what is the magic number? What's the magic number of the way from that side?
+00:06:58
+I am aware that now people in part one, they have different nationalities. They don't go to CSC, they are going to computer science. Computer science. Computer science. Computer science. Computer science. Computer science.
+00:07:24
+How do you account for that? I was going to say, have you implemented something like that? That's the regulation. All I can tell you is that you might have to say you will import the matching number of all the students into the system. That one will have to
+00:07:53
+So, that means every detail of everybody that is going to vote must have been in a database. You understand? So, it is against that one that who will now vote.
+00:08:23
+This is a very good time. We still have a lot of time to study today.
+00:08:51
+I know some of your colleagues now, as well as those of you asking them to come this week, and there will not be so much time to prepare. Me, last week I came, I came gone. I don't have any business here. This week, I came gone. I don't have any business. Okay. So, it's going to be somewhat tough. Thank you, sir. Thank you.
