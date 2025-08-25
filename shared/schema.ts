@@ -40,6 +40,16 @@ export const votes = pgTable("votes", {
   createdAt: timestamp("created_at").default(sql`now()`),
 });
 
+// Eligible voters list managed by admin
+export const eligibleVoters = pgTable("eligible_voters", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  matricNumber: text("matric_number").notNull().unique(),
+  department: text("department").notNull(),
+  level: text("level"), // e.g., "100L", "200L", etc.
+  uploadedBy: text("uploaded_by").notNull().default("admin"),
+  createdAt: timestamp("created_at").default(sql`now()`),
+});
+
 // Relations
 export const votersRelations = relations(voters, ({ many }) => ({
   votes: many(votes),
@@ -68,7 +78,7 @@ export const votesRelations = relations(votes, ({ one }) => ({
   }),
 }));
 
-// Insert schemas with CSC department validation
+// Insert schemas with matric number validation
 export const insertVoterSchema = createInsertSchema(voters).omit({
   id: true,
   hasVoted: true,
@@ -77,10 +87,7 @@ export const insertVoterSchema = createInsertSchema(voters).omit({
 }).extend({
   matricNumber: z.string()
     .min(1, "Matric number is required")
-    .regex(/^CSC\/\d{4}\/\d{3}$/, "Invalid matric number format. Must be CSC/YYYY/XXX (e.g., CSC/2012/001)")
-    .refine((value) => value.toUpperCase().startsWith('CSC/'), {
-      message: "Only Computer Science Department (CSC) students are allowed to vote"
-    })
+    .regex(/^[A-Z]{2,5}\/\d{4}\/\d{3}$/, "Invalid matric number format. Must be DEPT/YYYY/XXX (e.g., CSC/2012/001 or ENG/2023/045)")
 });
 
 export const insertPositionSchema = createInsertSchema(positions).omit({
@@ -99,16 +106,24 @@ export const insertVoteSchema = createInsertSchema(votes).omit({
   createdAt: true,
 });
 
+export const insertEligibleVoterSchema = createInsertSchema(eligibleVoters).omit({
+  id: true,
+  uploadedBy: true,
+  createdAt: true,
+});
+
 // Types
 export type InsertVoter = z.infer<typeof insertVoterSchema>;
 export type InsertPosition = z.infer<typeof insertPositionSchema>;
 export type InsertCandidate = z.infer<typeof insertCandidateSchema>;
 export type InsertVote = z.infer<typeof insertVoteSchema>;
+export type InsertEligibleVoter = z.infer<typeof insertEligibleVoterSchema>;
 
 export type Voter = typeof voters.$inferSelect;
 export type Position = typeof positions.$inferSelect;
 export type Candidate = typeof candidates.$inferSelect;
 export type Vote = typeof votes.$inferSelect;
+export type EligibleVoter = typeof eligibleVoters.$inferSelect;
 
 // Extended types for API responses
 export type CandidateWithPosition = Candidate & {

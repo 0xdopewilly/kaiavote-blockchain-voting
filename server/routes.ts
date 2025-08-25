@@ -12,6 +12,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const validatedData = insertVoterSchema.parse(req.body);
       
+      // Check if matric number is in the eligible voters list
+      const isEligible = await storage.isMatricNumberEligible(validatedData.matricNumber);
+      if (!isEligible) {
+        return res.status(400).json({ error: "This matric number is not eligible to vote. Please contact your administrator to verify your eligibility." });
+      }
+
       // Check if voter already exists by matric number
       const existingVoterByMatric = await storage.getVoterByMatricNumber(validatedData.matricNumber);
       if (existingVoterByMatric) {
@@ -24,6 +30,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (existingVoterByWallet) {
         return res.status(400).json({ error: `This wallet is already registered as ${existingVoterByWallet.fullName}. Use a different wallet or connect to existing registration.` });
       }
+
+      // Get eligible voter details to auto-fill department
+      const eligibleVoter = await storage.getEligibleVoter(validatedData.matricNumber);
 
       // Store wallet address in lowercase for consistency
       const voterData = {

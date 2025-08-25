@@ -3,14 +3,17 @@ import {
   positions, 
   candidates, 
   votes,
+  eligibleVoters,
   type Voter, 
   type Position,
   type Candidate,
   type Vote,
+  type EligibleVoter,
   type InsertVoter, 
   type InsertPosition,
   type InsertCandidate,
   type InsertVote,
+  type InsertEligibleVoter,
   type CandidateWithPosition,
   type PositionWithCandidates,
   type VotingStats
@@ -43,6 +46,13 @@ export interface IStorage {
   createVote(vote: InsertVote): Promise<Vote>;
   getVotesByVoter(voterId: string): Promise<Vote[]>;
   hasVoterVoted(voterId: string): Promise<boolean>;
+
+  // Eligible voters operations
+  getAllEligibleVoters(): Promise<EligibleVoter[]>;
+  isMatricNumberEligible(matricNumber: string): Promise<boolean>;
+  addEligibleVoters(voters: InsertEligibleVoter[]): Promise<EligibleVoter[]>;
+  clearEligibleVoters(): Promise<void>;
+  getEligibleVoter(matricNumber: string): Promise<EligibleVoter | undefined>;
 
   // Statistics
   getVotingStats(): Promise<VotingStats>;
@@ -200,6 +210,36 @@ export class DatabaseStorage implements IStorage {
       eligibleVoters,
       turnoutPercentage: Math.round(turnoutPercentage * 100) / 100
     };
+  }
+
+  // Eligible voters operations
+  async getAllEligibleVoters(): Promise<EligibleVoter[]> {
+    return await db.select().from(eligibleVoters).orderBy(eligibleVoters.matricNumber);
+  }
+
+  async isMatricNumberEligible(matricNumber: string): Promise<boolean> {
+    const [eligible] = await db.select().from(eligibleVoters).where(eq(eligibleVoters.matricNumber, matricNumber)).limit(1);
+    return !!eligible;
+  }
+
+  async addEligibleVoters(votersData: InsertEligibleVoter[]): Promise<EligibleVoter[]> {
+    if (votersData.length === 0) return [];
+    
+    const result = await db
+      .insert(eligibleVoters)
+      .values(votersData)
+      .onConflictDoNothing() // Skip duplicates
+      .returning();
+    return result;
+  }
+
+  async clearEligibleVoters(): Promise<void> {
+    await db.delete(eligibleVoters);
+  }
+
+  async getEligibleVoter(matricNumber: string): Promise<EligibleVoter | undefined> {
+    const [eligible] = await db.select().from(eligibleVoters).where(eq(eligibleVoters.matricNumber, matricNumber));
+    return eligible || undefined;
   }
 
   // Admin-specific methods

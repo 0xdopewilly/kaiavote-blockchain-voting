@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { useLocation, Link } from "wouter";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 import { 
   Users, 
   Vote, 
@@ -18,7 +21,11 @@ import {
   DollarSign,
   RefreshCw,
   Calendar,
-  Wallet
+  Wallet,
+  Upload,
+  Trash2,
+  UserCheck,
+  FileSpreadsheet
 } from "lucide-react";
 import PageHeader from "@/components/page-header";
 
@@ -54,9 +61,21 @@ interface Stats {
   turnoutPercentage: string;
 }
 
+interface EligibleVoter {
+  id: string;
+  matricNumber: string;
+  department: string;
+  level?: string;
+  uploadedBy: string;
+  createdAt: string;
+}
+
 export default function AdminDashboardPage() {
   const [, setLocation] = useLocation();
   const [refreshKey, setRefreshKey] = useState(0);
+  const [uploadText, setUploadText] = useState("");
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
 
   // Check admin authentication
   useEffect(() => {
@@ -98,6 +117,78 @@ export default function AdminDashboardPage() {
     refetchInterval: 3000,
   });
 
+  // Fetch eligible voters
+  const { data: eligibleVoters, refetch: refetchEligibleVoters } = useQuery<EligibleVoter[]>({
+    queryKey: ["/api/admin/eligible-voters", refreshKey],
+    refetchInterval: 5000,
+  });
+
+  // Upload eligible voters mutation
+  const uploadEligibleVotersMutation = useMutation({
+    mutationFn: async (data: { voters: any[], clearExisting: boolean }) => {
+      const response = await fetch("/api/admin/eligible-voters/upload", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || "Failed to upload eligible voters");
+      }
+      return await response.json();
+    },
+    onSuccess: (response) => {
+      toast({
+        title: "Success",
+        description: response.message,
+      });
+      setUploadText("");
+      refetchEligibleVoters();
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/eligible-voters"] });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Upload Failed",
+        description: error.message || "Failed to upload eligible voters",
+        variant: "destructive",
+      });
+    },
+  });
+
+  // Clear eligible voters mutation
+  const clearEligibleVotersMutation = useMutation({
+    mutationFn: async () => {
+      const response = await fetch("/api/admin/eligible-voters", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || "Failed to clear eligible voters");
+      }
+      return await response.json();
+    },
+    onSuccess: (response) => {
+      toast({
+        title: "Success",
+        description: response.message,
+      });
+      refetchEligibleVoters();
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/eligible-voters"] });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Clear Failed",
+        description: error.message || "Failed to clear eligible voters",
+        variant: "destructive",
+      });
+    },
+  });
+
   const handleLogout = () => {
     localStorage.removeItem("adminAuthenticated");
     localStorage.removeItem("adminLoginTime");
@@ -109,6 +200,50 @@ export default function AdminDashboardPage() {
     refetchVoters();
     refetchVotes();
     refetchStats();
+    refetchEligibleVoters();
+  };
+
+  const handleUploadEligibleVoters = () => {
+    if (!uploadText.trim()) {
+      toast({
+        title: "No Data",
+        description: "Please enter voter data to upload",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      const lines = uploadText.trim().split('\n').filter(line => line.trim());
+      const voters = lines.map(line => {
+        const parts = line.split(',').map(part => part.trim());
+        if (parts.length < 2) {
+          throw new Error(`Invalid line format: ${line}. Expected: matricNumber,department[,level]`);
+        }
+        return {
+          matricNumber: parts[0].toUpperCase(),
+          department: parts[1],
+          level: parts[2] || undefined,
+        };
+      });
+
+      uploadEligibleVotersMutation.mutate({
+        voters,
+        clearExisting: true,
+      });
+    } catch (error: any) {
+      toast({
+        title: "Invalid Format",
+        description: error.message,
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleClearEligibleVoters = () => {
+    if (window.confirm("Are you sure you want to clear all eligible voters? This action cannot be undone.")) {
+      clearEligibleVotersMutation.mutate();
+    }
   };
 
   const getPositionIcon = (positionName: string) => {
@@ -319,6 +454,110 @@ export default function AdminDashboardPage() {
                   )}
                 </div>
               </ScrollArea>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Eligible Voters Management */}
+        <div className="mt-8">
+          <Card className="glass-morph border-yellow-500/30">
+            <CardHeader>
+              <CardTitle className="text-white flex items-center gap-2">
+                <UserCheck className="h-5 w-5 text-yellow-400" />
+                Eligible Voters Management
+              </CardTitle>
+              <CardDescription className="text-white/70">
+                Manage the list of students eligible to vote
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              {/* Upload Section */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 mb-4">
+                  <FileSpreadsheet className="h-4 w-4 text-yellow-400" />
+                  <span className="text-white font-medium">Upload Eligible Voters</span>
+                </div>
+                
+                <div className="p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
+                  <p className="text-xs text-yellow-200 mb-2">
+                    Format: Each line should contain: <code>MatricNumber,Department,Level</code>
+                  </p>
+                  <p className="text-xs text-yellow-200/70 mb-4">
+                    Example: CSC/2012/001,Computer Science Department,300L
+                  </p>
+                  
+                  <Textarea
+                    placeholder="CSC/2012/001,Computer Science Department,300L&#10;ENG/2020/045,Engineering Department,200L&#10;BUS/2021/123,Business Administration,100L"
+                    value={uploadText}
+                    onChange={(e) => setUploadText(e.target.value)}
+                    className="min-h-[120px] bg-white/5 border-white/20 text-white placeholder:text-white/50"
+                    data-testid="textarea-upload-voters"
+                  />
+                  
+                  <div className="flex gap-2 mt-4">
+                    <Button
+                      onClick={handleUploadEligibleVoters}
+                      disabled={uploadEligibleVotersMutation.isPending}
+                      className="cyber-button bg-yellow-500/20 hover:bg-yellow-500/30 border-yellow-500/40 hover:border-yellow-500/60"
+                      data-testid="button-upload-voters"
+                    >
+                      <Upload className="h-4 w-4 mr-2" />
+                      {uploadEligibleVotersMutation.isPending ? "Uploading..." : "Upload & Replace"}
+                    </Button>
+                    
+                    <Button
+                      onClick={handleClearEligibleVoters}
+                      disabled={clearEligibleVotersMutation.isPending}
+                      variant="outline"
+                      className="cyber-button bg-red-500/10 hover:bg-red-500/20 border-red-500/30 hover:border-red-500/60"
+                      data-testid="button-clear-voters"
+                    >
+                      <Trash2 className="h-4 w-4 mr-2" />
+                      {clearEligibleVotersMutation.isPending ? "Clearing..." : "Clear All"}
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Current Eligible Voters List */}
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Users className="h-4 w-4 text-yellow-400" />
+                    <span className="text-white font-medium">Current Eligible Voters</span>
+                  </div>
+                  <Badge variant="outline" className="text-yellow-400 border-yellow-400/50">
+                    {eligibleVoters?.length || 0} eligible
+                  </Badge>
+                </div>
+                
+                <ScrollArea className="h-[300px] border border-white/10 rounded-lg bg-white/5">
+                  <div className="p-4 space-y-2">
+                    {eligibleVoters?.map((voter) => (
+                      <div key={voter.id} className="flex justify-between items-center p-2 bg-white/5 rounded border border-white/10">
+                        <div>
+                          <p className="font-mono text-sm text-white">{voter.matricNumber}</p>
+                          <p className="text-xs text-white/60">{voter.department}</p>
+                        </div>
+                        <div className="text-right">
+                          {voter.level && (
+                            <Badge variant="secondary" className="text-xs mb-1">
+                              {voter.level}
+                            </Badge>
+                          )}
+                          <p className="text-xs text-white/50">{formatTimestamp(voter.createdAt)}</p>
+                        </div>
+                      </div>
+                    )) || (
+                      <div className="text-center py-8 text-white/60">
+                        <UserCheck className="h-8 w-8 mx-auto mb-2 opacity-50" />
+                        <p>No eligible voters uploaded yet</p>
+                        <p className="text-xs mt-1">Upload a list to enable voter registration</p>
+                      </div>
+                    )}
+                  </div>
+                </ScrollArea>
+              </div>
             </CardContent>
           </Card>
         </div>
