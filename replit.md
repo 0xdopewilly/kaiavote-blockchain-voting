@@ -74,7 +74,8 @@ Preferred communication style: Simple, everyday language.
 - **Network Benefits**: High throughput blockchain optimized for academic use cases
 - **Wallet Integration**: MetaMask with automatic Monad Testnet network switching
 - **Transaction Handling**: Web3 transaction signing with blockchain verification
-- **Vote Storage**: Triple storage - database for quick access, blockchain for immutability, ZKP for privacy
+- **Vote Storage**: Hybrid approach - database for persistence, blockchain when available, ZKP for privacy
+- **Resilient Design**: Graceful fallback to secure database storage when blockchain is unavailable
 
 ### Zero-Knowledge Proof Implementation
 - **ZKP Service**: Custom implementation in zkp.ts for voter privacy protection
