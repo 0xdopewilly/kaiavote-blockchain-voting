@@ -143,7 +143,11 @@ export class Contract {
     
     // Encode each string in the array (simplified)
     candidateIds.forEach((id: string) => {
-      const idHex = Buffer.from(id, 'utf8').toString('hex').padEnd(64, '0');
+      // Convert string to hex using browser-compatible method
+      const idHex = Array.from(id)
+        .map(char => char.charCodeAt(0).toString(16).padStart(2, '0'))
+        .join('')
+        .padEnd(64, '0');
       encodedParams += idHex;
     });
     
