@@ -31,11 +31,11 @@ export async function connectWallet(): Promise<string | null> {
       throw new Error('No accounts found. Please unlock MetaMask.');
     }
 
-    // Try to switch to Monad Testnet (don't fail if this doesn't work)
+    // Try to switch to KAIA Kairos Testnet (don't fail if this doesn't work)
     try {
-      await switchToMonadTestnet();
+      await switchToKaiaTestnet();
     } catch (networkError) {
-      console.warn('Could not switch to Monad Testnet automatically:', networkError);
+      console.warn('Could not switch to KAIA Testnet automatically:', networkError);
     }
 
     return accounts[0];
@@ -72,12 +72,12 @@ export function disconnectWallet(): void {
   console.log('Wallet disconnected locally. Please disconnect from MetaMask manually if needed.');
 }
 
-export async function switchToMonadTestnet(): Promise<void> {
+export async function switchToKaiaTestnet(): Promise<void> {
   if (!await isWalletAvailable()) {
     throw new Error('MetaMask is not installed');
   }
 
-  const chainId = '0x279F'; // Monad testnet chain ID in hex (10143 in decimal)
+  const chainId = '0x3E9'; // KAIA Kairos testnet chain ID in hex (1001 in decimal)
 
   try {
     await window.ethereum.request({
@@ -93,27 +93,27 @@ export async function switchToMonadTestnet(): Promise<void> {
           params: [
             {
               chainId,
-              chainName: 'Monad Testnet',
+              chainName: 'Kaia Kairos Testnet',
               nativeCurrency: {
-                name: 'MON',
-                symbol: 'MON',
+                name: 'KAIA',
+                symbol: 'KAIA',
                 decimals: 18,
               },
-              rpcUrls: ['https://10143.rpc.thirdweb.com'],
-              blockExplorerUrls: ['https://monad-testnet.socialscan.io'],
+              rpcUrls: ['https://public-en-kairos.node.kaia.io'],
+              blockExplorerUrls: ['https://kairos.kaiascan.io'],
             },
           ],
         });
       } catch (addError) {
-        console.error('Failed to add Monad Testnet:', addError);
-        throw new Error('Could not add Monad Testnet to MetaMask. Please add it manually.');
+        console.error('Failed to add KAIA Testnet:', addError);
+        throw new Error('Could not add KAIA Testnet to MetaMask. Please add it manually.');
       }
     } else if (switchError.code === 4001) {
       // User rejected the request
-      throw new Error('Please approve the network switch to use Monad Testnet');
+      throw new Error('Please approve the network switch to use KAIA Testnet');
     } else {
       console.error('Network switch error:', switchError);
-      throw new Error('Could not switch to Monad Testnet. Please switch manually in MetaMask.');
+      throw new Error('Could not switch to KAIA Testnet. Please switch manually in MetaMask.');
     }
   }
 }
@@ -126,9 +126,9 @@ export async function signTransaction(transactionData: any): Promise<string> {
   try {
     // Ensure we're on the correct network before sending transaction
     const currentChainId = await getCurrentNetwork();
-    if (currentChainId !== '0x279F') {
-      console.log('Wrong network detected, switching to Monad Testnet...');
-      await switchToMonadTestnet();
+    if (currentChainId !== '0x3E9') {
+      console.log('Wrong network detected, switching to KAIA Testnet...');
+      await switchToKaiaTestnet();
     }
 
     const txHash = await window.ethereum.request({

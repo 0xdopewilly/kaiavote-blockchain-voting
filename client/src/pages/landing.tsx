@@ -33,7 +33,7 @@ export default function LandingPage() {
     {
       icon: Zap,
       title: "Ultra-Low Gas Fees",
-      description: "99% gas reduction on Monad Testnet compared to Ethereum mainnet for cost-effective voting.",
+      description: "KAIA's optimized consensus delivers minimal transaction costs perfect for student budgets.",
       color: "text-yellow-400"
     },
     {
@@ -88,13 +88,13 @@ export default function LandingPage() {
         <div className={`text-center mb-8 sm:mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="relative inline-block mb-6 sm:mb-8">
             <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white tracking-wider mb-3 sm:mb-4" style={{
-              background: 'linear-gradient(135deg, #ffffff 0%, #e0e7ff 25%, #c7d2fe 50%, #a78bfa 75%, #8b5cf6 100%)',
+              background: 'linear-gradient(135deg, #ffffff 0%, #a3ff00 25%, #7fff00 50%, #32ff00 75%, #00ff32 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
-              textShadow: '0 0 30px rgba(255, 255, 255, 0.5)'
+              textShadow: '0 0 30px rgba(163, 255, 0, 0.5)'
             }}>
-              CryptoVote
+              CryptoVote on KAIA
             </h1>
             <div className="absolute -inset-8 bg-gradient-to-r from-transparent via-primary/20 to-transparent blur-3xl"></div>
             <Sparkles className="absolute -top-6 -right-6 h-8 w-8 text-primary animate-pulse" />
@@ -105,7 +105,7 @@ export default function LandingPage() {
             Next-Generation Blockchain Voting Platform
           </p>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-3xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2">
-            Secure, Private, and Transparent academic elections powered by Zero-Knowledge Proofs and ultra-low gas fees
+            Secure, Private, and Transparent academic elections powered by Zero-Knowledge Proofs on KAIA Chain
           </p>
           
 

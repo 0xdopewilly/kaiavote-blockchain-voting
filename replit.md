@@ -1,10 +1,10 @@
-# CryptoVote - Academic Blockchain Voting Platform
+# CryptoVote on KAIA - Academic Blockchain Voting Platform
 
 ## Overview
 
-This is a web-based blockchain voting platform designed for academic settings, enabling students to vote for positions like Class Presidents, Departmental Presidents, Faculty Presidents, and Financial Secretaries. The platform leverages blockchain technology for secure, transparent, and immutable voting while providing a user-friendly interface for voter registration, wallet connection, and real-time vote tracking.
+This is a web-based blockchain voting platform designed for academic settings, enabling students to vote for positions like Class Presidents, Departmental Presidents, Faculty Presidents, and Financial Secretaries. The platform leverages KAIA Chain technology for secure, transparent, and immutable voting with ultra-low gas fees, while providing a user-friendly interface for voter registration, wallet connection, and real-time vote tracking.
 
-**Status: Fully Operational with Admin Dashboard** - All core functionality working successfully with ZKP privacy protection, Monad Testnet integration, and complete administrative oversight capabilities.
+**Status: Fully Operational with KAIA Integration** - All core functionality working successfully with ZKP privacy protection, KAIA Kairos Testnet integration, neon lime brand theme, and complete administrative oversight capabilities.
 
 ## Recent Changes
 
@@ -66,15 +66,15 @@ Preferred communication style: Simple, everyday language.
 - **Migrations**: Drizzle Kit for schema migrations and database management
 - **Connection Pooling**: Neon serverless pool with WebSocket support
 
-### Blockchain Integration
-- **Network**: Monad Testnet (Ethereum-compatible) - Chain ID 10143
-- **Smart Contracts**: VotingContract.sol and Verifier.sol deployed on Monad Testnet
-- **Contract Address**: 0x8B3f9E5A2C7D6F1A9E4B8C3D2E1F0A9B8C7D6E5F (configurable via VITE_CONTRACT_ADDRESS)
-- **Gas Optimization**: Ultra-low gas fees (~99% reduction compared to Ethereum mainnet)
-- **Network Benefits**: High throughput blockchain optimized for academic use cases
-- **Wallet Integration**: MetaMask with automatic Monad Testnet network switching
-- **Transaction Handling**: Web3 transaction signing with blockchain verification
-- **Vote Storage**: Hybrid approach - database for persistence, blockchain when available, ZKP for privacy
+### KAIA Blockchain Integration
+- **Network**: KAIA Kairos Testnet (Ethereum-compatible) - Chain ID 1001
+- **Smart Contracts**: VotingContract.sol deployed on KAIA Kairos Testnet
+- **Contract Address**: TBD (awaiting KAIA testnet tokens for deployment)
+- **Gas Optimization**: Ultra-low gas fees with KAIA's optimized consensus mechanism
+- **Network Benefits**: High throughput and low-cost transactions perfect for educational institutions
+- **Wallet Integration**: MetaMask with automatic KAIA Testnet network switching
+- **Transaction Handling**: Web3 transaction signing with KAIA blockchain verification
+- **Vote Storage**: Hybrid approach - database for persistence, KAIA blockchain when available, ZKP for privacy
 - **Resilient Design**: Graceful fallback to secure database storage when blockchain is unavailable
 
 ### Zero-Knowledge Proof Implementation
