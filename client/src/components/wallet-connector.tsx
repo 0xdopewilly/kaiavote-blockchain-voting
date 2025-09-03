@@ -4,6 +4,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Loader2, Wallet, AlertCircle, LogOut } from "lucide-react";
 import { useWeb3 } from "@/hooks/use-web3";
+import WalletModal from "@/components/WalletModal";
+import { type WalletType } from "@/lib/web3";
 
 interface WalletConnectorProps {
   onConnect: (address: string) => void;
@@ -18,11 +20,17 @@ export default function WalletConnector({
 }: WalletConnectorProps) {
   const { connect, disconnect, isLoading, account } = useWeb3();
   const [error, setError] = useState<string | null>(null);
+  const [showWalletModal, setShowWalletModal] = useState(false);
 
   const handleConnect = async () => {
     setError(null);
+    setShowWalletModal(true);
+  };
+
+  const handleWalletSelect = async (walletId: string) => {
+    setError(null);
     try {
-      const connectedAccount = await connect();
+      const connectedAccount = await connect(walletId as WalletType);
       if (connectedAccount) {
         onConnect(connectedAccount);
       }
@@ -90,7 +98,7 @@ export default function WalletConnector({
           <Button 
             onClick={handleConnect} 
             disabled={isLoading}
-            className="w-full h-16 text-xl cyber-button"
+            className="w-full h-16 text-xl cyber-button kaia-glow kaia-pulse"
             data-testid="button-connect-wallet"
           >
             {isLoading ? (
@@ -101,12 +109,18 @@ export default function WalletConnector({
             ) : (
               <>
                 <Wallet className="mr-3 h-6 w-6" />
-                Connect MetaMask
+                Choose Your Wallet
               </>
             )}
           </Button>
         )}
       </div>
+      
+      <WalletModal 
+        isOpen={showWalletModal} 
+        onClose={() => setShowWalletModal(false)}
+        onSelectWallet={handleWalletSelect}
+      />
     </div>
   );
 }

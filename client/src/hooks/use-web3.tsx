@@ -1,11 +1,11 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { connectWallet, disconnectWallet, getAccount, isWalletConnected } from '@/lib/web3';
+import { connectWallet, disconnectWallet, getAccount, isWalletConnected, type WalletType } from '@/lib/web3';
 
 interface Web3ContextType {
   account: string | null;
   isConnected: boolean;
   isLoading: boolean;
-  connect: () => Promise<string | null>;
+  connect: (walletType?: WalletType) => Promise<string | null>;
   disconnect: () => void;
 }
 
@@ -61,12 +61,12 @@ export function Web3Provider({ children }: Web3ProviderProps) {
     };
   }, []);
 
-  const connect = async (): Promise<string | null> => {
+  const connect = async (walletType: WalletType = 'metamask'): Promise<string | null> => {
     setIsLoading(true);
     try {
       // Clear the disconnected flag when connecting
       localStorage.removeItem('wallet_disconnected');
-      const connectedAccount = await connectWallet();
+      const connectedAccount = await connectWallet(walletType);
       setAccount(connectedAccount);
       setIsConnected(!!connectedAccount);
       return connectedAccount;

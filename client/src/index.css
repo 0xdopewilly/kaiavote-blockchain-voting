@@ -4,36 +4,39 @@
 @tailwind utilities;
 
 :root {
-  /* KAIA Brand Colors - Neon Lime on Black */
-  --background: hsl(0 0% 0%);
-  --foreground: hsl(0 0% 100%);
-  --card: hsl(0 0% 5%);
-  --card-foreground: hsl(0 0% 98%);
-  --popover: hsl(0 0% 5%);
-  --popover-foreground: hsl(0 0% 98%);
-  --primary: hsl(83 100% 50%);
+  /* KAIA Brand Colors - Ultra Vibrant Neon Lime */
+  --background: hsl(83 15% 3%);
+  --foreground: hsl(83 20% 98%);
+  --card: hsl(83 30% 8%);
+  --card-foreground: hsl(83 15% 98%);
+  --popover: hsl(83 25% 10%);
+  --popover-foreground: hsl(83 15% 98%);
+  --primary: hsl(83 100% 55%);
   --primary-foreground: hsl(0 0% 0%);
-  --secondary: hsl(83 50% 15%);
-  --secondary-foreground: hsl(0 0% 100%);
-  --muted: hsl(0 0% 8%);
-  --muted-foreground: hsl(0 0% 80%);
-  --accent: hsl(83 100% 60%);
+  --secondary: hsl(83 60% 25%);
+  --secondary-foreground: hsl(83 10% 98%);
+  --muted: hsl(83 20% 12%);
+  --muted-foreground: hsl(83 30% 80%);
+  --accent: hsl(83 100% 70%);
   --accent-foreground: hsl(0 0% 0%);
   --destructive: hsl(0 100% 70%);
   --destructive-foreground: hsl(0 0% 100%);
-  --border: hsl(83 50% 30%);
-  --input: hsl(0 0% 8%);
-  --ring: hsl(83 100% 50%);
+  --border: hsl(83 80% 40%);
+  --input: hsl(83 25% 10%);
+  --ring: hsl(83 100% 55%);
   --warning: hsl(35 100% 70%);
   --warning-foreground: hsl(0 0% 100%);
   --error: hsl(0 100% 70%);
   --error-foreground: hsl(0 0% 100%);
-  --surface: hsl(0 0% 4%);
+  --surface: hsl(83 20% 6%);
   --font-inter: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
   --radius: 1rem;
-  --kaia-neon: hsl(83 100% 50%);
-  --kaia-glow: hsl(83 100% 50% / 0.3);
+  --kaia-neon: hsl(83 100% 55%);
+  --kaia-bright: hsl(83 100% 65%);
+  --kaia-electric: hsl(83 100% 45%);
+  --kaia-glow: hsl(83 100% 55% / 0.4);
+  --kaia-shadow: hsl(83 100% 40% / 0.6);
 }
 
 .dark {
@@ -71,14 +74,15 @@
   body {
     @apply bg-background text-foreground font-[var(--font-inter)] antialiased;
     background: linear-gradient(135deg, 
-      hsl(0, 0%, 0%) 0%, 
-      hsl(0, 0%, 2%) 25%, 
-      hsl(83, 10%, 3%) 50%, 
-      hsl(0, 0%, 5%) 75%, 
-      hsl(83, 5%, 2%) 100%);
+      hsl(83, 25%, 3%) 0%, 
+      hsl(83, 30%, 5%) 25%, 
+      hsl(83, 20%, 8%) 50%, 
+      hsl(83, 35%, 6%) 75%, 
+      hsl(83, 22%, 4%) 100%);
     background-attachment: fixed;
     min-height: 100vh;
     font-feature-settings: "rlig" 1, "calt" 1;
+    box-shadow: inset 0 0 200px hsl(var(--kaia-glow));
   }
 }
 
@@ -177,15 +181,16 @@
     transform: translateY(0px);
   }
   
-  /* KAIA Animated background */
+  /* KAIA Ultra-Bright Animated background */
   .animated-bg {
     background: linear-gradient(-45deg, 
-      hsl(0, 0%, 0%), 
-      hsl(83, 20%, 5%), 
-      hsl(0, 0%, 3%), 
-      hsl(83, 15%, 8%));
+      hsl(83, 30%, 8%), 
+      hsl(83, 50%, 12%), 
+      hsl(83, 40%, 10%), 
+      hsl(83, 60%, 15%));
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
+    box-shadow: inset 0 0 100px hsl(var(--kaia-glow));
   }
   
   @keyframes gradientShift {
@@ -258,17 +263,43 @@
       0 0 20px hsl(var(--kaia-neon) / 0.5);
   }
   
-  /* KAIA specific glow effects */
+  /* KAIA Ultra-Bright specific glow effects */
   .kaia-glow {
     box-shadow: 
-      0 0 10px hsl(var(--kaia-neon) / 0.3),
-      0 0 20px hsl(var(--kaia-neon) / 0.2),
-      0 0 30px hsl(var(--kaia-neon) / 0.1);
+      0 0 15px hsl(var(--kaia-bright) / 0.5),
+      0 0 30px hsl(var(--kaia-neon) / 0.4),
+      0 0 45px hsl(var(--kaia-electric) / 0.3),
+      0 0 60px hsl(var(--kaia-glow));
   }
   
   .kaia-border {
-    border: 2px solid hsl(var(--kaia-neon));
-    box-shadow: inset 0 0 10px hsl(var(--kaia-neon) / 0.1);
+    border: 3px solid hsl(var(--kaia-bright));
+    box-shadow: 
+      inset 0 0 20px hsl(var(--kaia-glow)),
+      0 0 20px hsl(var(--kaia-shadow));
+  }
+  
+  .kaia-pulse {
+    animation: kaia-pulse 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes kaia-pulse {
+    from { 
+      box-shadow: 0 0 15px hsl(var(--kaia-bright) / 0.5);
+      filter: brightness(1);
+    }
+    to { 
+      box-shadow: 0 0 30px hsl(var(--kaia-bright) / 0.8);
+      filter: brightness(1.3);
+    }
+  }
+  
+  .kaia-text {
+    color: hsl(var(--kaia-bright));
+    text-shadow: 
+      0 0 10px hsl(var(--kaia-bright)),
+      0 0 20px hsl(var(--kaia-neon)),
+      0 0 30px hsl(var(--kaia-electric));
   }
 
   /* Landing page specific animations */

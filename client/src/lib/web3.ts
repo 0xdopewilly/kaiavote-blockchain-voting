@@ -3,37 +3,58 @@ import { Contract } from './contract';
 declare global {
   interface Window {
     ethereum?: any;
+    klaytn?: any; // KAIA Wallet
   }
 }
 
-export async function isWalletAvailable(): Promise<boolean> {
-  return typeof window !== 'undefined' && !!window.ethereum;
+export type WalletType = 'metamask' | 'kaia';
+
+export async function isWalletAvailable(walletType?: WalletType): Promise<boolean> {
+  if (typeof window === 'undefined') return false;
+  
+  if (walletType === 'kaia') {
+    return !!(window as any).klaytn;
+  } else if (walletType === 'metamask') {
+    return !!window.ethereum?.isMetaMask;
+  }
+  
+  // Default: check for any wallet
+  return !!window.ethereum || !!(window as any).klaytn;
 }
 
-export async function connectWallet(): Promise<string | null> {
-  if (!await isWalletAvailable()) {
-    throw new Error('MetaMask is not installed. Please install MetaMask to continue.');
+export async function connectWallet(walletType: WalletType = 'metamask'): Promise<string | null> {
+  const provider = walletType === 'kaia' ? (window as any).klaytn : window.ethereum;
+  
+  if (!await isWalletAvailable(walletType)) {
+    const walletName = walletType === 'kaia' ? 'KAIA Wallet' : 'MetaMask';
+    throw new Error(`${walletName} is not installed. Please install ${walletName} to continue.`);
   }
 
   try {
-    // Clear any cached accounts to force MetaMask to show account selection
-    await window.ethereum.request({
-      method: 'wallet_requestPermissions',
-      params: [{ eth_accounts: {} }],
-    });
-
-    // Then request accounts - this will show the account selection popup
-    const accounts = await window.ethereum.request({
-      method: 'eth_requestAccounts',
-    });
+    let accounts: string[];
+    
+    if (walletType === 'kaia') {
+      // KAIA Wallet connection
+      accounts = await provider.enable();
+    } else {
+      // MetaMask connection
+      await provider.request({
+        method: 'wallet_requestPermissions',
+        params: [{ eth_accounts: {} }],
+      });
+      
+      accounts = await provider.request({
+        method: 'eth_requestAccounts',
+      });
+    }
 
     if (accounts.length === 0) {
-      throw new Error('No accounts found. Please unlock MetaMask.');
+      throw new Error('No accounts found. Please unlock your wallet.');
     }
 
     // Try to switch to KAIA Kairos Testnet (don't fail if this doesn't work)
     try {
-      await switchToKaiaTestnet();
+      await switchToKaiaTestnet(walletType);
     } catch (networkError) {
       console.warn('Could not switch to KAIA Testnet automatically:', networkError);
     }
@@ -72,9 +93,10 @@ export function disconnectWallet(): void {
   console.log('Wallet disconnected locally. Please disconnect from MetaMask manually if needed.');
 }
 
-export async function switchToKaiaTestnet(): Promise<void> {
-  if (!await isWalletAvailable()) {
-    throw new Error('MetaMask is not installed');
+export async function switchToKaiaTestnet(walletType: WalletType = 'metamask'): Promise<void> {
+  if (!await isWalletAvailable(walletType)) {
+    const walletName = walletType === 'kaia' ? 'KAIA Wallet' : 'MetaMask';
+    throw new Error(`${walletName} is not installed`);
   }
 
   const chainId = '0x3E9'; // KAIA Kairos testnet chain ID in hex (1001 in decimal)

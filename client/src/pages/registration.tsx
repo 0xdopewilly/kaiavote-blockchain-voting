@@ -306,7 +306,7 @@ export default function RegistrationPage() {
         <Button
           variant="outline"
           className="cyber-button bg-primary/10 hover:bg-primary/20 border-primary/30 hover:border-primary/60 backdrop-blur-sm px-3 py-2 h-auto"
-          onClick={() => document.querySelector('[data-testid="button-zkp-info"]')?.click()}
+          onClick={() => (document.querySelector('[data-testid="button-zkp-info"]') as HTMLButtonElement)?.click()}
           data-testid="floating-zkp-info-small"
         >
           <Shield className="h-4 w-4 text-primary mr-2" />
