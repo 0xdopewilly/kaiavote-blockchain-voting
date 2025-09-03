@@ -109,12 +109,12 @@ export default function LandingPage() {
         {/* Header Section */}
         <div className={`text-center mb-8 sm:mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="relative inline-block mb-6 sm:mb-8">
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white tracking-wider mb-3 sm:mb-4" style={{
-              background: 'linear-gradient(135deg, #ffffff 0%, #a3ff00 25%, #7fff00 50%, #32ff00 75%, #00ff32 100%)',
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-wider mb-3 sm:mb-4" style={{
+              background: 'linear-gradient(135deg, #ffffff 0%, #7fff00 20%, #00ff00 40%, #32ff00 60%, #7fff00 80%, #00ff00 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
-              textShadow: '0 0 30px rgba(163, 255, 0, 0.5)'
+              textShadow: '0 0 50px rgba(127, 255, 0, 0.8), 0 4px 8px rgba(0, 0, 0, 0.9)'
             }}>
               CryptoVote on KAIA
             </h1>
@@ -123,10 +123,10 @@ export default function LandingPage() {
             <Sparkles className="absolute -bottom-6 -left-6 h-6 w-6 text-accent animate-pulse delay-500" />
           </div>
           
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white font-medium mb-4 sm:mb-6 max-w-4xl mx-auto leading-relaxed px-2">
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-bright font-bold mb-4 sm:mb-6 max-w-4xl mx-auto leading-relaxed px-2">
             Next-Generation Blockchain Voting Platform
           </p>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-3xl mx-auto mb-8 sm:mb-12 leading-relaxed px-2">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-bright max-w-3xl mx-auto mb-8 sm:mb-12 leading-relaxed px-2">
             Secure, Private, and Transparent academic elections powered by Zero-Knowledge Proofs on KAIA Chain
           </p>
           
@@ -160,10 +160,10 @@ export default function LandingPage() {
             </div>
             
             <div className="relative z-10 text-center">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-ultra-bright mb-6">
                 VOTE FOR THE FUTURE!
               </h2>
-              <p className="text-lg sm:text-xl text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg sm:text-xl text-bright mb-8 max-w-2xl mx-auto leading-relaxed font-semibold">
                 Experience democracy like never before. Your voice matters, your vote counts, and your privacy is protected.
               </p>
               
@@ -217,8 +217,8 @@ export default function LandingPage() {
                     <stat.icon className="h-10 w-10 text-primary mx-auto group-hover:scale-125 transition-transform duration-500" />
                     <div className="absolute -inset-3 bg-primary/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </div>
-                  <div className="text-4xl font-bold text-white mb-2 group-hover:text-primary transition-colors duration-300">{stat.value}</div>
-                  <div className="text-sm text-white/70 group-hover:text-white/90 transition-colors duration-300">{stat.label}</div>
+                  <div className="text-4xl font-black text-ultra-bright mb-2 group-hover:text-primary transition-colors duration-300">{stat.value}</div>
+                  <div className="text-sm text-bright font-semibold group-hover:text-ultra-bright transition-colors duration-300">{stat.label}</div>
                 </div>
                 
                 {/* Corner accents */}
@@ -232,7 +232,7 @@ export default function LandingPage() {
 
         {/* Features Section */}
         <div className={`mb-16 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="text-4xl font-bold text-center text-white mb-12">
+          <h2 className="text-4xl font-black text-center text-ultra-bright mb-12">
             Revolutionary Features
           </h2>
           <div className="grid lg:grid-cols-2 gap-8">
@@ -245,8 +245,8 @@ export default function LandingPage() {
                       <div className={`absolute -inset-2 ${feature.color.replace('text-', 'bg-')}/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
-                      <p className="text-white/80 leading-relaxed">{feature.description}</p>
+                      <h3 className="text-xl font-black text-ultra-bright mb-2">{feature.title}</h3>
+                      <p className="text-bright leading-relaxed font-medium">{feature.description}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -258,10 +258,10 @@ export default function LandingPage() {
         {/* Bottom CTA Section */}
         <div className={`text-center transition-all duration-1000 delay-900 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold text-white mb-6">
+            <h2 className="text-4xl font-black text-ultra-bright mb-6">
               Ready to Experience the Future of Voting?
             </h2>
-            <p className="text-xl text-white/80 mb-12 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-xl text-bright mb-12 leading-relaxed max-w-3xl mx-auto font-semibold">
               Join thousands of students already using CryptoVote for secure, private, and transparent democratic participation in academic elections.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
