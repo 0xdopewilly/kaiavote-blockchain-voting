@@ -3,7 +3,7 @@ require("@nomiclabs/hardhat-etherscan");
 require("dotenv").config();
 
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "0x0000000000000000000000000000000000000000000000000000000000000000";
-const MONAD_TESTNET_RPC = "https://10143.rpc.thirdweb.com";
+const KAIA_TESTNET_RPC = "https://public-en-kairos.node.kaia.io";
 
 module.exports = {
   solidity: {
@@ -16,25 +16,25 @@ module.exports = {
     }
   },
   networks: {
-    monadTestnet: {
-      url: MONAD_TESTNET_RPC,
+    kaiaTestnet: {
+      url: KAIA_TESTNET_RPC,
       accounts: [PRIVATE_KEY],
-      chainId: 10143,
-      gasPrice: 1000000, // Much lower gas price for Monad (0.001 gwei)
-      gas: 5000000, // Higher gas limit for Monad's high throughput
+      chainId: 1001,
+      gasPrice: 25000000000, // 25 gwei for KAIA Testnet
+      gas: 3000000, // Standard gas limit for KAIA
     }
   },
   etherscan: {
     apiKey: {
-      monadTestnet: "placeholder" // Monad may not have verification service yet
+      kaiaTestnet: "placeholder" // KAIA verification
     },
     customChains: [
       {
-        network: "monadTestnet",
-        chainId: 10143,
+        network: "kaiaTestnet",
+        chainId: 1001,
         urls: {
-          apiURL: "https://monad-testnet.socialscan.io/api",
-          browserURL: "https://monad-testnet.socialscan.io"
+          apiURL: "https://kairos.kaiascope.com/api",
+          browserURL: "https://kairos.kaiascope.com"
         }
       }
     ]
