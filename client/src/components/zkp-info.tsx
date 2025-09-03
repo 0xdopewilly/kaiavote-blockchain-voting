@@ -48,7 +48,7 @@ export default function ZKPInfo() {
             <ChevronRight className="ml-2 h-3 w-3" />
           </Button>
         </DialogTrigger>
-          <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto zkp-dialog-yellow">
             <DialogHeader>
               <DialogTitle className="flex items-center space-x-2">
                 <Shield className="h-6 w-6 text-blue-600" />

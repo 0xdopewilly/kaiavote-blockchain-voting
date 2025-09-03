@@ -416,12 +416,21 @@
 [data-radix-dialog-content],
 [data-radix-alert-dialog-content],
 .dialog-content,
-.alert-dialog-content {
+.alert-dialog-content,
+[data-state="open"][data-radix-dialog-content] {
   background: hsl(var(--yellow-accent)) !important;
   color: black !important;
   border: 2px solid black !important;
   border-radius: 16px !important;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 235, 59, 0.3) !important;
+}
+
+/* Override any background classes in dialogs */
+[role="dialog"].bg-background,
+[role="dialog"].bg-card,
+[data-radix-dialog-content].bg-background,
+[data-radix-dialog-content].bg-card {
+  background: hsl(var(--yellow-accent)) !important;
 }
 
 /* Dialog text styling */
@@ -459,6 +468,39 @@
   background: rgba(0, 0, 0, 0.9) !important;
   transform: translateY(-1px) !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* EXTREMELY AGGRESSIVE DIALOG TARGETING - OVERRIDE EVERYTHING */
+div[data-radix-dialog-content],
+[data-radix-dialog-content][data-state="open"],
+div[role="dialog"],
+.bg-background[role="dialog"],
+*[data-radix-dialog-content] {
+  background: hsl(var(--yellow-accent)) !important;
+  color: black !important;
+  border: 2px solid black !important;
+  border-radius: 16px !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 235, 59, 0.3) !important;
+}
+
+/* Force all child elements in dialogs to use black text */
+[role="dialog"] *,
+[data-radix-dialog-content] *,
+div[data-radix-dialog-content] * {
+  color: black !important;
+}
+
+/* SPECIFIC ZKP DIALOG STYLING */
+.zkp-dialog-yellow {
+  background: hsl(var(--yellow-accent)) !important;
+  color: black !important;
+  border: 2px solid black !important;
+  border-radius: 16px !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 235, 59, 0.3) !important;
+}
+
+.zkp-dialog-yellow * {
+  color: black !important;
 }
 
 /* All text in dialogs should be black */
