@@ -28,7 +28,7 @@ export default function LandingPage() {
       </nav>
 
       {/* Main Content Area */}
-      <div style={{ marginRight: window.innerWidth > 1024 ? '350px' : '0' }}>
+      <div>
         {/* Hero Section - Exact match to reference */}
         <section className={`reference-hero transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h1 className="reference-title">
@@ -62,39 +62,37 @@ export default function LandingPage() {
         </section>
       </div>
 
-      {/* Sidebar - Updated for CryptoVote project */}
-      <aside className="reference-sidebar hidden lg:block">
-        <div className="reference-card">
-          <div className="reference-tag">VOTE SECURELY</div>
-          <h3 className="reference-card-title">KAIA BLOCKCHAIN</h3>
-          <p className="reference-card-subtitle">
-            Powered by KAIA Chain technology for ultra-low gas fees and 
-            lightning-fast transactions. Your vote counts and costs almost nothing.
-          </p>
-          <div className="flex gap-2 text-xs">
-            <span className="text-muted-foreground">Register Now</span>
-            <span className="text-muted-foreground">Cast Vote</span>
+      {/* Footer with previous sidebar content */}
+      <footer className="reference-footer">
+        <div className="reference-footer-content">
+          <div className="reference-footer-card">
+            <div className="reference-tag">VOTE SECURELY</div>
+            <h3 className="reference-footer-title">KAIA BLOCKCHAIN</h3>
+            <p className="reference-footer-description">
+              Powered by KAIA Chain technology for ultra-low gas fees and 
+              lightning-fast transactions. Your vote counts and costs almost nothing.
+            </p>
+          </div>
+
+          <div className="reference-footer-card">
+            <div className="reference-tag">PRIVACY FIRST</div>
+            <h3 className="reference-footer-title">ZERO-KNOWLEDGE PROOFS</h3>
+            <p className="reference-footer-description">
+              Vote privately with cryptographic proofs. Your identity stays protected 
+              while ensuring complete vote integrity and transparency.
+            </p>
+          </div>
+
+          <div className="reference-footer-card">
+            <div className="reference-tag">ACADEMIC ELECTIONS</div>
+            <h3 className="reference-footer-title">12 POSITIONS AVAILABLE</h3>
+            <p className="reference-footer-description">
+              Class Presidents, Departmental Presidents, Faculty Presidents, and 
+              Financial Secretaries - all positions ready for democratic participation.
+            </p>
           </div>
         </div>
-
-        <div className="reference-card">
-          <div className="reference-tag">PRIVACY FIRST</div>
-          <h3 className="reference-card-title">ZERO-KNOWLEDGE PROOFS</h3>
-          <p className="reference-card-description">
-            Vote privately with cryptographic proofs. Your identity stays protected 
-            while ensuring complete vote integrity and transparency.
-          </p>
-        </div>
-
-        <div className="reference-card">
-          <div className="reference-tag">ACADEMIC ELECTIONS</div>
-          <h3 className="reference-card-title">12 POSITIONS AVAILABLE</h3>
-          <p className="reference-card-description">
-            Class Presidents, Departmental Presidents, Faculty Presidents, and 
-            Financial Secretaries - all positions ready for democratic participation.
-          </p>
-        </div>
-      </aside>
+      </footer>
     </div>
   );
 }
