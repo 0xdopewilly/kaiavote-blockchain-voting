@@ -399,23 +399,61 @@
 }
 
 
-/* Yellow dialogs with black text */
-[role="dialog"], [role="alertdialog"] {
+/* Yellow dialogs with black text - ALL POPUPS AND DIALOGS */
+[role="dialog"], 
+[role="alertdialog"],
+[data-radix-dialog-content],
+[data-radix-alert-dialog-content],
+.dialog-content,
+.alert-dialog-content {
   background: hsl(var(--yellow-accent)) !important;
   color: black !important;
   border: 2px solid black !important;
 }
 
-[role="dialog"] h2, [role="dialog"] h3, [role="dialog"] .font-bold {
+/* All text in dialogs should be black */
+[role="dialog"] *,
+[role="alertdialog"] *,
+[data-radix-dialog-content] *,
+[data-radix-alert-dialog-content] *,
+.dialog-content *,
+.alert-dialog-content * {
   color: black !important;
 }
 
-[role="dialog"] p, [role="dialog"] div {
+/* Specifically target headings and important text */
+[role="dialog"] h1, [role="dialog"] h2, [role="dialog"] h3, [role="dialog"] h4,
+[role="dialog"] p, [role="dialog"] div, [role="dialog"] span,
+[role="dialog"] .font-bold, [role="dialog"] .font-medium,
+[role="alertdialog"] h1, [role="alertdialog"] h2, [role="alertdialog"] h3, [role="alertdialog"] h4,
+[role="alertdialog"] p, [role="alertdialog"] div, [role="alertdialog"] span,
+[role="alertdialog"] .font-bold, [role="alertdialog"] .font-medium,
+[data-radix-dialog-content] h1, [data-radix-dialog-content] h2, [data-radix-dialog-content] h3,
+[data-radix-dialog-content] p, [data-radix-dialog-content] div, [data-radix-dialog-content] span,
+[data-radix-dialog-content] .font-bold, [data-radix-dialog-content] .font-medium {
   color: black !important;
 }
 
-/* Alert dialog styling */
-.alert-dialog-content {
-  background: hsl(var(--yellow-accent)) !important;
-  color: black !important;
+/* Modal overlays stay dark */
+[data-state="open"][data-radix-dialog-overlay],
+[data-state="open"][data-radix-alert-dialog-overlay] {
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Button styling in dialogs */
+[role="dialog"] button,
+[role="alertdialog"] button,
+[data-radix-dialog-content] button,
+[data-radix-alert-dialog-content] button {
+  background: black !important;
+  color: hsl(var(--yellow-accent)) !important;
+  border: 1px solid black !important;
+}
+
+[role="dialog"] button:hover,
+[role="alertdialog"] button:hover,
+[data-radix-dialog-content] button:hover,
+[data-radix-alert-dialog-content] button:hover {
+  background: rgba(0, 0, 0, 0.8) !important;
+  color: hsl(var(--yellow-accent)) !important;
 }
