@@ -88,7 +88,7 @@ export default function WalletModal({ isOpen, onClose, onSelectWallet }: WalletM
                       {wallet.isInstalled && (
                         <div className="flex items-center gap-1">
                           <Shield className="h-4 w-4 text-yellow-accent" />
-          <span className="text-xs text-yellow-accent font-medium">Installed</span>
+          <span className="text-xs text-white font-medium bg-yellow-500/20 px-2 py-1 rounded">Installed</span>
                         </div>
                       )}
                     </div>
@@ -97,7 +97,7 @@ export default function WalletModal({ isOpen, onClose, onSelectWallet }: WalletM
                     {wallet.isInstalled ? (
                       <div className="flex items-center gap-2 mt-3">
                         <Zap className="h-4 w-4 text-yellow-accent" />
-                        <span className="text-xs text-yellow-accent font-medium">Ready to connect</span>
+                        <span className="text-xs text-white font-medium">Ready to connect</span>
                       </div>
                     ) : (
                       <div className="mt-3">
