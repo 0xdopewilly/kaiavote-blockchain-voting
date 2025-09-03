@@ -12,7 +12,11 @@ import {
   Sparkles,
   Lock,
   Globe,
-  Award
+  Award,
+  Hexagon,
+  Triangle,
+  Circle,
+  Square
 } from "lucide-react";
 import PageHeader from "@/components/page-header";
 
@@ -62,22 +66,40 @@ export default function LandingPage() {
       {/* Page Header */}
       <PageHeader />
 
-      {/* Animated Background Elements */}
+      {/* Enhanced 3D Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse delay-700"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
+        {/* Large gradient orbs */}
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-primary/20 to-green-400/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-accent/15 to-primary/10 rounded-full blur-3xl animate-pulse delay-700"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-primary/10 to-green-300/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
         
-        {/* Floating particles */}
-        {[...Array(20)].map((_, i) => (
+        {/* 3D Floating Geometric Shapes */}
+        <div className="absolute top-20 left-10 transform rotate-12 animate-float" style={{animationDelay: '0s'}}>
+          <div className="w-16 h-16 bg-gradient-to-br from-primary/30 to-green-400/20 transform rotate-45 rounded-lg shadow-2xl"></div>
+        </div>
+        <div className="absolute top-40 right-20 transform -rotate-12 animate-float" style={{animationDelay: '1s'}}>
+          <div className="w-12 h-12 bg-gradient-to-tr from-green-400/40 to-primary/20 rounded-full shadow-2xl"></div>
+        </div>
+        <div className="absolute bottom-40 left-20 transform rotate-45 animate-float" style={{animationDelay: '2s'}}>
+          <div className="w-8 h-8 bg-gradient-to-bl from-primary/50 to-green-300/30 transform skew-x-12 shadow-xl"></div>
+        </div>
+        <div className="absolute bottom-20 right-10 transform -rotate-45 animate-float" style={{animationDelay: '0.5s'}}>
+          <div className="w-20 h-20 bg-gradient-to-tl from-green-400/25 to-primary/15 transform rotate-12 rounded-xl shadow-2xl"></div>
+        </div>
+        
+        {/* Enhanced floating particles */}
+        {[...Array(25)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-primary/30 rounded-full animate-pulse"
+            className="absolute bg-gradient-to-r from-primary/40 to-green-400/30 rounded-full animate-pulse shadow-lg"
             style={{
+              width: `${2 + Math.random() * 4}px`,
+              height: `${2 + Math.random() * 4}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
               animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 3}s`
+              animationDuration: `${2 + Math.random() * 3}s`,
+              boxShadow: '0 0 10px rgba(163, 255, 0, 0.3)'
             }}
           />
         ))}
@@ -104,24 +126,103 @@ export default function LandingPage() {
           <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white font-medium mb-4 sm:mb-6 max-w-4xl mx-auto leading-relaxed px-2">
             Next-Generation Blockchain Voting Platform
           </p>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-3xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-3xl mx-auto mb-8 sm:mb-12 leading-relaxed px-2">
             Secure, Private, and Transparent academic elections powered by Zero-Knowledge Proofs on KAIA Chain
           </p>
           
+          {/* Modern CTA Buttons - Inspired by the attachments */}
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-8 sm:mb-12 px-4">
+            <Link to="/register">
+              <Button size="lg" className="cyber-button kaia-glow kaia-pulse h-16 px-8 text-lg font-bold group relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-green-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <Vote className="mr-3 h-6 w-6 group-hover:scale-110 transition-transform duration-300" />
+                <span className="relative z-10">START VOTING!</span>
+              </Button>
+            </Link>
+            <Button variant="outline" size="lg" className="h-16 px-8 text-lg border-2 border-primary/30 hover:border-primary/60 bg-transparent hover:bg-primary/10 group">
+              <Shield className="mr-3 h-6 w-6 group-hover:scale-110 transition-transform duration-300" />
+              <span>LEARN MORE</span>
+            </Button>
+          </div>
 
         </div>
 
-        {/* Stats Cards */}
-        <div className={`grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          {stats.map((stat, index) => (
-            <Card key={index} className="glass-morph border-primary/20 hover:border-primary/40 transition-all duration-300 group">
-              <CardContent className="p-6 text-center">
-                <div className="relative inline-block mb-3">
-                  <stat.icon className="h-8 w-8 text-primary mx-auto group-hover:scale-110 transition-transform duration-300" />
-                  <div className="absolute -inset-2 bg-primary/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        {/* Modern Voting Illustration Section - Inspired by attachments */}
+        <div className={`mb-20 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="relative glass-card p-12 mx-4 sm:mx-8 overflow-hidden">
+            {/* Animated background pattern */}
+            <div className="absolute inset-0 opacity-5">
+              <div className="grid grid-cols-8 grid-rows-6 h-full w-full gap-4">
+                {[...Array(48)].map((_, i) => (
+                  <div key={i} className="bg-primary/20 rounded-full animate-pulse" style={{animationDelay: `${i * 0.1}s`}}></div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="relative z-10 text-center">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
+                VOTE FOR THE FUTURE!
+              </h2>
+              <p className="text-lg sm:text-xl text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed">
+                Experience democracy like never before. Your voice matters, your vote counts, and your privacy is protected.
+              </p>
+              
+              {/* Modern voting illustration with KAIA theme */}
+              <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16">
+                {/* Left side - Voter figure */}
+                <div className="relative">
+                  <div className="w-32 h-32 bg-gradient-to-br from-primary/30 to-green-400/20 rounded-full flex items-center justify-center relative overflow-hidden">
+                    <Users className="h-16 w-16 text-primary animate-pulse" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent animate-pulse"></div>
+                  </div>
+                  <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-primary/40 rounded-full animate-bounce"></div>
                 </div>
-                <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
-                <div className="text-sm text-white/70">{stat.label}</div>
+                
+                {/* Center - Voting process */}
+                <div className="flex flex-col items-center space-y-4">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
+                    <div className="w-16 h-1 bg-gradient-to-r from-primary to-green-400"></div>
+                    <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse delay-500"></div>
+                    <div className="w-16 h-1 bg-gradient-to-r from-green-400 to-primary"></div>
+                    <div className="w-3 h-3 bg-primary rounded-full animate-pulse delay-1000"></div>
+                  </div>
+                  <div className="bg-gradient-to-r from-primary/20 to-green-400/20 p-4 rounded-xl border border-primary/30">
+                    <Vote className="h-8 w-8 text-primary mx-auto" />
+                  </div>
+                </div>
+                
+                {/* Right side - Ballot box */}
+                <div className="relative">
+                  <div className="w-32 h-32 bg-gradient-to-tl from-green-400/30 to-primary/20 rounded-xl flex items-center justify-center transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                    <CheckCircle className="h-16 w-16 text-green-400 animate-pulse" />
+                  </div>
+                  <div className="absolute -top-2 -left-2 w-6 h-6 bg-green-400/50 rounded-full animate-ping"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Enhanced Stats Cards */}
+        <div className={`grid grid-cols-2 lg:grid-cols-4 gap-6 mb-20 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          {stats.map((stat, index) => (
+            <Card key={index} className="glass-morph border-primary/20 hover:border-primary/40 transition-all duration-500 group transform hover:scale-105">
+              <CardContent className="p-8 text-center relative overflow-hidden">
+                {/* Animated background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-green-400/5 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                
+                <div className="relative z-10">
+                  <div className="relative inline-block mb-4">
+                    <stat.icon className="h-10 w-10 text-primary mx-auto group-hover:scale-125 transition-transform duration-500" />
+                    <div className="absolute -inset-3 bg-primary/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  </div>
+                  <div className="text-4xl font-bold text-white mb-2 group-hover:text-primary transition-colors duration-300">{stat.value}</div>
+                  <div className="text-sm text-white/70 group-hover:text-white/90 transition-colors duration-300">{stat.label}</div>
+                </div>
+                
+                {/* Corner accents */}
+                <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-primary/30 group-hover:border-primary/60 transition-colors duration-300"></div>
               </CardContent>
             </Card>
           ))}
