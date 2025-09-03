@@ -129,22 +129,27 @@
   .reference-cta-button {
     background: hsl(var(--yellow-accent)) !important;
     color: hsl(var(--dark-bg)) !important;
-    padding: 0.5rem 1.5rem;
-    border-radius: 2rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    transition: all 0.2s ease;
-    border: none;
-    cursor: pointer;
+    padding: 0.5rem 1.5rem !important;
+    border-radius: 2rem !important;
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+    transition: all 0.2s ease !important;
+    border: none !important;
+    cursor: pointer !important;
     text-decoration: none !important;
-    display: inline-block;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: auto !important;
+    height: auto !important;
+    line-height: 1.2 !important;
   }
 
   .reference-cta-button:hover {
     background: hsl(var(--yellow-accent)) !important;
     color: hsl(var(--dark-bg)) !important;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px hsl(var(--yellow-accent) / 0.3);
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px hsl(var(--yellow-accent) / 0.3) !important;
     text-decoration: none !important;
   }
 
@@ -184,22 +189,28 @@
   .reference-main-button {
     background: hsl(var(--yellow-accent)) !important;
     color: hsl(var(--dark-bg)) !important;
-    padding: 1rem 2.5rem;
-    border-radius: 2rem;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: all 0.2s ease;
-    border: none;
-    cursor: pointer;
-    display: inline-block;
+    padding: 1rem 2.5rem !important;
+    border-radius: 2rem !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    transition: all 0.2s ease !important;
+    border: none !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     text-decoration: none !important;
+    min-height: auto !important;
+    height: auto !important;
+    line-height: 1.2 !important;
+    gap: 0.5rem !important;
   }
 
   .reference-main-button:hover {
     background: hsl(var(--yellow-accent)) !important;
     color: hsl(var(--dark-bg)) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px hsl(var(--yellow-accent) / 0.3);
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px hsl(var(--yellow-accent) / 0.3) !important;
     text-decoration: none !important;
   }
 
@@ -409,6 +420,45 @@
   background: hsl(var(--yellow-accent)) !important;
   color: black !important;
   border: 2px solid black !important;
+  border-radius: 16px !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 235, 59, 0.3) !important;
+}
+
+/* Dialog text styling */
+[role="dialog"] h2,
+[role="dialog"] .dialog-title,
+[role="alertdialog"] h2,
+[role="alertdialog"] .dialog-title {
+  color: black !important;
+  font-weight: 700 !important;
+}
+
+[role="dialog"] p,
+[role="dialog"] .dialog-description,
+[role="alertdialog"] p,
+[role="alertdialog"] .dialog-description {
+  color: rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Dialog buttons - override all button styling inside dialogs */
+[role="dialog"] button,
+[role="alertdialog"] button {
+  background: black !important;
+  color: hsl(var(--yellow-accent)) !important;
+  border: 2px solid black !important;
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  padding: 0.5rem 1.5rem !important;
+  transition: all 0.2s ease !important;
+  min-height: auto !important;
+  height: auto !important;
+}
+
+[role="dialog"] button:hover,
+[role="alertdialog"] button:hover {
+  background: rgba(0, 0, 0, 0.9) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
 }
 
 /* All text in dialogs should be black */
