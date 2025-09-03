@@ -17,11 +17,12 @@ export default function LandingPage() {
           CryptoVote
         </div>
         <div className="reference-nav-links">
-          <a href="#" className="reference-nav-link">Why?</a>
-          <a href="#" className="reference-nav-link">Features</a>
-          <a href="#" className="reference-nav-link">Security</a>
-          <Link to="/register" className="reference-cta-button">
-            Vote
+          <Link to="/voting" className="reference-nav-link">Vote</Link>
+          <Link to="/confirmation" className="reference-nav-link">Results</Link>
+          <Link to="/zkp-demo" className="reference-nav-link">ZKP Demo</Link>
+          <Link to="/admin-login" className="reference-nav-link">Admin</Link>
+          <Link to="/registration" className="reference-cta-button">
+            Register
           </Link>
         </div>
       </nav>
@@ -42,7 +43,7 @@ export default function LandingPage() {
             CryptoVote shines light on the dark in hopes of sparking understanding.
           </p>
           
-          <Link to="/register" className="reference-main-button">
+          <Link to="/registration" className="reference-main-button">
             Start Voting
           </Link>
         </section>
