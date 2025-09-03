@@ -56,9 +56,9 @@ export default function WalletModal({ isOpen, onClose, onSelectWallet }: WalletM
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md kaia-border kaia-glow">
+      <DialogContent className="sm:max-w-md bg-card border border-border">
         <DialogHeader>
-          <DialogTitle className="text-center text-2xl font-bold kaia-text flex items-center justify-center gap-2">
+          <DialogTitle className="text-center text-2xl font-bold text-foreground flex items-center justify-center gap-2">
             <Wallet className="h-6 w-6" />
             Connect Your Wallet
           </DialogTitle>
@@ -72,10 +72,10 @@ export default function WalletModal({ isOpen, onClose, onSelectWallet }: WalletM
           {walletOptions.map((wallet) => (
             <Card 
               key={wallet.id} 
-              className={`cursor-pointer transition-all duration-300 hover:scale-105 kaia-border ${
+              className={`cursor-pointer transition-all duration-300 hover:scale-105 border ${
                 wallet.isInstalled 
-                  ? 'hover:kaia-glow bg-card/80' 
-                  : 'opacity-50 bg-muted/20'
+                  ? 'hover:border-yellow-500/50 hover:shadow-lg hover:shadow-yellow-500/10 bg-card border-border' 
+                  : 'opacity-50 bg-muted/20 border-muted'
               }`}
               onClick={() => wallet.isInstalled && handleWalletSelect(wallet.id)}
             >
