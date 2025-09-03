@@ -374,3 +374,26 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Fix wallet modal transparency */
+[data-radix-popper-content-wrapper] {
+  background: hsl(var(--background)) !important;
+}
+
+[role="dialog"] {
+  background: hsl(var(--card)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Dialog overlay with dark background */
+[data-state="open"][data-radix-dialog-overlay] {
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Additional dialog content styling */
+[data-radix-dialog-content] {
+  background: hsl(var(--card)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+}

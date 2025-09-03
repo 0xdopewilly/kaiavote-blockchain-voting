@@ -56,7 +56,7 @@ export default function WalletModal({ isOpen, onClose, onSelectWallet }: WalletM
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md bg-card border border-border">
+      <DialogContent className="sm:max-w-md !bg-card !border !border-border !shadow-2xl" style={{ backgroundColor: 'hsl(var(--card))', border: '1px solid hsl(var(--border))' }}>
         <DialogHeader>
           <DialogTitle className="text-center text-2xl font-bold text-foreground flex items-center justify-center gap-2">
             <Wallet className="h-6 w-6" />
@@ -64,7 +64,7 @@ export default function WalletModal({ isOpen, onClose, onSelectWallet }: WalletM
           </DialogTitle>
         </DialogHeader>
         
-        <div className="space-y-4 p-4">
+        <div className="space-y-4 p-4" style={{ backgroundColor: 'hsl(var(--card))' }}>
           <div className="text-center text-sm text-muted-foreground mb-6">
             Connect with one of our supported KAIA-compatible wallets
           </div>
