@@ -1,42 +1,8 @@
-# CryptoVote on KAIA - Academic Blockchain Voting Platform
+# CryptoVote - Academic Blockchain Voting Platform
 
 ## Overview
 
-This is a web-based blockchain voting platform designed for academic settings, enabling students to vote for positions like Class Presidents, Departmental Presidents, Faculty Presidents, and Financial Secretaries. The platform leverages KAIA Chain technology for secure, transparent, and immutable voting with ultra-low gas fees, while providing a user-friendly interface for voter registration, wallet connection, and real-time vote tracking.
-
-**Status: Fully Operational with KAIA Integration** - All core functionality working successfully with ZKP privacy protection, KAIA Kairos Testnet integration, neon lime brand theme, and complete administrative oversight capabilities.
-
-## Recent Changes
-
-### January 2025 - Major Platform Redesign & Admin Dashboard
-- ✅ **New Brand Identity**: Rebranded from "VoteChain" to "CryptoVote" for a more professional, modern appeal
-- ✅ **Stunning Landing Page**: Added beautiful glass-morphism landing page with animated particles and smooth transitions
-- ✅ **Enhanced Layout**: Restructured landing page with hero CTA buttons, quick access navigation, and compelling feature showcase
-- ✅ **Perfect Title Contrast**: Fixed all title visibility issues with high-contrast gradient text styling across all pages
-- ✅ **Glass Futuristic Design**: Applied consistent glass-morphism effects and cyber aesthetics throughout the platform
-- ✅ **Complete Mobile Responsiveness**: Full responsive design overhaul for all devices with touch-friendly navigation
-- ✅ **Admin Dashboard System**: Comprehensive administrative interface with secure login and real-time monitoring
-- ✅ **Unified Navigation System**: Implemented shared header component with logo far top-left, navigation buttons far top-right
-- ✅ **Professional Favicon**: Added standard favicon with voting box icon in gradient design for browser tabs and bookmarks
-
-### Previous Major Fixes and Improvements
-- ✅ **Perfect Contrast Resolution**: Fixed all white-text-on-white-background issues across entire platform
-- ✅ **Gas Savings Banner**: Redesigned with dark glass morphism background and ultra-bright white text
-- ✅ **Deployment Info**: Enhanced with futuristic styling and high-contrast white text with colored accents
-- ✅ **Progress Indicator**: Transformed workflow banner with glass effects and perfect text visibility
-- ✅ **Live Vote Count**: Complete redesign with bright white text and colorful vote statistics
-- ✅ **Confirmation Page**: Enhanced with glass morphism effects and maximum contrast ratios
-- ✅ **Futuristic Theme**: Applied consistent dark backgrounds with bright white text throughout
-- ✅ **Visual Effects**: Added glow animations, pulse effects, and gradient highlights for modern appearance
-
-### Previous Major Fixes and Improvements
-- ✅ **Fixed Network Detection**: Resolved "Wrong Network" warnings - now properly recognizes Monad Testnet in all formats
-- ✅ **Fixed Vote Submission**: Resolved 400 validation errors by correcting vote schema and candidateIds field
-- ✅ **Improved Registration Flow**: Added existing voter display with one-click connection for better UX
-- ✅ **Mock Blockchain Integration**: Implemented working mock transaction system to eliminate JSON-RPC errors
-- ✅ **Enhanced Error Handling**: Better validation messages and error feedback throughout the platform
-- ✅ **ZKP Integration Maintained**: Zero-Knowledge Proof privacy protection working for both registration and voting
-- ✅ **Real-time Updates**: Live vote counting and statistics display functioning correctly
+CryptoVote is a comprehensive blockchain-based voting platform designed specifically for academic institutions. The platform enables secure, transparent, and private voting for academic elections including Class Presidents, Departmental Presidents, Faculty Presidents, and Financial Secretaries. Built on the KAIA blockchain ecosystem with Zero-Knowledge Proof (ZKP) integration, CryptoVote provides ultra-low gas fees while maintaining the highest security standards for academic voting.
 
 ## User Preferences
 
@@ -45,86 +11,82 @@ Preferred communication style: Simple, everyday language.
 ## System Architecture
 
 ### Frontend Architecture
-- **Framework**: React with TypeScript using Vite as the build tool
-- **UI Library**: Shadcn/ui components built on Radix UI primitives
-- **Styling**: Tailwind CSS with custom CSS variables for theming
-- **State Management**: React hooks with TanStack Query for server state management
-- **Routing**: Wouter for lightweight client-side routing
-- **Form Handling**: React Hook Form with Zod validation
+- **Framework**: React 18 with TypeScript for type safety and modern development practices
+- **Routing**: Wouter for lightweight client-side routing without the overhead of React Router
+- **Styling**: Tailwind CSS with custom design system based on a dark theme with yellow/accent highlights
+- **UI Components**: Radix UI primitives for accessible, customizable components with shadcn/ui styling
+- **State Management**: TanStack Query (React Query) for server state management and caching
+- **Build System**: Vite for fast development builds and hot module replacement
 
 ### Backend Architecture
-- **Runtime**: Node.js with Express.js framework
-- **API Pattern**: RESTful API with structured route handling
-- **Development Server**: Custom Vite integration for hot module replacement
-- **Error Handling**: Centralized error middleware with structured error responses
-- **Request Logging**: Custom middleware for API request tracking and performance monitoring
+- **Runtime**: Node.js with Express.js for RESTful API endpoints
+- **Database**: PostgreSQL with Drizzle ORM for type-safe database operations
+- **Session Management**: PostgreSQL-backed sessions using connect-pg-simple
+- **Authentication**: Simple admin authentication with localStorage-based session management
+- **API Design**: RESTful endpoints with proper error handling and validation using Zod schemas
 
-### Database Architecture
-- **ORM**: Drizzle ORM with TypeScript-first schema definitions
-- **Database**: PostgreSQL with Neon serverless configuration
-- **Schema Design**: Four main entities - voters, positions, candidates, and votes
-- **Migrations**: Drizzle Kit for schema migrations and database management
-- **Connection Pooling**: Neon serverless pool with WebSocket support
+### Database Design
+- **Core Tables**: voters, positions, candidates, votes, eligible_voters
+- **Key Features**: UUID primary keys, timestamped records, vote counting integration
+- **Relationships**: Proper foreign key constraints between voters, candidates, and votes
+- **Privacy Protection**: Separate eligible voters table for admin-managed voter eligibility
 
-### KAIA Blockchain Integration
-- **Network**: KAIA Kairos Testnet (Ethereum-compatible) - Chain ID 1001
-- **Smart Contracts**: VotingContract.sol deployed on KAIA Kairos Testnet
-- **Contract Address**: TBD (awaiting KAIA testnet tokens for deployment)
-- **Gas Optimization**: Ultra-low gas fees with KAIA's optimized consensus mechanism
-- **Network Benefits**: High throughput and low-cost transactions perfect for educational institutions
-- **Wallet Integration**: MetaMask with automatic KAIA Testnet network switching
-- **Transaction Handling**: Web3 transaction signing with KAIA blockchain verification
-- **Vote Storage**: Hybrid approach - database for persistence, KAIA blockchain when available, ZKP for privacy
-- **Resilient Design**: Graceful fallback to secure database storage when blockchain is unavailable
+### Blockchain Integration
+- **Primary Network**: KAIA Kairos Testnet (Chain ID: 1001) for ultra-low gas fees
+- **Fallback Support**: Monad Testnet for additional blockchain compatibility
+- **Smart Contracts**: Ethereum-compatible voting contracts with ZKP verification
+- **Web3 Integration**: MetaMask and KAIA Wallet support for seamless wallet connections
+- **Transaction Management**: Automatic gas price optimization and transaction retry logic
 
 ### Zero-Knowledge Proof Implementation
-- **ZKP Service**: Custom implementation in zkp.ts for voter privacy protection
-- **Eligibility Proof**: Generates ZKP during registration to verify matric number without revealing it
-- **Vote Proof**: Creates ZKP for vote integrity without revealing candidate selections
-- **Privacy Features**: Identity protection, vote privacy, and eligibility verification
-- **Storage**: ZKP hashes stored in database for audit trails while maintaining privacy
-- **Verification**: Local proof verification before blockchain submission
+- **Voter Privacy**: ZKP circuits for voter eligibility verification without revealing matric numbers
+- **Vote Integrity**: Cryptographic proofs for vote validation while maintaining anonymity
+- **Anti-Double-Voting**: ZKP-based verification to prevent duplicate voting without identity disclosure
+- **Proof Generation**: Client-side ZKP generation with secure proof verification
 
-### Authentication & Security
-- **Wallet-Based Authentication**: Users authenticate using their Web3 wallet addresses
-- **Voter Verification**: Matric number and wallet address validation
-- **Duplicate Prevention**: Database constraints prevent multiple registrations
-- **GDPR Compliance**: Personal data handling with privacy considerations
-- **Session Management**: Connect-pg-simple for session storage
+### Security Architecture
+- **Wallet Authentication**: Web3 wallet-based user authentication with address validation
+- **Input Validation**: Comprehensive Zod schema validation for all user inputs
+- **Admin Controls**: Secure admin dashboard with voter eligibility management
+- **Privacy Protection**: ZKP integration ensures voter privacy while maintaining vote integrity
+- **Network Security**: Multi-network support with automatic chain validation
 
-### Real-Time Features
-- **Live Metrics**: Real-time vote counting with 3-second refresh intervals
-- **Progress Tracking**: Visual progress indicators across the voting flow
-- **Vote Visualization**: Live charts showing candidate vote percentages
-- **Responsive Updates**: Automatic UI updates as votes are cast
-
-### User Flow Architecture
-1. **Registration Phase**: Voter registration with personal details and wallet connection
-2. **Voting Phase**: Position-based candidate selection with blockchain transaction signing
-3. **Confirmation Phase**: Transaction receipt and vote verification
+### Performance Optimizations
+- **Real-time Updates**: Live vote counting with 3-second refresh intervals
+- **Query Caching**: TanStack Query for efficient data fetching and caching
+- **Gas Optimization**: KAIA blockchain integration for 99% gas fee reduction compared to Ethereum
+- **Build Optimization**: Vite-based build system for optimal bundle sizes and loading speeds
 
 ## External Dependencies
 
-### Blockchain Services
-- **Neon Database**: Serverless PostgreSQL hosting with WebSocket support
-- **Monad Testnet**: High-performance Ethereum-compatible blockchain with ultra-low gas fees
-- **MetaMask/Web3 Wallets**: Browser extension wallets for transaction signing
-- **Monad RPC**: https://10143.rpc.thirdweb.com for network connectivity
+### Blockchain Infrastructure
+- **KAIA Kairos Testnet**: Primary blockchain network for production voting with ultra-low fees
+- **Monad Testnet**: Secondary blockchain network for additional compatibility
+- **MetaMask**: Primary Web3 wallet provider for user authentication
+- **KAIA Wallet**: Native KAIA ecosystem wallet integration
 
-### UI/UX Libraries
-- **Radix UI**: Accessible component primitives for dialog, form, and navigation components
-- **Lucide React**: Icon library for consistent iconography
-- **TanStack Query**: Server state management and caching
-- **Embla Carousel**: Component carousels and sliders
+### Database Services
+- **PostgreSQL**: Primary database for voter registration, vote storage, and admin management
+- **Neon Database**: Serverless PostgreSQL provider for scalable database hosting
+- **Drizzle ORM**: Type-safe database operations with automatic migration support
 
 ### Development Tools
-- **Drizzle Kit**: Database schema management and migration tools
-- **Zod**: Runtime type validation for forms and API endpoints
-- **Date-fns**: Date manipulation and formatting utilities
-- **Class Variance Authority**: Utility for managing component variants
+- **Hardhat**: Ethereum development environment for smart contract compilation and deployment
+- **ethers.js**: Ethereum interaction library for Web3 functionality
+- **Vite**: Modern build tool for fast development and optimized production builds
 
-### Build & Development
-- **Vite**: Fast build tool with hot module replacement
-- **ESBuild**: JavaScript bundler for production builds
-- **TypeScript**: Static type checking across the entire codebase
-- **PostCSS**: CSS processing with Tailwind CSS integration
+### UI/UX Libraries
+- **Radix UI**: Headless UI primitives for accessible component development
+- **Tailwind CSS**: Utility-first CSS framework for responsive design
+- **Lucide React**: Icon library for consistent iconography
+- **React Hook Form**: Form management with validation support
+
+### API and State Management
+- **TanStack Query**: Server state management with caching and synchronization
+- **Zod**: Runtime type validation for API endpoints and user inputs
+- **date-fns**: Date manipulation and formatting utilities
+
+### Deployment and Monitoring
+- **Replit**: Development environment and hosting platform
+- **KAIA Block Explorer**: Transaction verification and network monitoring
+- **Monad Block Explorer**: Secondary network transaction tracking

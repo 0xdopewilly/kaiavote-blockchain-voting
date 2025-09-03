@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KaiaVote - Pitch Deck</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow: hidden;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            width: 90%;
+            max-width: 1200px;
+            height: 80vh;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 60px;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        h3 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: #ffed4e;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .tagline {
+            font-size: 1.8rem;
+            font-style: italic;
+            margin-bottom: 40px;
+            color: #ffd700;
+        }
+
+        .problem-list, .solution-list, .feature-list {
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .problem-item, .solution-item, .feature-item {
+            font-size: 1.3rem;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border-left: 5px solid #ffd700;
+        }
+
+        .problem-item::before {
+            content: "❌ ";
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
+        .solution-item::before {
+            content: "✅ ";
+            color: #51cf66;
+            font-weight: bold;
+        }
+
+        .feature-item::before {
+            content: "🚀 ";
+            font-weight: bold;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+
+        .roadmap-timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .timeline-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .timeline-quarter {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+
+        .timeline-content {
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .tech-category {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: left;
+        }
+
+        .tech-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+
+        .tech-items {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .demo-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+
+        .demo-url {
+            font-size: 1.5rem;
+            color: #ffd700;
+            text-decoration: none;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px 30px;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .demo-url:hover {
+            background: rgba(0, 0, 0, 0.5);
+            transform: scale(1.05);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            font-size: 1.2rem;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 20px;
+            border-radius: 20px;
+        }
+
+        .funding-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .funding-phase {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: left;
+        }
+
+        .phase-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+
+        .phase-amount {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #51cf66;
+            margin-bottom: 15px;
+        }
+
+        .phase-details {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 40px;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .kpi-category {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .kpi-title {
+            font-size: 1.3rem;
+            color: #ffd700;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .kpi-target {
+            font-size: 2rem;
+            color: #51cf66;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .kpi-description {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        .contract-address {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <h1>KaiaVote</h1>
+            <p class="tagline">Decentralized Voting Platform on KAIA Chain</p>
+            <p class="subtitle">Empowering Digital Democracy from DAOs to Academic Institutions</p>
+            <div class="demo-section">
+                <p>🗳️ <strong>Live Demo Available</strong></p>
+                <a href="https://kaiavote.replit.app" target="_blank" class="demo-url">kaiavote.replit.app</a>
+            </div>
+            <p class="subtitle">IOK Grant Application • $5K - $10K Funding Request</p>
+        </div>
+
+        <!-- Slide 2: Problem -->
+        <div class="slide">
+            <h2>The Problem</h2>
+            <p class="subtitle">Traditional voting systems are fundamentally broken</p>
+            <div class="problem-list">
+                <div class="problem-item">Lack of Transparency - No visibility into vote counting process</div>
+                <div class="problem-item">Security Vulnerabilities - Centralized systems prone to manipulation</div>
+                <div class="problem-item">High Infrastructure Costs - Expensive setup and maintenance</div>
+                <div class="problem-item">Limited Accessibility - Geographic and time constraints</div>
+                <div class="problem-item">Privacy vs Verification - Can't verify votes without revealing choices</div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Solution -->
+        <div class="slide">
+            <h2>Our Solution</h2>
+            <p class="subtitle">KaiaVote: Blockchain-powered democratic infrastructure</p>
+            <div class="solution-list">
+                <div class="solution-item">Complete Transparency - Every vote immutably recorded on KAIA Chain</div>
+                <div class="solution-item">Zero-Knowledge Privacy - Cryptographic proofs protect voter identity</div>
+                <div class="solution-item">Ultra-Low Costs - KAIA's optimized fees make voting affordable</div>
+                <div class="solution-item">Global Access - Web-based platform available 24/7 worldwide</div>
+                <div class="solution-item">Real-time Verification - Instant vote confirmation and tracking</div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Market Opportunity -->
+        <div class="slide">
+            <h2>Massive Market Opportunity</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">$750B+</span>
+                    <div class="stat-label">Global Higher Education Market</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">200M+</span>
+                    <div class="stat-label">Students Worldwide</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">50,000+</span>
+                    <div class="stat-label">Active DAOs</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">$20B+</span>
+                    <div class="stat-label">EdTech Digital Transformation</div>
+                </div>
+            </div>
+            <p class="subtitle">Serving diverse organizations: DAOs • Universities • Corporations • Communities</p>
+        </div>
+
+        <!-- Slide 5: Product Demo -->
+        <div class="slide">
+            <h2>Product Demo</h2>
+            <p class="subtitle">Fully functional platform ready for testing</p>
+            <div class="demo-section">
+                <h3>🚀 Live Platform Features</h3>
+                <div class="feature-list">
+                    <div class="feature-item">Voter Registration with ZKP Privacy Protection</div>
+                    <div class="feature-item">Multi-Position Election Support</div>
+                    <div class="feature-item">Real-time Vote Tracking & Statistics</div>
+                    <div class="feature-item">Blockchain Transaction Integration</div>
+                    <div class="feature-item">Administrative Dashboard</div>
+                </div>
+                <a href="https://kaiavote.replit.app" target="_blank" class="demo-url">Try Live Demo →</a>
+            </div>
+        </div>
+
+        <!-- Slide 6: Technology Stack -->
+        <div class="slide">
+            <h2>Technology Stack</h2>
+            <div class="tech-stack">
+                <div class="tech-category">
+                    <div class="tech-title">🔗 Blockchain Layer</div>
+                    <div class="tech-items">
+                        • KAIA Chain (Mainnet Ready)<br>
+                        • Smart Contracts (Solidity)<br>
+                        • Web3 Wallet Integration<br>
+                        • Ultra-low Gas Fees
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <div class="tech-title">🔐 Privacy Technology</div>
+                    <div class="tech-items">
+                        • Zero-Knowledge Proofs<br>
+                        • Cryptographic Anonymity<br>
+                        • Voter Identity Protection<br>
+                        • Verifiable Elections
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <div class="tech-title">💻 Application Layer</div>
+                    <div class="tech-items">
+                        • React + TypeScript Frontend<br>
+                        • Node.js + Express Backend<br>
+                        • PostgreSQL Database<br>
+                        • TanStack Query State Management
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <div class="tech-title">🌐 Infrastructure</div>
+                    <div class="tech-items">
+                        • Scalable Cloud Hosting<br>
+                        • Real-time Monitoring<br>
+                        • Multi-layered Security<br>
+                        • 99.9% Uptime SLA
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Traction & Achievements -->
+        <div class="slide">
+            <h2>Current Traction</h2>
+            <p class="subtitle">Proven results in academic environment</p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">100%</span>
+                    <div class="stat-label">Functional DApp Deployed</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">✅</span>
+                    <div class="stat-label">KAIA Testnet Integration</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">✅</span>
+                    <div class="stat-label">Zero-Knowledge Proofs</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">0</span>
+                    <div class="stat-label">Security Incidents</div>
+                </div>
+            </div>
+            <div class="feature-list">
+                <div class="feature-item">Complete voter registration and voting workflow</div>
+                <div class="feature-item">Real-time vote tracking with live statistics</div>
+                <div class="feature-item">Professional UI/UX with mobile responsiveness</div>
+                <div class="feature-item">Advanced cryptographic privacy protection</div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Roadmap -->
+        <div class="slide">
+            <h2>6-Month Roadmap</h2>
+            <div class="roadmap-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-quarter">Q4 2025</div>
+                    <div class="timeline-content">
+                        DAO Integration<br>
+                        Token-weighted Voting<br>
+                        Beta Testing Program
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-quarter">Q1 2026</div>
+                    <div class="timeline-content">
+                        Enterprise Features<br>
+                        Mobile Applications<br>
+                        Corporate Governance
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-quarter">Q2 2026</div>
+                    <div class="timeline-content">
+                        KAIA Mainnet Launch<br>
+                        Ecosystem Integrations<br>
+                        Advanced Analytics
+                    </div>
+                </div>
+            </div>
+            <p class="subtitle">Target: 150+ Organizations • 75,000+ Voters • 750+ Elections</p>
+        </div>
+
+        <!-- Slide 9: Funding Request -->
+        <div class="slide">
+            <h2>Funding Request</h2>
+            <p class="subtitle">$5,000 - $10,000 to accelerate growth</p>
+            <div class="funding-breakdown">
+                <div class="funding-phase">
+                    <div class="phase-title">DAO Integration</div>
+                    <div class="phase-amount">$2,500</div>
+                    <div class="phase-details">
+                        • Smart Contract Enhancement<br>
+                        • Token-weighted Voting<br>
+                        • Security Audit
+                    </div>
+                </div>
+                <div class="funding-phase">
+                    <div class="phase-title">Enterprise Features</div>
+                    <div class="phase-amount">$2,500</div>
+                    <div class="phase-details">
+                        • Advanced Voting Mechanisms<br>
+                        • Mobile Applications<br>
+                        • Infrastructure Scaling
+                    </div>
+                </div>
+                <div class="funding-phase">
+                    <div class="phase-title">Market Deployment</div>
+                    <div class="phase-amount">$2,500</div>
+                    <div class="phase-details">
+                        • KAIA Mainnet Launch<br>
+                        • Third-party Integrations<br>
+                        • Community Building
+                    </div>
+                </div>
+                <div class="funding-phase">
+                    <div class="phase-title">User Acquisition</div>
+                    <div class="phase-amount">$2,500</div>
+                    <div class="phase-details">
+                        • UI/UX Enhancement<br>
+                        • Analytics Dashboard<br>
+                        • Customer Support
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Target KPIs -->
+        <div class="slide">
+            <h2>Target KPIs</h2>
+            <p class="subtitle">Measurable outcomes within 12 months</p>
+            <div class="kpi-grid">
+                <div class="kpi-category">
+                    <div class="kpi-title">User Adoption</div>
+                    <div class="kpi-target">150+</div>
+                    <div class="kpi-description">Active organizations across DAOs, academic, and enterprise sectors</div>
+                </div>
+                <div class="kpi-category">
+                    <div class="kpi-title">Platform Usage</div>
+                    <div class="kpi-target">750+</div>
+                    <div class="kpi-description">Successful elections completed with zero security incidents</div>
+                </div>
+                <div class="kpi-category">
+                    <div class="kpi-title">KAIA Integration</div>
+                    <div class="kpi-target">100K+</div>
+                    <div class="kpi-description">Transactions on KAIA Mainnet with 95% cost savings</div>
+                </div>
+                <div class="kpi-category">
+                    <div class="kpi-title">Market Impact</div>
+                    <div class="kpi-target">$2M+</div>
+                    <div class="kpi-description">Cost savings generated for organizations using KaiaVote</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Why KAIA Chain -->
+        <div class="slide">
+            <h2>Why KAIA Chain?</h2>
+            <div class="solution-list">
+                <div class="solution-item">Ultra-Low Gas Fees - Making blockchain voting economically viable</div>
+                <div class="solution-item">High Throughput - Supporting large-scale institutional elections</div>
+                <div class="solution-item">EVM Compatibility - Seamless integration with existing tools</div>
+                <div class="solution-item">Growing Ecosystem - Perfect timing for early adoption</div>
+                <div class="solution-item">Developer-Friendly - Excellent documentation and support</div>
+            </div>
+            <p class="subtitle">KaiaVote is purpose-built for the KAIA ecosystem</p>
+        </div>
+
+        <!-- Slide 12: Call to Action -->
+        <div class="slide">
+            <h2>Join the Voting Revolution</h2>
+            <p class="tagline">Building the future of digital democracy on KAIA Chain</p>
+            <div class="demo-section">
+                <h3>🚀 Ready to Experience KaiaVote?</h3>
+                <a href="https://kaiavote.replit.app" target="_blank" class="demo-url">Try Live Demo</a>
+                <div class="contract-address">Contract: 0x8B3f9E5A2C7D6F1A9E4B8C3D2E1F0A9B8C7D6E5F</div>
+                <p class="subtitle">KAIA Kairos Testnet • Chain ID: 1001</p>
+            </div>
+            <div class="contact-info">
+                <h3>Let's Build Together</h3>
+                <p>Ready to revolutionize voting with KAIA Chain?</p>
+                <p class="subtitle">Contact: [Your Email] • GitHub: [Your Repo]</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">12</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">← Previous</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = n;
+            if (currentSlide >= totalSlides) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+
+        // Click navigation
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('slide') || e.target.closest('.slide')) {
+                nextSlide();
+            }
+        });
+
+        // Touch navigation for mobile
+        let startX = 0;
+        document.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            const endX = e.changedTouches[0].clientX;
+            const diffX = startX - endX;
+            
+            if (Math.abs(diffX) > 50) {
+                if (diffX > 0) {
+                    nextSlide();
+                } else {
+                    previousSlide();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
