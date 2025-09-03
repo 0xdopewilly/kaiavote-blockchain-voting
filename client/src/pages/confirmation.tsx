@@ -34,7 +34,7 @@ export default function ConfirmationPage() {
   });
 
   const handleViewOnExplorer = () => {
-    const explorerUrl = `https://monad-testnet.socialscan.io/tx/${transactionDetails.hash}`;
+    const explorerUrl = `https://kairos.kaiascope.com/tx/${transactionDetails.hash}`;
     window.open(explorerUrl, '_blank');
   };
 
@@ -44,7 +44,7 @@ export default function ConfirmationPage() {
       transactionHash: transactionDetails.hash,
       blockNumber: transactionDetails.blockNumber,
       timestamp: transactionDetails.timestamp,
-      network: "Monad Testnet",
+      network: "KAIA Kairos Testnet",
     };
 
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(receipt, null, 2));
@@ -184,7 +184,7 @@ export default function ConfirmationPage() {
                       </div>
                       <div className="flex justify-between items-center py-3 border-b border-primary/20">
                         <span className="text-white font-medium text-lg">Network:</span>
-                        <span className="text-primary font-bold text-lg">Monad Testnet</span>
+                        <span className="text-primary font-bold text-lg">KAIA Kairos Testnet</span>
                       </div>
                       <div className="flex justify-between items-center py-3 border-b border-primary/20">
                         <span className="text-white font-medium text-lg">Timestamp:</span>
@@ -195,7 +195,7 @@ export default function ConfirmationPage() {
                       <div className="flex justify-between items-center py-3">
                         <span className="text-white font-medium text-lg">Gas Cost:</span>
                         <span className="text-accent font-bold font-mono text-lg">
-                          ~0.0005 MON (~$0.0005)
+                          ~0.0001 KAIA (~$0.0001)
                         </span>
                       </div>
                     </div>
