@@ -312,3 +312,65 @@
     }
   }
 }
+
+/* Beautiful Footer with Cards */
+.reference-footer {
+  background: hsl(var(--darker-bg));
+  border-top: 1px solid hsl(var(--border));
+  padding: 4rem 2rem 2rem;
+  margin-top: 4rem;
+}
+
+.reference-footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.reference-footer-card {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.reference-footer-card:hover {
+  border-color: hsl(var(--yellow-accent) / 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.reference-footer-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: hsl(var(--yellow-accent));
+  opacity: 0.6;
+}
+
+.reference-footer-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: hsl(var(--light-text));
+}
+
+.reference-footer-description {
+  color: hsl(var(--muted-text));
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .reference-footer-content {
+    grid-template-columns: 1fr;
+  }
+}
