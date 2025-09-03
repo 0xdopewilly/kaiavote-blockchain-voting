@@ -20,10 +20,8 @@ export default function LandingPage() {
           <a href="#" className="reference-nav-link">Why?</a>
           <a href="#" className="reference-nav-link">Features</a>
           <a href="#" className="reference-nav-link">Security</a>
-          <Link to="/register">
-            <button className="reference-cta-button">
-              Vote
-            </button>
+          <Link to="/register" className="reference-cta-button">
+            Vote
           </Link>
         </div>
       </nav>
@@ -44,10 +42,8 @@ export default function LandingPage() {
             CryptoVote shines light on the dark in hopes of sparking understanding.
           </p>
           
-          <Link to="/register">
-            <button className="reference-main-button">
-              Start Voting
-            </button>
+          <Link to="/register" className="reference-main-button">
+            Start Voting
           </Link>
         </section>
 
@@ -65,36 +61,36 @@ export default function LandingPage() {
         </section>
       </div>
 
-      {/* Sidebar - Exact match to reference */}
+      {/* Sidebar - Updated for CryptoVote project */}
       <aside className="reference-sidebar hidden lg:block">
         <div className="reference-card">
-          <div className="reference-tag">ONE VOTE AT A TIME</div>
-          <h3 className="reference-card-title">EYES EVERYWHERE</h3>
+          <div className="reference-tag">VOTE SECURELY</div>
+          <h3 className="reference-card-title">KAIA BLOCKCHAIN</h3>
           <p className="reference-card-subtitle">
-            Revealing the hidden world of surveillance and privacy erosion, 
-            empowering readers with the knowledge to reclaim control in a 
-            connected reality.
+            Powered by KAIA Chain technology for ultra-low gas fees and 
+            lightning-fast transactions. Your vote counts and costs almost nothing.
           </p>
           <div className="flex gap-2 text-xs">
-            <span className="text-muted-foreground">Paper Copy</span>
-            <span className="text-muted-foreground">Free e-Book</span>
+            <span className="text-muted-foreground">Register Now</span>
+            <span className="text-muted-foreground">Cast Vote</span>
           </div>
         </div>
 
         <div className="reference-card">
-          <div className="reference-tag">COMING SOON</div>
-          <h3 className="reference-card-title">BLOCKCHAIN DEMOCRACY</h3>
+          <div className="reference-tag">PRIVACY FIRST</div>
+          <h3 className="reference-card-title">ZERO-KNOWLEDGE PROOFS</h3>
           <p className="reference-card-description">
-            Uncover the patterns. AI power. Insights.
+            Vote privately with cryptographic proofs. Your identity stays protected 
+            while ensuring complete vote integrity and transparency.
           </p>
         </div>
 
         <div className="reference-card">
-          <div className="reference-tag">JOIN</div>
-          <h3 className="reference-card-title">SECURE VOTING</h3>
+          <div className="reference-tag">ACADEMIC ELECTIONS</div>
+          <h3 className="reference-card-title">12 POSITIONS AVAILABLE</h3>
           <p className="reference-card-description">
-            Experience the future of democratic participation with zero-knowledge 
-            proofs and blockchain technology.
+            Class Presidents, Departmental Presidents, Faculty Presidents, and 
+            Financial Secretaries - all positions ready for democratic participation.
           </p>
         </div>
       </aside>

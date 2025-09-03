@@ -127,8 +127,8 @@
   }
 
   .reference-cta-button {
-    background: hsl(var(--yellow-accent));
-    color: hsl(var(--dark-bg));
+    background: hsl(var(--yellow-accent)) !important;
+    color: hsl(var(--dark-bg)) !important;
     padding: 0.5rem 1.5rem;
     border-radius: 2rem;
     font-size: 0.875rem;
@@ -136,12 +136,16 @@
     transition: all 0.2s ease;
     border: none;
     cursor: pointer;
+    text-decoration: none !important;
+    display: inline-block;
   }
 
   .reference-cta-button:hover {
-    background: hsl(var(--yellow-accent));
+    background: hsl(var(--yellow-accent)) !important;
+    color: hsl(var(--dark-bg)) !important;
     transform: translateY(-1px);
     box-shadow: 0 4px 12px hsl(var(--yellow-accent) / 0.3);
+    text-decoration: none !important;
   }
 
   .reference-hero {
@@ -178,8 +182,8 @@
   }
 
   .reference-main-button {
-    background: hsl(var(--yellow-accent));
-    color: hsl(var(--dark-bg));
+    background: hsl(var(--yellow-accent)) !important;
+    color: hsl(var(--dark-bg)) !important;
     padding: 1rem 2.5rem;
     border-radius: 2rem;
     font-size: 1rem;
@@ -188,13 +192,15 @@
     border: none;
     cursor: pointer;
     display: inline-block;
-    text-decoration: none;
+    text-decoration: none !important;
   }
 
   .reference-main-button:hover {
-    background: hsl(var(--yellow-accent));
+    background: hsl(var(--yellow-accent)) !important;
+    color: hsl(var(--dark-bg)) !important;
     transform: translateY(-2px);
     box-shadow: 0 8px 25px hsl(var(--yellow-accent) / 0.3);
+    text-decoration: none !important;
   }
 
   .reference-quote-section {
