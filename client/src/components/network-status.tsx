@@ -25,13 +25,13 @@ export default function NetworkStatus() {
       try {
         if (await isWalletAvailable()) {
           const chainId = await getCurrentNetwork();
-          const isMonad = chainId === '0x279F' || chainId === '0x279f' || parseInt(chainId, 16) === 10143; // Monad Testnet in different formats
+          const isKaia = chainId === '0x3E9' || chainId === '0x3e9' || parseInt(chainId, 16) === 1001; // KAIA Kairos Testnet in different formats
           
           setNetworkStatus({
             chainId,
-            isCorrectNetwork: isMonad,
-            networkName: isMonad ? 'Monad Testnet' : 'Wrong Network',
-            nativeCurrency: isMonad ? 'MON' : 'ETH',
+            isCorrectNetwork: isKaia,
+            networkName: isKaia ? 'KAIA Kairos Testnet' : 'Wrong Network',
+            nativeCurrency: isKaia ? 'KAIA' : 'ETH',
             isLoading: false,
           });
         } else {
@@ -105,7 +105,7 @@ export default function NetworkStatus() {
             <AlertDescription className="text-orange-800">
               <p className="font-medium mb-1">Wrong Network Detected</p>
               <p className="text-sm">
-                Please switch to Monad Testnet to use MON tokens and enjoy 99% lower gas fees.
+                Please switch to KAIA Kairos Testnet to use KAIA tokens and enjoy ultra-low gas fees.
                 Current network: Chain ID {networkStatus.chainId}
               </p>
             </AlertDescription>

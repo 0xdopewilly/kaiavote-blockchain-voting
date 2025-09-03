@@ -5,7 +5,7 @@ import { Globe, Shield, Database, ExternalLink } from "lucide-react";
 export default function DeploymentInfo() {
   const contractAddress = "0x8B3f9E5A2C7D6F1A9E4B8C3D2E1F0A9B8C7D6E5F";
   const verifierAddress = "0x1A2B3C4D5E6F7A8B9C0D1E2F3A4B5C6D7E8F9A0B"; // Example
-  const explorerUrl = `https://monad-testnet.socialscan.io/address/${contractAddress}`;
+  const explorerUrl = `https://kairos.kaiascope.com/account/${contractAddress}`;
   
   return (
     <div className="glass-morph rounded-2xl border-2 border-primary/30">
@@ -19,7 +19,7 @@ export default function DeploymentInfo() {
             <h3 className="text-2xl font-bold text-white">Blockchain Deployment</h3>
           </div>
           <div className="glass-morph px-4 py-2 rounded-xl border border-accent/50">
-            <span className="text-lg font-bold text-accent">Live on Monad Testnet</span>
+            <span className="text-lg font-bold text-accent">Live on KAIA Kairos</span>
           </div>
         </div>
         <p className="text-lg text-white/90 font-medium mb-6">
@@ -32,9 +32,9 @@ export default function DeploymentInfo() {
               <h4 className="text-lg font-bold text-white mb-3">Network</h4>
               <div className="flex items-center space-x-3">
                 <div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
-                <span className="text-lg text-white font-medium">Monad Testnet</span>
+                <span className="text-lg text-white font-medium">KAIA Kairos Testnet</span>
                 <div className="glass-morph px-3 py-1 rounded-lg">
-                  <span className="text-sm text-primary font-mono">Chain ID: 10143</span>
+                  <span className="text-sm text-primary font-mono">Chain ID: 1001</span>
                 </div>
               </div>
             </div>
@@ -107,11 +107,11 @@ export default function DeploymentInfo() {
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => window.open('https://monad.xyz/', '_blank')}
+              onClick={() => window.open('https://docs.kaia.io/', '_blank')}
               className="cyber-button px-4 py-2"
-              data-testid="button-learn-monad"
+              data-testid="button-learn-kaia"
             >
-              Learn about Monad
+              Learn about KAIA
               <ExternalLink className="ml-2 h-4 w-4" />
             </Button>
           </div>

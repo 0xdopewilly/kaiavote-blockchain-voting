@@ -397,3 +397,25 @@
   background: hsl(var(--card)) !important;
   border: 1px solid hsl(var(--border)) !important;
 }
+
+
+/* Yellow dialogs with black text */
+[role="dialog"], [role="alertdialog"] {
+  background: hsl(var(--yellow-accent)) !important;
+  color: black !important;
+  border: 2px solid black !important;
+}
+
+[role="dialog"] h2, [role="dialog"] h3, [role="dialog"] .font-bold {
+  color: black !important;
+}
+
+[role="dialog"] p, [role="dialog"] div {
+  color: black !important;
+}
+
+/* Alert dialog styling */
+.alert-dialog-content {
+  background: hsl(var(--yellow-accent)) !important;
+  color: black !important;
+}
