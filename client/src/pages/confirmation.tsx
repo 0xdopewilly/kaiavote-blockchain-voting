@@ -107,11 +107,11 @@ export default function ConfirmationPage() {
         <div className="text-center mb-6 sm:mb-8 relative mt-12 sm:mt-8">
           <div className="inline-block relative">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-3 sm:mb-4 tracking-wider" style={{
-              background: 'linear-gradient(135deg, #ffffff 0%, #e0e7ff 25%, #c7d2fe 50%, #a78bfa 75%, #8b5cf6 100%)',
+              background: 'linear-gradient(135deg, #ffeb3b 0%, #fdd835 25%, #f9a825 50%, #f57f17 75%, #ffeb3b 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
-              textShadow: '0 0 30px rgba(255, 255, 255, 0.5)'
+              textShadow: '0 0 30px rgba(255, 235, 59, 0.5)'
             }}>
               CryptoVote
             </h1>
@@ -220,7 +220,7 @@ export default function ConfirmationPage() {
                   <div className="flex flex-col sm:flex-row gap-6">
                     <Button 
                       onClick={handleViewOnExplorer}
-                      className="flex-1 h-14 text-lg cyber-button"
+                      className="flex-1 h-14 text-lg reference-main-button"
                       data-testid="button-view-explorer"
                     >
                       <ExternalLink className="mr-3 h-5 w-5" />
@@ -228,7 +228,7 @@ export default function ConfirmationPage() {
                     </Button>
                     <Button 
                       onClick={handleDownloadReceipt}
-                      className="flex-1 h-14 text-lg cyber-button bg-gradient-to-r from-accent to-primary"
+                      className="flex-1 h-14 text-lg reference-main-button"
                       data-testid="button-download-receipt"
                     >
                       <Download className="mr-3 h-5 w-5" />
@@ -262,8 +262,7 @@ export default function ConfirmationPage() {
       {/* ZKP Info Button - Bottom Right */}
       <div className="fixed bottom-4 right-4 z-50">
         <Button
-          variant="outline"
-          className="cyber-button bg-primary/10 hover:bg-primary/20 border-primary/30 hover:border-primary/60 backdrop-blur-sm px-3 py-2 h-auto"
+          className="reference-cta-button px-3 py-2 h-auto"
           onClick={() => document.querySelector('[data-testid="button-zkp-info"]')?.click()}
           data-testid="floating-zkp-info-small"
         >

@@ -11,11 +11,11 @@ export default function ZKPDemoPage() {
         <div className="text-center mb-6 sm:mb-8 relative">
           <div className="inline-block relative">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-3 sm:mb-4 tracking-wider" style={{
-              background: 'linear-gradient(135deg, #ffffff 0%, #e0e7ff 25%, #c7d2fe 50%, #a78bfa 75%, #8b5cf6 100%)',
+              background: 'linear-gradient(135deg, #ffeb3b 0%, #fdd835 25%, #f9a825 50%, #f57f17 75%, #ffeb3b 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
-              textShadow: '0 0 30px rgba(255, 255, 255, 0.5)'
+              textShadow: '0 0 30px rgba(255, 235, 59, 0.5)'
             }}>
               CryptoVote
             </h1>
@@ -28,7 +28,7 @@ export default function ZKPDemoPage() {
             </p>
             <div className="flex items-center justify-center gap-4 mt-4">
               <Link href="/">
-                <Button variant="outline" className="cyber-button text-xs sm:text-sm">
+                <Button className="reference-cta-button text-xs sm:text-sm">
                   <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
                   Back to Home
                 </Button>
